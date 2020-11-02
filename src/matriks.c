@@ -12,6 +12,26 @@ void MakeMATRIKS (int NB, int NK, MATRIKS * M)
 	NKolEff(*M) = NK;
 }
 
+indeks GetIdxBrsMin ()
+{
+	return BrsMin;
+}
+
+indeks GetIdxKolMin ()
+{
+	return KolMin;
+}
+
+indeks GetIdxBrsMax ()
+{
+	return BrsMax;
+}
+
+indeks GetIdxKolMax ()
+{
+	return KolMax;
+}
+
 boolean IsIdxValid (int i, int j)
 {
 	if (i >= BrsMin &&  i <= BrsMax && j >= KolMin && j <= KolMax)
