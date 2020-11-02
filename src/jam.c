@@ -156,3 +156,39 @@ long Durasi (JAM JAw, JAM JAkh)
     }
     
 }
+
+/* tambahan yang engga ada */
+void SetHour(JAM *J, int newHH)
+/*mengubah nilai komponen HH dari J*/
+{
+    Hour(*J) = newHH;
+}
+void SetMinute(JAM *J, int newMM)
+/*mengubah nilai komponen HMM dari J*/
+{
+    Minute(*J) = newMM;
+}
+void SetSecond(JAM *J, int newSS)
+/*mengubah nilai komponen SS dari J*/
+{
+    Second(*J) = newSS;
+}
+
+JAM JPlus(JAM J1, JAM J2)
+/* menambahkan jam 1 dan jam 2 */
+{
+    JAM J3;
+    Hour(J3) = Hour(J1) + Hour(J2);
+    Minute(J3) = Minute(J1) + Minute(J2);
+    Second(J3) = Second(J1) + Second(J2);
+    return J3;
+}
+JAM JMinus(JAM J1, JAM J2)
+/* mengurangi jam 1 dan jam 2 */
+{
+    JAM J3;
+    Hour(J3) = Hour(J1) - Hour(J2);
+    Minute(J3) = Minute(J1) - Minute(J2);
+    Second(J3) = Second(J1) - Second(J2);
+    return J3;
+}

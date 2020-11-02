@@ -96,4 +96,14 @@ void Putar (POINT *P, float Sudut);
 /* I.S. P terdefinisi */
 /* F.S. P digeser sebesar Sudut derajat dengan sumbu titik (0,0) searah jarum jam*/
 
+/* yang belum ada */
+POINT PPlus(POINT P1, POINT P2);
+/* Menghasilkan point yg bernilai P1 + P2 */
+
+POINT Pminus(POINT P1, POINT P2);
+/* Menghasilkan point yg bernilai P1 - P2 */
+
+float Dotproduct(POINT P1, POINT P2);
+/* menghasilkan dot product dari P1 dan P2 *? */
+
 #endif

@@ -197,3 +197,25 @@ void Putar (POINT *P, float Sudut)
     y = Absis(*P)*sinf(rad) + Ordinat(*P)*cosf(rad);
     *P = MakePOINT(x,y);
 }
+
+POINT PPlus(POINT P1, POINT P2)
+/* Menghasilkan point yg bernilai P1 + P2 */
+{
+    POINT P3;
+    Absis(P3) = Absis(P1) + Absis(P2);
+    Ordinat(P3) = Ordinat(P1) + Ordinat(P2);
+    return P3;
+}
+POINT Pminus(POINT P1, POINT P2)
+/* Menghasilkan point yg bernilai P1 - P2 */
+{
+    POINT P3;
+    Absis(P3) = Absis(P1) - Absis(P2);
+    Ordinat(P3) = Ordinat(P1) - Ordinat(P2);
+    return P3;
+}
+float Dotproduct(POINT P1, POINT P2)
+/* menghasilkan dot product dari P1 dan P2 *? */
+{
+    return (Absis(P1) * Absis(P2)) + (Ordinat(P1) * Ordinat(P2));
+}

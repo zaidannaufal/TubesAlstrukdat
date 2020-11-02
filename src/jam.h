@@ -98,4 +98,20 @@ long Durasi (JAM JAw, JAM JAkh);
 /* Mengirim JAkh-JAw dlm Detik, dengan kalkulasi */
 /* Jika JAw > JAkh, maka JAkh adalah 1 hari setelah JAw */
 
+/* tambahan yang engga ada */
+void SetHour(JAM *J, int newHH);
+/*mengubah nilai komponen HH dari J*/
+
+void SetMinute(JAM *J, int newMM);
+/*mengubah nilai komponen HMM dari J*/
+
+void SetSecond(JAM *J, int newSS);
+/*mengubah nilai komponen SS dari J*/
+
+JAM JPlus(JAM J1, JAM J2);
+/* menambahkan jam 1 dan jam 2 */
+
+JAM JMinus(JAM J1, JAM J2):
+/* mengurangi jam 1 dan jam 2 */
+
 #endif
