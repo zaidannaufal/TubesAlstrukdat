@@ -4,8 +4,6 @@
 /* Definisi Mesin Kata: Model Akuisisi Versi I */
 
 #include "mesinkata.h"
-#include "mesinkar.h"
-#include "boolean.h"
 
 boolean EndKata;
 Kata CKata;

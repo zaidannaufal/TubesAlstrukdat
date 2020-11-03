@@ -20,7 +20,7 @@ void START() {
           Jika CC = MARK maka EOP akan menyala (true) */
 
 	/* Algoritma */
-	pita = stdin;
+	pita = fopen("pitakar.txt", "r");
 	ADV();
 }
 
@@ -33,7 +33,7 @@ void ADV() {
 		  Jika  CC = MARK maka EOP akan menyala (true) */
 
 	/* Algoritma */
-	retval = fscanf(pita,"%c",&CC);
+	retval = fscanf(pita, "%c", &CC);
 	EOP = (CC == MARK);
 	if (EOP) {
        fclose(pita);
