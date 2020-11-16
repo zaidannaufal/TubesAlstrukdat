@@ -33,6 +33,7 @@ void tulisstr(char string[]){
     }
 }
 
+
 PERINTAH siapkan_perintah(){ //cara naif siap kan perintah
     PERINTAH per;
     per.total = 0; 
@@ -52,7 +53,10 @@ PERINTAH siapkan_perintah(){ //cara naif siap kan perintah
     copystr( &(per.command[13]), "Details\0");
     copystr( &(per.command[14]), "Report\0");
     copystr( &(per.command[15]), "Exit\0");
-    copystr( &(per.command[16]), "prepare\0");
-    per.total = 17;
+    copystr( &(per.command[16]), "w\0");
+    copystr( &(per.command[17]), "a\0");
+    copystr( &(per.command[18]), "s\0");
+    copystr( &(per.command[19]), "d\0");
+    per.total = 19;
     return per;
 }

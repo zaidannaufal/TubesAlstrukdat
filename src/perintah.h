@@ -21,6 +21,7 @@ boolean compare_string(char *a, char *b);
 /* compare string 1 sama string 2 kalo */
 void tulisstr(char string[]);
 /* ngeprint string */
+
 PERINTAH siapkan_perintah();
 /* nge siapin semua command*/
 #endif
