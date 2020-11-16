@@ -1,6 +1,4 @@
-#include "matriks.h"
-#include <stdio.h>
-#include "point.h"
+#include "mapAndMovingMechanics.h"
 
 MATRIKS renderMap()
 {
