@@ -4,7 +4,7 @@
 /* Definisi Mesin Kata: Model Akuisisi Versi I */
 
 #include "mesinkata.h"
-
+#include <stdio.h>
 boolean EndKata;
 Kata CKata;
 
@@ -19,13 +19,13 @@ void IgnoreBlank()
 	}
 }
 
-void STARTKATA()
+void STARTKATA(char* namafile)
 /* I.S. : CC sembarang 
    F.S. : EndKata = true, dan CC = MARK; 
           atau EndKata = false, CKata adalah kata yang sudah diakuisisi,
           CC karakter pertama sesudah karakter terakhir kata */
 {
-	START();
+	START(namafile);
 	IgnoreBlank();
 	if (CC == MARK)
 	{
@@ -45,7 +45,7 @@ void ADVKATA()
           Jika CC = MARK, EndKata = true.		  
    Proses : Akuisisi kata menggunakan procedure SalinKata */
 {
-   IgnoreBlank();
+   // IgnoreBlank();
    if (CC == MARK)
    {
       EndKata = true;
@@ -67,8 +67,8 @@ void SalinKata()
    int i;
    
    i = 0;
-   IgnoreBlank();
-   while ((CC != MARK) && (CC != BLANK) && (i < NMax))
+   // IgnoreBlank();
+   while ((CC != MARK) && (CC != ',') && (i < NMax))
    {
       CKata.TabKata[i] = CC;
       ADV();
