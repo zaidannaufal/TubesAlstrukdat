@@ -9,11 +9,39 @@
 /* Modul lain yang digunakan : */
 #include "listrek.h"
 #include "boolean.h"
+#include "graphmap.h"
+
+#define Nil NULL
 
 /* #define Nil NULL */ /* konstanta Nil sesuai pada modul listrek */
 
 /* *** Definisi Type Pohon Biner *** */
 /* typedef int infotype; */ /* type infotype sesuai pada modul listrek */
+
+typedef struct {
+   char string[20];  // untuk string //
+} String;
+
+typedef struct {
+   String resource[4];  // untuk membuat list of string //
+} Resource;
+
+typedef struct {
+   char nama[20];
+   char tipe[20];
+   int harga;
+   Vertices lokasi;
+   char deskripsi[100];
+   int kapasitas;
+   String history[20];
+   int durasi;
+   int durbility;
+   Resource resource;
+   boolean status;
+   int pengunjung;
+   int HUpgrade;
+} infotype2;
+
 typedef struct tNode *addrNode;
 typedef struct tNode { 
 	infotype info;
@@ -28,9 +56,23 @@ typedef addrNode BinTree;
 /* *** PROTOTYPE *** */
 
 /* *** Selektor *** */
-#define Akar(P) (P)->info
+/* Jika P adalah Node dan e adalah infotype2 */
+#define Akar(P) (P)->info.nama
 #define Left(P) (P)->left
 #define Right(P) (P)->right
+#define Nama(e) (e).nama
+#define Tipe(e) (e).tipe
+#define Harga(e) (e).harga
+#define Lokasi(e) (e).lokasi
+#define Desk(e) (e).deskripsi
+#define Kapasitas(e) (e).kapasitas
+#define History(e) (e).history
+#define Durasi(e) (e).durasi
+#define Durability(e) (e).durability
+#define Resource(e) (e).resource
+#define Status(e) (e).status
+#define Pengunjung(e) (e).pengunjung
+#define HUpgrade(e) (e).HUpgrade
 
 /* *** Konstruktor *** */
 BinTree Tree (infotype Akar, BinTree L, BinTree R); 

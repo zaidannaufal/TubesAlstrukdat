@@ -7,14 +7,21 @@
 #define listlinier_H
 
 #include "boolean.h"
-
 #define Nil NULL
 
-typedef int infotype;
+typedef struct {
+        char Nama[20];
+		int Freq;
+		int Penghasilan;
+		int TodayFreq;
+		int TodayPenghasilan;/* banyak target orang tsb */
+} infotype;
+
 typedef struct tElmtlist *address;
 typedef struct tElmtlist { 
 	infotype info;
 	address next;
+
 } ElmtList;
 typedef struct {
 	address First;
@@ -24,9 +31,14 @@ typedef struct {
 /* List kosong : First(L) = Nil */
 /* Setiap elemen dengan address P dapat diacu Info(P), Next(P) */
 /* Elemen terakhir list : jika addressnya Last, maka Next(Last)=Nil */
-#define Info(P) (P)->info
+#define Info(P) (P)->info.nama
 #define Next(P) (P)->next
 #define First(L) ((L).First)
+#define Nama(P) (P)->info.Nama
+#define Freq(P) (P)->info.Freq
+#define Penghasilan(P) (P)->info.Penghasilan
+#define TodayFreq(P) (P)->info.TodayFreq
+#define TodayPenghasilan(P) (P)->info.TodayPenghasilan
 
 /* PROTOTYPE */
 /****************** TEST LIST KOSONG ******************/

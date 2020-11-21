@@ -1,6 +1,5 @@
 #include <stdlib.h>
 #include <assert.h>
-
 #include "graph.h"
 
 /* basic directed graph type */
