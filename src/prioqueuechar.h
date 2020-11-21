@@ -7,6 +7,7 @@
 #define prioqueuechar_H
 
 #include "boolean.h"
+#include "mesinkata.h"
 
 #define Nil -1
 /* Konstanta untuk mendefinisikan address tak terdefinisi */
@@ -14,7 +15,10 @@
 /* Definisi elemen dan address */
 typedef struct {
     int prio;  /* [1..100], prioritas dengan nilai 1..100 (1 adalah prioritas tertinggi) */
-    char info;  /* elemen karakter */
+    char[100] info;  /* elemen karakter */
+    int kapasitas; /* kapasitas uwu */
+    int kesabaran; /* kesabaran dalam integer */
+    Kata tujuan[100]; /* banyak target orang tsb */
 } infotype;
 typedef int address;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype PrioQueueChar : */
@@ -37,6 +41,9 @@ typedef struct {
 #define InfoTail(Q) (Q).T[(Q).TAIL]
 #define MaxEl(Q)    (Q).MaxEl
 #define Elmt(Q,i)   (Q).T[(i)]
+#define kapasitas(e) (e).kapasitas
+#define kesabaran(e) (e).kesabaran
+#define tujuan(e,i)   (e).tujuan[(i)]
 
 /* ********* Prototype ********* */
 boolean IsEmpty (PrioQueueChar Q);
