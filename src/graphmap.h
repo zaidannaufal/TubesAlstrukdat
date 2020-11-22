@@ -6,15 +6,15 @@
 
 typedef struct{
     MATRIKS Map;
-    short Number;
+    int Number;
     POINT NextGate;
     POINT PrevGate;
     POINT PlayerPosition;
 } Vertices;
 
 typedef struct{
-    short Prec;
-    short Succ;
+    int Origin;
+    int Succ;
 } Edge;
 
 typedef struct{
@@ -25,11 +25,14 @@ typedef struct{
 #define Wilayah(G,i) (G).Wilayah[(i)]
 #define Lorong(G) (G).Lorong
 
+MATRIKS MakeMAP();
+//Buat Base Map per wilayah
+void GateIdentifier(int NWilayah , GraphMap * G);
+//Menginisiasi nilai nextgate, prevgate, lorong
+GraphMap BacaMapTXT();
+//Baca Map txt
+// void InitiateLorong(GraphMap * G);
 
-short FindPLayerWilayah(GraphMap G);
-//Kalau di vertice itu gaada player berarti
-//player position di vertice itu (-1,-1)
-
-void PlayerMove(GraphMap * G, char C);
+// void InitiatePlayerPosition(GraphMap * G);
 
 #endif

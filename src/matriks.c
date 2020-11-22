@@ -112,7 +112,7 @@ void TulisMATRIKS (MATRIKS M)
 		{
 			if (j != NKolEff(M)-1)
 			{
-				printf("%c", Elmt(M,i,j) );
+				printf("%c ", Elmt(M,i,j) );
 			}else printf("%c", Elmt(M,i,j) );
 		}
 		if (i != (NBrsEff(M)-1))
