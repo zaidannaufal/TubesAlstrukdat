@@ -2,19 +2,22 @@
 #include "boolean.h"
 #include "mesinkata.h"
 #include "stdlib.h"
-#include "perintah.h"
 #include "mapAndMovingMechanics.h"
+#include "execute.h"
+#include "matriks.h"
 
-
-int main(){
+int main() {
     boolean gamestart = false; // kalo true berarti game jalan
     Kata input; //cuma dipake si tab katanya doang lenght nya belum dipake
     char nama[100];
     PERINTAH per;
     MATRIKS map;
     POINT playerpos;
+    Stack stackawal, stacktarget;
 
-    
+    CreateEmpty(&stackawal);
+    CreateEmpty(&stacktarget);
+
     per = siapkan_perintah();
     map = renderMap();
     initiatePlayerPosition(&map,&playerpos);
@@ -57,17 +60,27 @@ int main(){
         if(compare_string(input.TabKata,Command(per,2))){ //kalo dimasukkin command 2 (exit) bakal ke exit
             gamestart = false;
         } else if (compare_string(input.TabKata,Command(per,16))||compare_string(input.TabKata,Command(per,17))
-                   || compare_string(input.TabKata,Command(per,18)) || compare_string(input.TabKata,Command(per,19))) // ini liat commandnya di fungsi siapkan perintah yah
+                || compare_string(input.TabKata,Command(per,18)) || compare_string(input.TabKata,Command(per,19))) // ini liat commandnya di fungsi siapkan perintah yah
         {
             movePlayer(&map,&playerpos,input.TabKata[0]);
         }
-        
+        else if (compare_string(input.TabKata,Command(per,7))) // execute
+        {
+            execute(stackawal, stacktarget);
+        }
 
+        /* setiap input pengguna di preparation phase akan di-push atau di-pop ke stackawal
+        run-nya dari execute
+        ini bentuknya tapi masih bingung masuknya kemana, maybe nanti pas udah dipisah preparation sama main phase
+        Push(&stackawal, "buy");
+        Push(&stackawal, "upgrade");
+        Push(&stackawal, "build");
+        [build, upgrade, buy] */
         
         // }else if(isalpha(input.TabKata)) {
         //     movePlayer(&map,&playerpos,input.TabKata[0]);
         // }
-
     }
+
     return 0;
 }

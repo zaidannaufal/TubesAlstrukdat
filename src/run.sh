@@ -1,3 +1,3 @@
-g++ -o main main.c perintah.c matriks.c point.c mapAndMovingMechanics.c 
+g++ -o main main.c mesinkata.c perintah.c mapAndMovingMechanics.c stackt.c mesinkar.c execute.c matriks.c
 ./main
 $SHELL
