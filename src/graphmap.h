@@ -3,6 +3,7 @@
 
 #include "matriks.h"
 #include "point.h"
+#include "boolean.h"
 
 typedef struct{
     MATRIKS Map;
@@ -19,7 +20,7 @@ typedef struct{
 
 typedef struct{
     Vertices Wilayah[4];
-    Edge Lorong[8];
+    Edge Lorong[4];
 } GraphMap;
 
 #define Wilayah(G,i) (G).Wilayah[(i)]
@@ -32,7 +33,35 @@ void GateIdentifier(int NWilayah , GraphMap * G);
 GraphMap BacaMapTXT();
 //Baca Map txt
 // void InitiateLorong(GraphMap * G);
-
+void InitiatePlayerPosition(GraphMap * G);
 // void InitiatePlayerPosition(GraphMap * G);
+
+int SearchWilayahPlayer(GraphMap G);
+
+boolean IsPindahWilayahAtas(GraphMap G);
+
+boolean IsPindahWilayahBawah(GraphMap G);
+
+boolean IsPindahWilayahKanan(GraphMap G);
+
+boolean IsPindahWilayahKiri(GraphMap G);
+
+boolean IsPindahLokalAtas(GraphMap G);
+
+boolean IsPindahLokalBawah(GraphMap G);
+
+boolean IsPindahLokalKanan(GraphMap G);
+
+boolean IsPindahLokalKiri(GraphMap G);
+
+void Move(GraphMap * G, char C);
+
+POINT LokasiEntranceSucc(int Succ , GraphMap G);
+
+POINT LokasiEntranceOrigin(int Origin, GraphMap);
+
+void PindahWilayahSucc(GraphMap * G);
+
+void PindahWilayahOrigin(GraphMap * G);
 
 #endif
