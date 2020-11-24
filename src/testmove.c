@@ -15,6 +15,10 @@ void main()
 	printf("\n");
 	char C;
 	do{
+		for (int i = 0; i < 4; ++i)
+		{
+			TulisPOINT(Wilayah(G,i).PlayerPosition);
+		}
 		scanf("%c", &C);
 		Move(&G,C);
 		TulisMATRIKS(Wilayah(G,SearchWilayahPlayer(G)).Map);

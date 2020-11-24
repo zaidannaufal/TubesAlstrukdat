@@ -72,11 +72,10 @@ GraphMap BacaMapTXT() //Formatnya NamaWilayah,AbsisPlayer,OrdinatPlayer
 	{
 		ADVKATA();
 		char Number = CKata.TabKata[0];
-		printf("%c\n", Number );
 		int NWilayahInt = Number - '0';
 		Wilayah(G,NWilayahInt).Number = NWilayahInt;
 		char AbsisPlayer = CKata.TabKata[2];
-		char OrdinatPlayer = CKata.TabKata[5];
+		char OrdinatPlayer = CKata.TabKata[4];
 		Absis(Wilayah(G,NWilayahInt).PlayerPosition) = AbsisPlayer - '0';
 		Ordinat(Wilayah(G,NWilayahInt).PlayerPosition) = OrdinatPlayer - '0';
 		Wilayah(G,NWilayahInt).Map = MakeMAP();
@@ -91,7 +90,7 @@ void InitiatePlayerPosition(GraphMap * G)
 	Elmt(Wilayah(*G,0).Map,1,1) = 'P';
 }
 
-int SearchWilayahPlayer(GraphMap G)
+int SearchWilayahPlayer(GraphMap G)//error disini
 {
 	int i;
 	for (i = 0; i < 4; ++i)
