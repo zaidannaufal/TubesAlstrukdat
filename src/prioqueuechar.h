@@ -15,7 +15,7 @@
 /* Definisi elemen dan address */
 typedef struct {
     int prio;  /* [1..100], prioritas dengan nilai 1..100 (1 adalah prioritas tertinggi) */
-    char info[100];  /* elemen karakter */
+    char info;  /* elemen karakter */
     int kapasitas; /* kapasitas uwu */
     int kesabaran; /* kesabaran dalam integer */
     Kata tujuan[100]; /* banyak target orang tsb */
