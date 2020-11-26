@@ -39,7 +39,7 @@ typedef struct {
    Resource resource;
    boolean status;
    int pengunjung;
-   int HUpgrade
+   int HUpgrade;
 } infotype;
 
 typedef struct tNode *addrNode;

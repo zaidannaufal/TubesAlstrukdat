@@ -32,9 +32,7 @@ void GateIdentifier(int NWilayah , GraphMap * G);
 //Menginisiasi nilai nextgate, prevgate, lorong
 GraphMap BacaMapTXT();
 //Baca Map txt
-// void InitiateLorong(GraphMap * G);
 void InitiatePlayerPosition(GraphMap * G);
-// void InitiatePlayerPosition(GraphMap * G);
 
 int SearchWilayahPlayer(GraphMap G);
 
