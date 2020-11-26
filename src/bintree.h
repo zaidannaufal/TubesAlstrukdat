@@ -39,7 +39,7 @@ typedef struct {
    int durability;
    Resource resource;
    boolean status;
-   infotypeP pengunjung[kapasitas];
+   PrioQueueChar pengunjung;
    int HUpgrade;
 } infotype;
 
