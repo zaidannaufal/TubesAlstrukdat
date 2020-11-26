@@ -8,6 +8,7 @@
 
 #include "boolean.h"
 #include "graphmap.h"
+#include "prioqueuechar.h"
 #define Nil NULL
 
 
@@ -20,7 +21,7 @@ typedef struct {
 } ArrayInt;
 
 typedef struct {
-   char pengunjung;  // untuk membuat list of ElmtQueue //
+   PrioQueueChar pengunjung;  // untuk membuat list of ElmtQueue //
 } ArrayQ;
 
 typedef struct {
