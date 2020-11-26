@@ -10,6 +10,7 @@
 #include "listrek.h"
 #include "boolean.h"
 #include "graphmap.h"
+#include "prioqueue.h"
 
 #define Nil NULL
 
@@ -35,10 +36,10 @@ typedef struct {
    int kapasitas;
    String history[20];
    int durasi;
-   int durbility;
+   int durability;
    Resource resource;
    boolean status;
-   int pengunjung;
+   infotypeP pengunjung[kapasitas];
    int HUpgrade;
 } infotype;
 
