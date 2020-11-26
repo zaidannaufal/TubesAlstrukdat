@@ -7,18 +7,16 @@
 #define prioqueuechar_H
 
 #include "boolean.h"
-#include "mesinkata.h"
 
 #define Nil -1
 /* Konstanta untuk mendefinisikan address tak terdefinisi */
-
+typedef char* tujuan;
 /* Definisi elemen dan address */
 typedef struct {
     int prio;  /* [1..100], prioritas dengan nilai 1..100 (1 adalah prioritas tertinggi) */
     char info;  /* elemen karakter */
-    int kapasitas; /* kapasitas uwu */
-    int kesabaran; /* kesabaran dalam integer */
-    Kata tujuan[100]; /* banyak target orang tsb */
+    int kesabaran;
+    tujuan* listTujuan
 } infotypeP;
 typedef int address;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype PrioQueueChar : */
@@ -32,7 +30,7 @@ typedef struct {
 /* Definisi PrioQueueChar kosong: HEAD=Nil; TAIL=Nil. */
 
 /* ********* AKSES (Selektor) ********* */
-/* Jika e adalah infotypeP dan Q adalah PrioQueueChar, maka akses elemen : */
+/* Jika e adalah infotype dan Q adalah PrioQueueChar, maka akses elemen : */
 #define Prio(e)     (e).prio
 #define Info(e)     (e).info
 #define Head(Q)     (Q).HEAD
@@ -41,9 +39,6 @@ typedef struct {
 #define InfoTail(Q) (Q).T[(Q).TAIL]
 #define MaxEl(Q)    (Q).MaxEl
 #define Elmt(Q,i)   (Q).T[(i)]
-#define kapasitas(e) (e).kapasitas
-#define kesabaran(e) (e).kesabaran
-#define tujuan(e,i)   (e).tujuan[(i)]
 
 /* ********* Prototype ********* */
 boolean IsEmpty (PrioQueueChar Q);
@@ -69,12 +64,12 @@ void DeAlokasi(PrioQueueChar * Q);
 /* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
 
 /* *** Primitif Add/Delete *** */
-void Enqueue (PrioQueueChar * Q, infotypeP X);
+void Enqueue (PrioQueueChar * Q, infotype X);
 /* Proses: Menambahkan X pada Q dengan aturan priority queue, terurut mengecil berdasarkan prio */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. X disisipkan pada posisi yang tepat sesuai dengan prioritas,
         TAIL "maju" dengan mekanisme circular buffer; */
-void Dequeue (PrioQueueChar * Q, infotypeP * X);
+void Dequeue (PrioQueueChar * Q, infotype * X);
 /* Proses: Menghapus X pada Q dengan aturan FIFO */
 /* I.S. Q tidak mungkin kosong */
 /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer;
