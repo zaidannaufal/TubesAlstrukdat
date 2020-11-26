@@ -95,7 +95,7 @@ boolean FSearch (List L, address P)
 	}
 	return Found;
 }
-address SearchPrec (List L, infotype X)
+address SearchPrec (List L, infotypeW X)
 /* Mengirimkan address elemen sebelum elemen yang nilainya=X */
 /* Mencari apakah ada elemen list dengan Info(P)=X */
 /* Jika ada, mengirimkan address Prec, dengan Next(Prec)=P dan Info(P)=X. */
@@ -124,7 +124,7 @@ address SearchPrec (List L, infotype X)
 
 /****************** PRIMITIF BERDASARKAN NILAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
-void InsVFirst (List *L, infotype X)
+void InsVFirst (List *L, infotypeW X)
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen pertama dengan nilai X jika alokasi berhasil */
@@ -136,7 +136,7 @@ void InsVFirst (List *L, infotype X)
 		InsertFirst(L, P);
 	}
 }
-void InsVLast (List *L, infotype X)
+void InsVLast (List *L, infotypeW X)
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen list di akhir: elemen terakhir yang baru */
@@ -151,7 +151,7 @@ void InsVLast (List *L, infotype X)
 }
 
 /*** PENGHAPUSAN ELEMEN ***/
-void DelVFirst (List *L, infotype *X)
+void DelVFirst (List *L, infotypeW *X)
 /* I.S. List L tidak kosong  */
 /* F.S. Elemen pertama list dihapus: nilai info disimpan pada X */
 /*      dan alamat elemen pertama di-dealokasi */
@@ -161,7 +161,7 @@ void DelVFirst (List *L, infotype *X)
 	*X = Info(P);
 	Dealokasi(&P);
 }
-void DelVLast (List *L, infotype *X)
+void DelVLast (List *L, infotypeW *X)
 /* I.S. list tidak kosong */
 /* F.S. Elemen terakhir list dihapus: nilai info disimpan pada X */
 /*      dan alamat elemen terakhir di-dealokasi */
@@ -327,11 +327,11 @@ int NbElmt (List L)
 }
 
 /*** Prekondisi untuk Min: List tidak kosong ***/
-infotype Min (List L)
+infotypeW Min (List L)
 /* Mengirimkan nilai Info(P) yang minimum */
 {
 	address P;
-	infotype min;
+	infotypeW min;
 	P = First(L);
 	min = Info(P);
 	while (Next(P) != Nil)
@@ -346,11 +346,11 @@ infotype Min (List L)
 }
 
 /*** Prekondisi untuk Max: List tidak kosong ***/
-infotype Max (List L)
+infotypeW Max (List L)
 /* Mengirimkan nilai Info(P) yang maksimum */
 {
 	address P;
-	infotype max;
+	infotypeW max;
 	P = First(L);
 	max = Info(P);
 	while (Next(P) != Nil)
@@ -367,7 +367,7 @@ infotype Max (List L)
 address AdrMax (List L)
 /* Mengirimkan address P, dengan info(P) yang bernilai maksimum */
 {
-	infotype max;
+	infotypeW max;
 	address P;
 	max = Max(L);
 	P = Search(L, max);
@@ -376,7 +376,7 @@ address AdrMax (List L)
 address AdrMin (List L)
 /* Mengirimkan address P, dengan info(P) yang bernilai minimum */
 {
-	infotype min;
+	infotypeW min;
 	address P;
 	min = Min(L);
 	P = Search(L, min);
@@ -385,7 +385,7 @@ address AdrMin (List L)
 float Average (List L)
 /* Mengirimkan nilai rata-rata info(P) */
 {
-	infotype jml = 0;
+	infotypeW jml = 0;
 	int count = 0;
 	float avg = 0;
 	count = NbElmt(L);

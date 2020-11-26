@@ -19,12 +19,12 @@ typedef struct {
     int kapasitas; /* kapasitas uwu */
     int kesabaran; /* kesabaran dalam integer */
     Kata tujuan[100]; /* banyak target orang tsb */
-} infotype;
+} infotypeP;
 typedef int address;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype PrioQueueChar : */
 /* Versi I : tabel dinamik, Head dan Tail eksplisit, ukuran disimpan */
 typedef struct {
-    infotype * T;   /* tabel penyimpan elemen */
+    infotypeP * T;   /* tabel penyimpan elemen */
     address HEAD;  /* alamat penghapusan */
     address TAIL;  /* alamat penambahan */
     int MaxEl;     /* Max elemen queue */
@@ -32,7 +32,7 @@ typedef struct {
 /* Definisi PrioQueueChar kosong: HEAD=Nil; TAIL=Nil. */
 
 /* ********* AKSES (Selektor) ********* */
-/* Jika e adalah infotype dan Q adalah PrioQueueChar, maka akses elemen : */
+/* Jika e adalah infotypeP dan Q adalah PrioQueueChar, maka akses elemen : */
 #define Prio(e)     (e).prio
 #define Info(e)     (e).info
 #define Head(Q)     (Q).HEAD
@@ -69,12 +69,12 @@ void DeAlokasi(PrioQueueChar * Q);
 /* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
 
 /* *** Primitif Add/Delete *** */
-void Enqueue (PrioQueueChar * Q, infotype X);
+void Enqueue (PrioQueueChar * Q, infotypeP X);
 /* Proses: Menambahkan X pada Q dengan aturan priority queue, terurut mengecil berdasarkan prio */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. X disisipkan pada posisi yang tepat sesuai dengan prioritas,
         TAIL "maju" dengan mekanisme circular buffer; */
-void Dequeue (PrioQueueChar * Q, infotype * X);
+void Dequeue (PrioQueueChar * Q, infotypeP * X);
 /* Proses: Menghapus X pada Q dengan aturan FIFO */
 /* I.S. Q tidak mungkin kosong */
 /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer;
