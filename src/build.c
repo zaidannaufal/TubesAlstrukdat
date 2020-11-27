@@ -1,6 +1,6 @@
+#include "build.h"
 #include "stdio.h"
-#include "bintreebangunan.h"
-#include "bangunan.h"
+#include "string.h"
 
 // bangunan dobuild(posisi,arrayofapa,bangunan,stack bahan){
 //     movebottom{}
@@ -8,8 +8,9 @@
 //     kurangin bahan
 // }
 
-void build(BinTree* wahana){
+void build(BinTree* wahana, BAHAN bb,GraphMap *G, address *P){
     char input[50];
+    char forstack[50];
     int i = 0;
     printf("Ingin membangun apa? \n");
     printf("list:\n");
@@ -26,27 +27,67 @@ void build(BinTree* wahana){
     //     i = searchtipetree(wahana,input,3);
     printf("Pilih tipe yang diinginkan :");
     scanf("%d",&i);
+    if (bb.Gold)
     printf("tipe yang dipilih : ");
     puts(tipe(wahana[i-1]));
-    int idxInput = 0;
-    printf("Masukkan nama bangunan :");
-    getchar(); //buffer
-    do {
-            scanf("%c", input + idxInput);
-    } while (input[idxInput++] != '\n');
-    input[--idxInput] = '\0';
-    printf("\n");
-    
+    if(BBcukup(bb,(wahana[i]->info).resource.resource)){
+        int idxInput = 0;
+        printf("Masukkan nama bangunan :");
+        getchar(); //buffer
+        do {
+                scanf("%c", input + idxInput);
+        } while (input[idxInput++] != '\n');
+        input[--idxInput] = '\0';
+        
+        puts(input);
+
+        printf("\n");
+        BinTree new = wahana[i-1];
+        strcpy(nama(*P),input);
+        tipe(*P) = i-1;
+        wilayah(*P) = SearchWilayahPlayer(*G);
+        point(*P) = (Wilayah(*G,wilayah(*P))).PlayerPosition;
+        durability(*P) = 10; //sementara
+        status(*P) = true;
+        HUpgrade(*P) =  harga(new);
+        // TulisPOINT(point(*P));
+        // printf("\n\n");
+        if(Ordinat(point(*P))==1){
+            Move(G,"s\0");
+        }else{
+            Move(G,"w\0");
+        }
+        Elmt((Wilayah(*G,wilayah(*P))).Map,Ordinat(point(*P)),Absis(point(*P))) ='W';        
+    } else {
+        printf("bahan tidak cukup");
+    }
 } 
-    
-//     fgets(str1, 20, stdin);
-//     i=0;
-//     int no_wahana;
-//     boolean found = false;
-//     while (i<3&&!found)
-//     {
-//         no_wahana = comparestring(Tipe(wahana[i]),str1) ? i : 0;
-//     }
-    
-//     sprintf(str1, "Value of Pi = %f", M_PI);
-// }
+
+   boolean BBcukup(BAHAN BB, int* R){
+       return (wood(BB)>=R[0] && stone(BB)>=R[1] && gold(BB)>=R[2]);
+   }
+char inttochar(int d){
+    switch (d)
+    {
+    case 0:
+        return '0';
+    case 1:
+        return '1';
+    case 2:
+        return '2';
+    case 3:
+        return '3';
+    case 4:
+        return '4';
+    case 5:
+        return '5';
+    case 6:
+        return '6';
+    case 7:
+        return '7';
+    case 8:
+        return '8';
+    case 9:
+        return '9';
+    }
+}
