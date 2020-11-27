@@ -11,14 +11,16 @@
 #include "build.h"
 // #include "execute.h"
 
-
 int main() {
     boolean gamestart = false; // kalo true berarti game jalan
 
     char nama[100];
     char menu[100];
     char input[100];
-    
+    BAHAN bb;
+    bb.Wood = 100000;
+    bb.Stone = 100000;
+    bb.Gold = 100000;
     Menu();
     printf("\n");
     Menuawal();
@@ -91,7 +93,10 @@ int main() {
         if((strcmp(input,"w")==0)||(strcmp(input,"a")==0)||(strcmp(input,"s")==0)||(strcmp(input,"d")==0)){
             Move(&G,input);
         }else if (strcmp(input,"Build")==0){
-            build(wahana);
+            infotypeW X;
+            address P = Alokasi(X);
+            build(wahana,bb,&G,&P);
+            // tinggal si address p nya kemanain
         // }else if (strcmp(input,"Execute")) // execute
         // {
         //     execute(stackawal, stacktarget);
