@@ -1,3 +1,3 @@
-g++ -o main main.c mesinkata.c perintah.c mapAndMovingMechanics.c stackt.c mesinkar.c execute.c matriks.c
+g++ -o main main.c mesinkata.c graphmap.c stackt.c mesinkar.c matriks.c bintreebangunan.c point.c jam.c build.c
 ./main
 $SHELL

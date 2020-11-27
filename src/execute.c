@@ -1,12 +1,11 @@
 #include "execute.h"
-
+#include <string.h>
 void runCommand(char* strcmd) {
-    PERINTAH per = siapkan_perintah();
-    if (compare_string(strcmd,Command(per,3))) {
+    if (strcmp(strcmd,"build")==0) {
         printf("build dijalankan\n"); // masih placeholder
-    } else if (compare_string(strcmd,Command(per,4))) {
+    } else if (strcmp(strcmd,"upgrade")==0) {
         printf("upgrade dijalankan\n"); // masih placeholder
-    } else if (compare_string(strcmd,Command(per,5))) {
+    } else if (strcmp(strcmd,"buy")==0) {
         printf("buy dijalankan\n"); // masih placeholder
     }
 }

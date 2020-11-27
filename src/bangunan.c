@@ -1,4 +1,5 @@
 #include "bangunan.h"
+#include "point.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -19,7 +20,7 @@ void CreateEmpty (List *L)
 }
 
 /****************** Manajemen Memori ******************/
-address Alokasi (String X)
+address Alokasi (infotypeW X)
 /* Mengirimkan address hasil alokasi sebuah elemen */
 /* Jika alokasi berhasil, maka address tidak nil, dan misalnya */
 /* menghasilkan P, maka Info(P)=X, Next(P)=Nil */
@@ -29,13 +30,14 @@ address Alokasi (String X)
 	P = (address) malloc (sizeof(ElmtList));
 	if (P != Nil)
 	{
-		Info(P) = "";
-        tipe(P) = X;
+		id(P) = "-1";
+		nama(P)[0] = "\0";
+        tipe(P) = -1;
         wilayah(P) = -1;     //ini inisialisasi kalo masuk ga terdefinisi;
-        point(P) = Nil;
+        point(P) = MakePOINT(0,0);
         durability(P) = 10;
         status(P) = true;
-        pengunjung(P) = 0;
+        // pengunjung(P) = 0;
         HUpgrade(P) = 0;
 
 		Next(P) = Nil;
@@ -51,79 +53,79 @@ void Dealokasi (address *P)
 }
 
 /****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
-address Search (List L, String X)
-/* Mencari apakah ada elemen list dengan Info(P)= X */
-/* Jika ada, mengirimkan address elemen tersebut. */
-/* Jika tidak ada, mengirimkan Nil */
-{
-	address P;
-	boolean Found;
-	P = First(L);
-	Found = false;
-	while (P != Nil && !Found)
-	{
-		if (Info(P) == X)
-		{
-			Found = true;
-		}
-		else
-		{
-			P = Next(P);
-		}
-	}
-	return P;
-}
+// address Search (List L, int X)
+// /* Mencari apakah ada elemen list dengan Info(P)= X */
+// /* Jika ada, mengirimkan address elemen tersebut. */
+// /* Jika tidak ada, mengirimkan Nil */
+// {
+// 	address P;
+// 	boolean Found;
+// 	P = First(L);
+// 	Found = false;
+// 	while (P != Nil && !Found)
+// 	{
+// 		if (id(P) == X)
+// 		{
+// 			Found = true;
+// 		}
+// 		else
+// 		{
+// 			P = Next(P);
+// 		}
+// 	}
+// 	return P;
+// }
 
-boolean FSearch (List L, address P)
-/* Mencari apakah ada elemen list yang beralamat P */
-/* Mengirimkan true jika ada, false jika tidak ada */
-{
-	address PT;
-	boolean Found;
-	PT = First(L);
-	Found = false;
-	while (PT != Nil && !Found)
-	{
-		if (PT == P)
-		{
-			Found = true;
-		}
-		else
-		{
-			PT = Next(PT);
-		}
-	}
-	return Found;
-}
-address SearchPrec (List L, infotypeW X)
-/* Mengirimkan address elemen sebelum elemen yang nilainya=X */
-/* Mencari apakah ada elemen list dengan Info(P)=X */
-/* Jika ada, mengirimkan address Prec, dengan Next(Prec)=P dan Info(P)=X. */
-/* Jika tidak ada, mengirimkan Nil */
-/* Jika P adalah elemen pertama, maka Prec=Nil */
-/* Search dengan spesifikasi seperti ini menghindari */
-/* traversal ulang jika setelah Search akan dilakukan operasi lain */
-{
-	address P, Prec;
-	P = Search (L, X);
-	Prec = First(L);
-	if (P == Prec)
-	{
-		P = Nil;
-	}
-	else if (P != Nil)
-	{
-		while (Next(Prec) != P)
-		{
-			Prec = Next(Prec);
-		}
-		P = Prec;
-	}
-	return P;
-}
+// boolean FSearch (List L, address P)
+// /* Mencari apakah ada elemen list yang beralamat P */
+// /* Mengirimkan true jika ada, false jika tidak ada */
+// {
+// 	address PT;
+// 	boolean Found;
+// 	PT = First(L);
+// 	Found = false;
+// 	while (PT != Nil && !Found)
+// 	{
+// 		if (PT == P)
+// 		{
+// 			Found = true;
+// 		}
+// 		else
+// 		{
+// 			PT = Next(PT);
+// 		}
+// 	}
+// 	return Found;
+// }
+// address SearchPrec (List L, infotypeW X)
+// /* Mengirimkan address elemen sebelum elemen yang nilainya=X */
+// /* Mencari apakah ada elemen list dengan Info(P)=X */
+// /* Jika ada, mengirimkan address Prec, dengan Next(Prec)=P dan Info(P)=X. */
+// /* Jika tidak ada, mengirimkan Nil */
+// /* Jika P adalah elemen pertama, maka Prec=Nil */
+// /* Search dengan spesifikasi seperti ini menghindari */
+// /* traversal ulang jika setelah Search akan dilakukan operasi lain */
+// {
+// 	address P, Prec;
+// 	P = Search (L, X);
+// 	Prec = First(L);
+// 	if (P == Prec)
+// 	{
+// 		P = Nil;
+// 	}
+// 	else if (P != Nil)
+// 	{
+// 		while (Next(Prec) != P)
+// 		{
+// 			Prec = Next(Prec);
+// 		}
+// 		P = Prec;
+// 	}
+// 	return P;
+// }
 
-/****************** PRIMITIF BERDASARKAN NILAI ******************/
-/*** PENAMBAHAN ELEMEN ***/
+// /****************** PRIMITIF BERDASARKAN NILAI ******************/
+// /*** PENAMBAHAN ELEMEN ***/
 void InsVFirst (List *L, infotypeW X)
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
@@ -222,39 +224,39 @@ void DelFirst (List *L, address *P)
 	*P = First(*L);
 	First(*L) = Next(First(*L));
 }
-void DelP (List *L, String X)
-/* I.S. Sembarang */
-/* F.S. Jika ada elemen list beraddress P, dengan Info(P)=X  */
-/* Maka P dihapus dari list dan di-dealokasi */
-/* Jika ada lebih dari satu elemen list dengan Info bernilai X */
-/* maka yang dihapus hanya elemen pertama dengan Info = X */
-/* Jika tidak ada elemen list dengan Info(P)=X, maka list tetap */
-/* List mungkin menjadi kosong karena penghapusan */
-{
-	if (!IsEmpty(*L))
-	{
-		address Prec;
-		Prec = First(*L);
-		if (Info(Prec) == X)
-		{
-			First(*L) = Next(Prec);
-		}
-		else
-		{
-			address P;
-			P = Search(*L, X);
-			if (P != Nil)
-			{
-				while (Next(Prec) != P)
-				{
-					Prec = Next(Prec);
-				}
-				Next(Prec) = Next(P);
-				Dealokasi(&P);
-			}
-		}
-	}
-}
+// void DelP (List *L, String X)
+// /* I.S. Sembarang */
+// /* F.S. Jika ada elemen list beraddress P, dengan Info(P)=X  */
+// /* Maka P dihapus dari list dan di-dealokasi */
+// /* Jika ada lebih dari satu elemen list dengan Info bernilai X */
+// /* maka yang dihapus hanya elemen pertama dengan Info = X */
+// /* Jika tidak ada elemen list dengan Info(P)=X, maka list tetap */
+// /* List mungkin menjadi kosong karena penghapusan */
+// {
+// 	if (!IsEmpty(*L))
+// 	{
+// 		address Prec;
+// 		Prec = First(*L);
+// 		if (Info(Prec) == X)
+// 		{
+// 			First(*L) = Next(Prec);
+// 		}
+// 		else
+// 		{
+// 			address P;
+// 			P = Search(*L, X);
+// 			if (P != Nil)
+// 			{
+// 				while (Next(Prec) != P)
+// 				{
+// 					Prec = Next(Prec);
+// 				}
+// 				Next(Prec) = Next(P);
+// 				Dealokasi(&P);
+// 			}
+// 		}
+// 	}
+// }
 void DelLast (List *L, address *P)
 /* I.S. List tidak kosong */
 /* F.S. P adalah alamat elemen terakhir list sebelum penghapusan  */
@@ -327,82 +329,82 @@ int NbElmt (List L)
 }
 
 /*** Prekondisi untuk Min: List tidak kosong ***/
-infotypeW Min (List L)
-/* Mengirimkan nilai Info(P) yang minimum */
-{
-	address P;
-	infotypeW min;
-	P = First(L);
-	min = Info(P);
-	while (Next(P) != Nil)
-	{
-		P = Next(P);
-		if (min > Info(P))
-		{
-			min = Info(P);
-		}
-	}
-	return min;
-}
+// infotypeW Min (List L)
+// /* Mengirimkan nilai Info(P) yang minimum */
+// {
+// 	address P;
+// 	infotypeW min;
+// 	P = First(L);
+// 	min = Info(P);
+// 	while (Next(P) != Nil)
+// 	{
+// 		P = Next(P);
+// 		if (min > Info(P))
+// 		{
+// 			min = Info(P);
+// 		}
+// 	}
+// 	return min;
+// }
 
-/*** Prekondisi untuk Max: List tidak kosong ***/
-infotypeW Max (List L)
-/* Mengirimkan nilai Info(P) yang maksimum */
-{
-	address P;
-	infotypeW max;
-	P = First(L);
-	max = Info(P);
-	while (Next(P) != Nil)
-	{
-		P = Next(P);
-		if (max < Info(P))
-		{
-			max = Info(P);
-		}
-	}
-	return max;
-}
+// /*** Prekondisi untuk Max: List tidak kosong ***/
+// infotypeW Max (List L)
+// /* Mengirimkan nilai Info(P) yang maksimum */
+// {
+// 	address P;
+// 	infotypeW max;
+// 	P = First(L);
+// 	max = Info(P);
+// 	while (Next(P) != Nil)
+// 	{
+// 		P = Next(P);
+// 		if (max < Info(P))
+// 		{
+// 			max = Info(P);
+// 		}
+// 	}
+// 	return max;
+// }
 
-address AdrMax (List L)
-/* Mengirimkan address P, dengan info(P) yang bernilai maksimum */
-{
-	infotypeW max;
-	address P;
-	max = Max(L);
-	P = Search(L, max);
-	return P;
-}
-address AdrMin (List L)
-/* Mengirimkan address P, dengan info(P) yang bernilai minimum */
-{
-	infotypeW min;
-	address P;
-	min = Min(L);
-	P = Search(L, min);
-	return P;
-}
-float Average (List L)
-/* Mengirimkan nilai rata-rata info(P) */
-{
-	infotypeW jml = 0;
-	int count = 0;
-	float avg = 0;
-	count = NbElmt(L);
-	if (!IsEmpty(L))
-	{
-		address P;
-		P = First(L);
-		while (Next(P) != Nil)
-		{
-			jml += Info(P);
-			P = Next(P);
-		}
-		jml += Info(P);
-		avg = (float) jml / count;
-	}
-	return avg;
-}
+// address AdrMax (List L)
+// /* Mengirimkan address P, dengan info(P) yang bernilai maksimum */
+// {
+// 	infotypeW max;
+// 	address P;
+// 	max = Max(L);
+// 	P = Search(L, max);
+// 	return P;
+// }
+// address AdrMin (List L)
+// /* Mengirimkan address P, dengan info(P) yang bernilai minimum */
+// {
+// 	infotypeW min;
+// 	address P;
+// 	min = Min(L);
+// 	P = Search(L, min);
+// 	return P;
+// }
+// float Average (List L)
+// /* Mengirimkan nilai rata-rata info(P) */
+// {
+// 	infotypeW jml = 0;
+// 	int count = 0;
+// 	float avg = 0;
+// 	count = NbElmt(L);
+// 	if (!IsEmpty(L))
+// 	{
+// 		address P;
+// 		P = First(L);
+// 		while (Next(P) != Nil)
+// 		{
+// 			jml += Info(P);
+// 			P = Next(P);
+// 		}
+// 		jml += Info(P);
+// 		avg = (float) jml / count;
+// 	}
+// 	return avg;
+// }
 
 /****************** PROSES TERHADAP LIST ******************/
 void DelAll (List *L)
@@ -428,58 +430,58 @@ void DelAll (List *L)
 	}
 }
 
-void InversList (List *L)
-/* I.S. sembarang. */
-/* F.S. elemen list dibalik : */
-/* Elemen terakhir menjadi elemen pertama, dan seterusnya. */
-/* Membalik elemen list, tanpa melakukan alokasi/dealokasi. */
-{
-	address P;
-	P = First(*L);
-	int data[NbElmt(*L)];
-	if (!IsEmpty(*L))
-	{
-		for (int i = 0; i < NbElmt(*L); i++)
-		{
-			data[i] = Info(P);
-			P = Next(P);
-		}
-		P = First(*L);
-		for (int i = NbElmt(*L) - 1; i > -1; i--)
-		{
-			Info(P) = data[i];
-			P = Next(P);
-		}
-	}
-}
+// void InversList (List *L)
+// /* I.S. sembarang. */
+// /* F.S. elemen list dibalik : */
+// /* Elemen terakhir menjadi elemen pertama, dan seterusnya. */
+// /* Membalik elemen list, tanpa melakukan alokasi/dealokasi. */
+// {
+// 	address P;
+// 	P = First(*L);
+// 	int data[NbElmt(*L)];
+// 	if (!IsEmpty(*L))
+// 	{
+// 		for (int i = 0; i < NbElmt(*L); i++)
+// 		{
+// 			data[i] = Info(P);
+// 			P = Next(P);
+// 		}
+// 		P = First(*L);
+// 		for (int i = NbElmt(*L) - 1; i > -1; i--)
+// 		{
+// 			Info(P) = data[i];
+// 			P = Next(P);
+// 		}
+// 	}
+// }
 
-List FInversList (List L)
-/* Mengirimkan list baru, hasil invers dari L */
-/* dengan menyalin semua elemn list. Alokasi mungkin gagal. */
-/* Jika alokasi gagal, hasilnya list kosong */
-/* dan semua elemen yang terlanjur di-alokasi, harus didealokasi */
-{
-	List LC;
-	address P, PC;
-	LC = FCopyList(L);
-	P = First(L);
-	PC = First(LC);
-	int data[NbElmt(L)];
-	if (!IsEmpty(L))
-	{
-		for (int i = 0; i < NbElmt(L); i++)
-		{
-			data[i] = Info(P);
-			P = Next(P);
-		}
-		for (int i = NbElmt(L) - 1; i > -1; i--)
-		{
-			Info(PC) = data[i];
-			PC = Next(PC);
-		}
-	}
-	return LC;
-}
+// List FInversList (List L)
+// /* Mengirimkan list baru, hasil invers dari L */
+// /* dengan menyalin semua elemn list. Alokasi mungkin gagal. */
+// /* Jika alokasi gagal, hasilnya list kosong */
+// /* dan semua elemen yang terlanjur di-alokasi, harus didealokasi */
+// {
+// 	List LC;
+// 	address P, PC;
+// 	LC = FCopyList(L);
+// 	P = First(L);
+// 	PC = First(LC);
+// 	int data[NbElmt(L)];
+// 	if (!IsEmpty(L))
+// 	{
+// 		for (int i = 0; i < NbElmt(L); i++)
+// 		{
+// 			data[i] = Info(P);
+// 			P = Next(P);
+// 		}
+// 		for (int i = NbElmt(L) - 1; i > -1; i--)
+// 		{
+// 			Info(PC) = data[i];
+// 			PC = Next(PC);
+// 		}
+// 	}
+// 	return LC;
+// }
 
 void CopyList (List *L1, List *L2)
 /* I.S. L1 sembarang. F.S. L2=L1 */
@@ -629,59 +631,59 @@ void Konkat1 (List *L1, List *L2, List *L3)
 
     // FUNGSI TAMBAHAN
 
-String GetTipeWahana(List L, String Nama)
-/* Untuk mendapatkan tipe dari wahana tertenru */
-{
-    address P = Search(L,Nama);
-    return tipe(P);
-}
+// String GetTipeWahana(List L, String Nama)
+// /* Untuk mendapatkan tipe dari wahana tertenru */
+// {
+//     address P = Search(L,Nama);
+//     return tipe(P);
+// }
 
-String GetHistoryWahana(List L, String Nama)
-/* Untuk mendapatkan history dari wahana tertenru */
-{
-    address P = Search(L,Nama);
-    return history(P);
-}
+// String GetHistoryWahana(List L, String Nama)
+// /* Untuk mendapatkan history dari wahana tertenru */
+// {
+//     address P = Search(L,Nama);
+//     return history(P);
+// }
 
-Vertices GetLokasiWahana(List L, String Nama)
-/* Untuk mendapatkan lokasi dari wahana tertenru */
-{
-    address P = Search(L,Nama);
-    return lokasi(P);
-}
+// Vertices GetLokasiWahana(List L, String Nama)
+// /* Untuk mendapatkan lokasi dari wahana tertenru */
+// {
+//     address P = Search(L,Nama);
+//     return lokasi(P);
+// }
 
-int GetDurabWahana(List L, String Nama)
-/* Untuk mendapatkan durability dari wahana tertenru */
-{
-    address P = Search(L,Nama);
-    return durability(P);
-}
+// int GetDurabWahana(List L, String Nama)
+// /* Untuk mendapatkan durability dari wahana tertenru */
+// {
+//     address P = Search(L,Nama);
+//     return durability(P);
+// }
 
-ArrayInt GetResourceWahana(List L, String Nama)
-/* Untuk mendapatkan resource dari wahana tertenru */
-{
-    address P = Search(L,Nama);
-    return resource(P);
-}
+// ArrayInt GetResourceWahana(List L, String Nama)
+// /* Untuk mendapatkan resource dari wahana tertenru */
+// {
+//     address P = Search(L,Nama);
+//     return resource(P);
+// }
 
-boolean GetStatusWahana(List L, String Nama)
-/* Untuk mendapatkan status dari wahana tertenru */
-{
-    address P = Search(L,Nama);
-    return status(P);
-}
+// boolean GetStatusWahana(List L, String Nama)
+// /* Untuk mendapatkan status dari wahana tertenru */
+// {
+//     address P = Search(L,Nama);
+//     return status(P);
+// }
 
-char GetPengunWahana(List L, String Nama)
-/* Untuk mendapatkan jumlah pengunjung dari wahana tertenru */
-{
-    address P = Search(L,Nama);
-    return pengunjung(P);
-}
+// char GetPengunWahana(List L, String Nama)
+// /* Untuk mendapatkan jumlah pengunjung dari wahana tertenru */
+// {
+//     address P = Search(L,Nama);
+//     return pengunjung(P);
+// }
 
-int GetHUpgradeWahana(List L, String Nama)
-/* Untuk mendapatkan harga upgrade dari wahana tertenru */
-{
-    address P = Search(L,Nama);
-    return HUpgrade(P);
-}
+// int GetHUpgradeWahana(List L, String Nama)
+// /* Untuk mendapatkan harga upgrade dari wahana tertenru */
+// {
+//     address P = Search(L,Nama);
+//     return HUpgrade(P);
+// }
 

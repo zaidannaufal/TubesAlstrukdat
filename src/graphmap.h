@@ -52,7 +52,7 @@ boolean IsPindahLokalKanan(GraphMap G);
 
 boolean IsPindahLokalKiri(GraphMap G);
 
-void Move(GraphMap * G, char C);
+void Move(GraphMap * G, char* C);
 
 POINT LokasiEntranceSucc(int Succ , GraphMap G);
 

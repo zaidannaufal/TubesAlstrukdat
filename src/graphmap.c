@@ -3,7 +3,7 @@
 #include "matriks.h"
 #include "point.h"
 #include <stdio.h>
-
+#include <string.h>
 MATRIKS MakeMAP() //Udah Bener Ini Mah
 {
 	MATRIKS M;
@@ -232,10 +232,10 @@ void PindahWilayahOrigin(GraphMap * G)
 }
 
 
-void Move(GraphMap * G, char C)
+void Move(GraphMap * G, char* C)
 {
 	int N = SearchWilayahPlayer(*G);
-	if (C == 'w')
+	if (strcmp(C,"w")==0)
 	{
 		if (IsPindahLokalAtas(*G))
 		{
@@ -252,7 +252,7 @@ void Move(GraphMap * G, char C)
 				PindahWilayahSucc(G);
 			}
 		}
-	}else if (C == 's')
+	}else if (strcmp(C,"s")==0)
 	{
 		if (IsPindahLokalBawah(*G))
 		{
@@ -269,7 +269,7 @@ void Move(GraphMap * G, char C)
 				PindahWilayahSucc(G);
 			}
 		}
-	}else if (C == 'a')
+	}else if (strcmp(C,"a")==0)
 	{
 		if (IsPindahLokalKiri(*G))
 		{
@@ -286,7 +286,7 @@ void Move(GraphMap * G, char C)
 				PindahWilayahSucc(G);
 			}
 		}
-	}else if (C == 'd')
+	}else if (strcmp(C,"d")==0)
 	{
 		if (IsPindahLokalKanan(*G))
 		{
@@ -304,4 +304,14 @@ void Move(GraphMap * G, char C)
 			}
 		}
 	}
+}
+
+void TulisPos(GraphMap *G){
+	for (int i=0;i <4; ++i){
+		TulisPOINT(Wilayah(*G,i).PlayerPosition);
+	}
+}
+
+void PrintMap(){
+
 }

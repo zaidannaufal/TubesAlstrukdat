@@ -111,7 +111,7 @@ void SetSecond(JAM *J, int newSS);
 JAM JPlus(JAM J1, JAM J2);
 /* menambahkan jam 1 dan jam 2 */
 
-JAM JMinus(JAM J1, JAM J2):
+JAM JMinus(JAM J1, JAM J2);
 /* mengurangi jam 1 dan jam 2 */
 
 #endif

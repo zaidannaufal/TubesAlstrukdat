@@ -9,7 +9,7 @@
 #include "boolean.h"
 #include "mesinkar.h"
 
-#define NMax 50
+#define NMax 255
 #define BLANK ' '
 
 typedef struct {
