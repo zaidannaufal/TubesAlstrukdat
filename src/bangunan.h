@@ -37,6 +37,7 @@ typedef struct {
         int durability;
         boolean status;
         Antrian pengunjung;
+        int Harga;
       //   ArrayQ pengunjung;
         int HUpgrade;
         // int builded;
@@ -71,6 +72,7 @@ typedef struct {
 // #define resource(P) (P)->info.resource
 #define status(P) (P)->info.status
 // #define pengunjung(P) (P)->info.pengunjung
+#define Harga(P) (P)-> info.Harga
 #define HUpgrade(P) (P)->info.HUpgrade
 // #define Builded(P) (P)->info.Builded
 /* PROTOTYPE */

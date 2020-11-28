@@ -47,7 +47,8 @@ int build(BinTree* wahana, BAHAN* bb,GraphMap *G, addressbangunan *P){
         point(*P) = (Wilayah(*G,wilayah(*P))).PlayerPosition;
         durability(*P) = 10; //sementara
         status(*P) = true;
-        HUpgrade(*P) =  harga(wahana[i-1]);
+        HUpgrade(*P) =  HUpgrade(wahana[i-1]);
+        Harga(*P) = harga(wahana[i-1]);
         // TulisPOINT(point(*P));
         // printf("\n\n");
         char move [2];
