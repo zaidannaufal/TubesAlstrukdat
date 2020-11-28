@@ -68,7 +68,7 @@ BinTree parsing(Kata CKata){
                 copyinttree(&(kapasitas(wahana)),CKata.TabKata,begin,i);
                 break;
             case 3:
-                copyinttree(&(durasi(wahana)),CKata.TabKata,begin,i);
+                copyinttree(&(durasibt(wahana)),CKata.TabKata,begin,i);
                 break;
             case 4: //deskripsi wahana
                 copystringtree(deskripsi(wahana),CKata.TabKata,begin,i);
@@ -173,7 +173,7 @@ void printtree(BinTree wahana){
     printstring(deskripsi(wahana));
     printf("\n");
     printf("kapasitas = %d\n",kapasitas(wahana));
-    printf("durasi = %d\n",durasi(wahana));
+    printf("durasi = %d\n",durasibt(wahana));
     printf("Harga= %d\n",harga(wahana));
     printf("bahan 0 = %d\n",resource(wahana,0));
     printf("bahan 1 = %d\n",resource(wahana,1));

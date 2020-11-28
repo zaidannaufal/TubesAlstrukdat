@@ -70,7 +70,7 @@ typedef struct {
 #define point(P) (P)->info.lokasi.point
 #define history(P) (P)->info.history
 #define durability(P) (P)->info.durability
-#define Durasi(P) (P)->info.Durasi
+#define durasibangunan(P) (P)->info.Durasi
 // #define resource(P) (P)->info.resource
 #define status(P) (P)->info.status
 // #define pengunjung(P) (P)->info.pengunjung

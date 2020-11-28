@@ -51,7 +51,7 @@ typedef addrNode BinTree;
 #define harga(P) (P)->info.harga
 #define deskripsi(P) (P)->info.deskripsi
 #define kapasitas(P) (P)->info.kapasitas
-#define durasi(P) (P)->info.durasi
+#define durasibt(P) (P)->info.durasi
 #define resource(P,i) (P)->info.resource.resource[i]
 #define HUpgrade(P)  (P)->info.HUpgrade
 
