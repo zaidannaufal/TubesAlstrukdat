@@ -8,7 +8,7 @@
 //     kurangin bahan
 // }
 
-void build(BinTree* wahana, BAHAN bb,GraphMap *G, address *P){
+int build(BinTree* wahana, BAHAN* bb,GraphMap *G, address *P){
     char input[50];
     char forstack[50];
     int i = 0;
@@ -27,10 +27,9 @@ void build(BinTree* wahana, BAHAN bb,GraphMap *G, address *P){
     //     i = searchtipetree(wahana,input,3);
     printf("Pilih tipe yang diinginkan :");
     scanf("%d",&i);
-    if (bb.Gold)
     printf("tipe yang dipilih : ");
     puts(tipe(wahana[i-1]));
-    if(BBcukup(bb,(wahana[i]->info).resource.resource)){
+    if(BBcukup(*bb,(wahana[i]->info).resource.resource)){
         int idxInput = 0;
         printf("Masukkan nama bangunan :");
         getchar(); //buffer
@@ -60,9 +59,11 @@ void build(BinTree* wahana, BAHAN bb,GraphMap *G, address *P){
             strcpy(move,"w");
         }
         Move(G,move);
-        Elmt((Wilayah(*G,wilayah(*P))).Map,Ordinat(point(*P)),Absis(point(*P))) ='W';        
+        Elmt((Wilayah(*G,wilayah(*P))).Map,Ordinat(point(*P)),Absis(point(*P))) ='W';
+        return 1;        
     } else {
         printf("bahan tidak cukup");
+        return 0;
     }
 } 
 

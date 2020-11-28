@@ -93,9 +93,10 @@ int main() {
         if((strcmp(input,"w")==0)||(strcmp(input,"a")==0)||(strcmp(input,"s")==0)||(strcmp(input,"d")==0)){
             Move(&G,input);
         }else if (strcmp(input,"Build")==0){
+            int buildsuccess;
             infotypeW X;
             address P = Alokasi(X);
-            build(wahana,bb,&G,&P);
+            buildsuccess = build(wahana,&bb,&G,&P);
             // tinggal si address p nya kemanain
         // }else if (strcmp(input,"Execute")) // execute
         // {
