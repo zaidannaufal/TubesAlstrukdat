@@ -29,7 +29,7 @@ int build(BinTree* wahana, BAHAN* bb,GraphMap *G, addressbangunan *P){
     scanf("%d",&i);
     printf("tipe yang dipilih : ");
     puts(tipe(wahana[i-1]));
-    if(BBcukup(*bb,(wahana[i]->info).resource.resource)){
+    if(BBcukup(*bb,(wahana[i-1]->info).resource.resource)){
         int idxInput = 0;
         printf("Masukkan nama bangunan :");
         getchar(); //buffer
