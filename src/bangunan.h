@@ -33,12 +33,14 @@ typedef struct {
         char nama[50]; 
         int tipe;
         Lokasi lokasi;
+        int Harga;
+        int Durasi;
+        int Kapasitas;
+        char deskripsi[100];
         int history; // 0 itu blom diupgrade , 1 itu upgradean ke-1 , 2 itu upgradean ke2
         int durability;
         boolean status;
         Antrian pengunjung;
-        int Harga;
-        int Durasi;
       //   ArrayQ pengunjung;
         int HUpgrade;
         // int builded;
@@ -71,6 +73,8 @@ typedef struct {
 #define history(P) (P)->info.history
 #define durability(P) (P)->info.durability
 #define durasibangunan(P) (P)->info.Durasi
+#define KapasitasBang(P) (P)->info.Kapasitas
+// #define DeskripsiBang(P) (P)->info.Deskripsi
 // #define resource(P) (P)->info.resource
 #define status(P) (P)->info.status
 // #define pengunjung(P) (P)->info.pengunjung
