@@ -90,7 +90,6 @@ int main() {
         input[--idxInput] = '\0';
 		printf("\n");
         
-        puts(input);
         if((strcmp(input,"w")==0)||(strcmp(input,"a")==0)||(strcmp(input,"s")==0)||(strcmp(input,"d")==0)){
             Move(&G,input);
         }else if (strcmp(input,"Build")==0){
