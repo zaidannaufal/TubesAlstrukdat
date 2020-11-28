@@ -12,7 +12,7 @@ void runCommand(char* strcmd) {
 
 void execute(Stack stackawal, Stack stacktarget) {
     char* strcmd;
-    while (!IsEmpty(stackawal))
+    while (!IsEmptyStack(stackawal))
     {
         Pop(&stackawal, &strcmd);
         Push(&stacktarget, strcmd);

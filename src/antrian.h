@@ -46,7 +46,7 @@ boolean IsAntrianEmpty (Antrian Q);
 boolean IsAntrianFull (Antrian Q);
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
 /* yaitu mengandung elemen sebanyak MaxEl */
-int NBElmt (Antrian Q);
+int NBElmtAntrian (Antrian Q);
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
 
 /* *** Kreator *** */
