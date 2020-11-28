@@ -14,8 +14,8 @@
 
 int main() {
     boolean gamestart = false; // kalo true berarti game jalan
-    List BangunanNonEx;
-    List BangunanEx;
+    ListBangunan BangunanNonEx;
+    ListBangunan BangunanEx;
     char nama[100];
     char menu[100];
     char input[100];
@@ -96,7 +96,7 @@ int main() {
         }else if (strcmp(input,"Build")==0){
             int buildsuccess;
             infotypeW X;
-            address P = Alokasi(X);
+            addressbangunan P = Alokasi(X);
             buildsuccess = build(wahana,&bb,&G,&P);
             if (buildsuccess==1){
                 InsertLast(&BangunanEx,P);

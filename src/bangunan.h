@@ -42,15 +42,15 @@ typedef struct {
         // int builded;
 } infotypeW;
 
-typedef struct tElmtlist *address;
+typedef struct tElmtlist *addressbangunan;
 typedef struct tElmtlist { 
 	infotypeW info;
-	address next;
+	addressbangunan next;
 
 } ElmtList;
 typedef struct {
-	address First;
-} List;
+	addressbangunan First;
+} ListBangunan;
 
 
 
@@ -75,21 +75,21 @@ typedef struct {
 // #define Builded(P) (P)->info.Builded
 /* PROTOTYPE */
 /****************** TEST LIST KOSONG ******************/
-boolean IsEmptyBangunan (List L);
+boolean IsEmptyBangunan (ListBangunan L);
 /* Mengirim true jika list kosong */
 
 /****************** PEMBUATAN LIST KOSONG ******************/
-void CreateEmptyBangunan (List *L);
+void CreateEmptyBangunan (ListBangunan *L);
 /* I.S. sembarang             */
 /* F.S. Terbentuk list kosong */
 
 /****************** Manajemen Memori ******************/
-address Alokasi (infotypeW X);
+addressbangunan Alokasi (infotypeW X);
 /* Mengirimkan address hasil alokasi sebuah elemen */
 /* Jika alokasi berhasil, maka address tidak nil, dan misalnya */
 /* menghasilkan P, maka info(P)=X, Next(P)=Nil */
 /* Jika alokasi gagal, mengirimkan Nil */
-void Dealokasi (address *P);
+void Dealokasi (addressbangunan *P);
 /* I.S. P terdefinisi */
 /* F.S. P dikembalikan ke sistem */
 /* Melakukan dealokasi/pengembalian address P */
@@ -138,11 +138,11 @@ void Dealokasi (address *P);
 // void InsertFirst (List *L, address P);
 // /* I.S. Sembarang, P sudah dialokasi  */
 // /* F.S. Menambahkan elemen ber-address P sebagai elemen pertama */
-void InsertAfter (List *L, address P, address Prec);
+void InsertAfter (ListBangunan *L, addressbangunan P, addressbangunan Prec);
 /* I.S. Prec pastilah elemen list dan bukan elemen terakhir, */
 /*      P sudah dialokasi  */
 /* F.S. Insert P sebagai elemen sesudah elemen beralamat Prec */
-void InsertLast (List *L, address P);
+void InsertLast (ListBangunan *L, addressbangunan P);
 /* I.S. Sembarang, P sudah dialokasi  */
 /* F.S. P ditambahkan sebagai elemen terakhir yang baru */
 

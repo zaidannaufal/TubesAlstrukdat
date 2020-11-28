@@ -8,7 +8,7 @@
 //     kurangin bahan
 // }
 
-int build(BinTree* wahana, BAHAN* bb,GraphMap *G, address *P){
+int build(BinTree* wahana, BAHAN* bb,GraphMap *G, addressbangunan *P){
     char input[50];
     char forstack[50];
     int i = 0;

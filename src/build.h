@@ -17,6 +17,6 @@ typedef struct {
 #define stone(b) (b).Stone
 #define gold(b) (b).Gold
 
-int build(BinTree* wahana, BAHAN* bb,GraphMap *G,address *P);
+int build(BinTree* wahana, BAHAN* bb,GraphMap *G,addressbangunan *P);
 boolean BBcukup(BAHAN BB, int* R);
 #endif

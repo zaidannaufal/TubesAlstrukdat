@@ -5,14 +5,14 @@
 
 /* PROTOTYPE */
 /****************** TEST LIST KOSONG ******************/
-boolean IsEmptyBangunan (List L)
+boolean IsEmptyBangunan (ListBangunan L)
 /* Mengirim true jika list kosong */
 {
 	return(First(L) == Nil);
 }
 
 /****************** PEMBUATAN LIST KOSONG ******************/
-void CreateEmptyBangunan (List *L)
+void CreateEmptyBangunan (ListBangunan *L)
 /* I.S. sembarang             */
 /* F.S. Terbentuk list kosong */
 {
@@ -20,14 +20,14 @@ void CreateEmptyBangunan (List *L)
 }
 
 /****************** Manajemen Memori ******************/
-address Alokasi (infotypeW X)
+addressbangunan Alokasi (infotypeW X)
 /* Mengirimkan address hasil alokasi sebuah elemen */
 /* Jika alokasi berhasil, maka address tidak nil, dan misalnya */
 /* menghasilkan P, maka Info(P)=X, Next(P)=Nil */
 /* Jika alokasi gagal, mengirimkan Nil */
 {
-	address P;
-	P = (address) malloc (sizeof(ElmtList));
+	addressbangunan P;
+	P = (addressbangunan) malloc (sizeof(ElmtList));
 	if (P != Nil)
 	{
 		// id(P) = -1;
@@ -44,7 +44,7 @@ address Alokasi (infotypeW X)
 	}
 	return P;
 }
-void Dealokasi (address *P)
+void Dealokasi (addressbangunan *P)
 /* I.S. P terdefinisi */
 /* F.S. P dikembalikan ke sistem */
 /* Melakukan dealokasi/pengembalian address P */
@@ -182,7 +182,7 @@ void Dealokasi (address *P)
 // 	Next(P) = First(*L);
 // 	First(*L) = P;
 // }
-void InsertAfter (List *L, address P, address Prec)
+void InsertAfter (ListBangunan *L, addressbangunan P, addressbangunan Prec)
 /* I.S. Prec pastilah elemen list dan bukan elemen terakhir, */
 /*      P sudah dialokasi  */
 /* F.S. Insert P sebagai elemen sesudah elemen beralamat Prec */
@@ -191,7 +191,7 @@ void InsertAfter (List *L, address P, address Prec)
 	Next(Prec) = P;
 }
 
-void InsertLast (List *L, address P)
+void InsertLast (ListBangunan *L, addressbangunan P)
 /* I.S. Sembarang, P sudah dialokasi  */
 /* F.S. P ditambahkan sebagai elemen terakhir yang baru */
 {
@@ -205,7 +205,7 @@ void InsertLast (List *L, address P)
 	{
 		if (P != Nil)
 		{
-			address Prec;
+			addressbangunan Prec;
 			Prec = First(*L);
 			while (Next(Prec) != Nil)
 			{
