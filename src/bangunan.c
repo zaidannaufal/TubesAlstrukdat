@@ -35,6 +35,7 @@ addressbangunan Alokasi (infotypeW X)
         tipe(P) = -1;
         wilayah(P) = -1;     //ini inisialisasi kalo masuk ga terdefinisi;
         // point(P) = MakePOINT(0,0);
+		history(P) = 0;
         durability(P) = 10;
         status(P) = true;
         // pengunjung(P) = 0;
