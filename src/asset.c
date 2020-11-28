@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #define MAX_LEN 128
 
 // $ ********** IMPLEMENTASI **********
 
-void print_image(char *filename) {
+void print_image(const char *file) {
     FILE *fptr = NULL;
-
+    char filename[50];
+    strcpy(filename,file);
     if ((fptr = fopen(filename, "r")) == NULL) {
         fprintf(stderr, "error opening %s\n", filename);
     }

@@ -42,21 +42,24 @@ void build(BinTree* wahana, BAHAN bb,GraphMap *G, address *P){
         puts(input);
 
         printf("\n");
-        BinTree new = wahana[i-1];
         strcpy(nama(*P),input);
         tipe(*P) = i-1;
         wilayah(*P) = SearchWilayahPlayer(*G);
         point(*P) = (Wilayah(*G,wilayah(*P))).PlayerPosition;
         durability(*P) = 10; //sementara
         status(*P) = true;
-        HUpgrade(*P) =  harga(new);
+        HUpgrade(*P) =  harga(wahana[i-1]);
         // TulisPOINT(point(*P));
         // printf("\n\n");
+        char move [2];
         if(Ordinat(point(*P))==1){
-            Move(G,"s\0");
+            
+            strcpy(move,"s");
+            
         }else{
-            Move(G,"w\0");
+            strcpy(move,"w");
         }
+        Move(G,move);
         Elmt((Wilayah(*G,wilayah(*P))).Map,Ordinat(point(*P)),Absis(point(*P))) ='W';        
     } else {
         printf("bahan tidak cukup");
@@ -66,28 +69,29 @@ void build(BinTree* wahana, BAHAN bb,GraphMap *G, address *P){
    boolean BBcukup(BAHAN BB, int* R){
        return (wood(BB)>=R[0] && stone(BB)>=R[1] && gold(BB)>=R[2]);
    }
-char inttochar(int d){
-    switch (d)
-    {
-    case 0:
-        return '0';
-    case 1:
-        return '1';
-    case 2:
-        return '2';
-    case 3:
-        return '3';
-    case 4:
-        return '4';
-    case 5:
-        return '5';
-    case 6:
-        return '6';
-    case 7:
-        return '7';
-    case 8:
-        return '8';
-    case 9:
-        return '9';
-    }
-}
+
+// char inttochar(int d){
+//     switch (d)
+//     {
+//     case 0:
+//         return '0';
+//     case 1:
+//         return '1';
+//     case 2:
+//         return '2';
+//     case 3:
+//         return '3';
+//     case 4:
+//         return '4';
+//     case 5:
+//         return '5';
+//     case 6:
+//         return '6';
+//     case 7:
+//         return '7';
+//     case 8:
+//         return '8';
+//     case 9:
+//         return '9';
+//     }
+// }

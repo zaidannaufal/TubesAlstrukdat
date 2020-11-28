@@ -4,6 +4,7 @@
 /* Definisi Mesin Kata: Model Akuisisi Versi I */
 
 #include "mesinkata.h"
+#include "string.h"
 #include <stdio.h>
 boolean EndKata;
 Kata CKata;
@@ -19,13 +20,15 @@ void IgnoreBlank()
 	}
 }
 
-void STARTKATA(char* namafile)
+void STARTKATA(const char* namafile)
 /* I.S. : CC sembarang 
    F.S. : EndKata = true, dan CC = MARK; 
           atau EndKata = false, CKata adalah kata yang sudah diakuisisi,
           CC karakter pertama sesudah karakter terakhir kata */
 {
-	START(namafile);
+	char file[50];
+   strcpy(file,namafile);
+   START(file);
 	IgnoreBlank();
 	if (CC == MARK)
 	{
