@@ -75,11 +75,11 @@ typedef struct {
 // #define Builded(P) (P)->info.Builded
 /* PROTOTYPE */
 /****************** TEST LIST KOSONG ******************/
-boolean IsEmpty (List L);
+boolean IsEmptyBangunan (List L);
 /* Mengirim true jika list kosong */
 
 /****************** PEMBUATAN LIST KOSONG ******************/
-void CreateEmpty (List *L);
+void CreateEmptyBangunan (List *L);
 /* I.S. sembarang             */
 /* F.S. Terbentuk list kosong */
 

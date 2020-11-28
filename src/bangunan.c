@@ -5,14 +5,14 @@
 
 /* PROTOTYPE */
 /****************** TEST LIST KOSONG ******************/
-boolean IsEmpty (List L)
+boolean IsEmptyBangunan (List L)
 /* Mengirim true jika list kosong */
 {
 	return(First(L) == Nil);
 }
 
 /****************** PEMBUATAN LIST KOSONG ******************/
-void CreateEmpty (List *L)
+void CreateEmptyBangunan (List *L)
 /* I.S. sembarang             */
 /* F.S. Terbentuk list kosong */
 {
@@ -195,8 +195,10 @@ void InsertLast (List *L, address P)
 /* I.S. Sembarang, P sudah dialokasi  */
 /* F.S. P ditambahkan sebagai elemen terakhir yang baru */
 {
-	if (IsEmpty(*L))
+	printf("sampai sini0\n");
+	if (IsEmptyBangunan(*L))
 	{
+		printf("sampai sini1");
 		First(*L) = P;
 	}
 	else

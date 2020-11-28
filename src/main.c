@@ -9,6 +9,7 @@
 #include "graphmap.h"
 #include "jam.h"
 #include "build.h"
+
 // #include "execute.h"
 
 int main() {
@@ -25,7 +26,7 @@ int main() {
     Menu();
     printf("\n");
     Menuawal();
-
+    CreateEmptyBangunan(&BangunanEx);
     //sudah pake mesin kata sort of :( 
     int idxMenu = 0;
     do {
