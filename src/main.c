@@ -8,7 +8,7 @@
 #include "bintreebangunan.h"
 #include "graphmap.h"
 #include "jam.h"
-#include "build.h"
+#include "buy.h"
 
 // #include "execute.h"
 
@@ -104,6 +104,8 @@ int main() {
         // }else if (strcmp(input,"Execute")) // execute
         // {
         //     execute(stackawal, stacktarget);
+        }else if (strcmp(input,"Buy")==0){
+            buy(money,totaluang,totalaksi,totalwaktu,bb);
         }else
         {
             printf("inputsalah\n");

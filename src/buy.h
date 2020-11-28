@@ -1,6 +1,5 @@
 #include "jam.h"
 #include "build.h"
-#include "graphmap.h"
 
 #define hargaWood 80
 #define hargaGold 120
