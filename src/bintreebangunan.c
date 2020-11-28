@@ -174,6 +174,7 @@ void printtree(BinTree wahana){
     printf("\n");
     printf("kapasitas = %d\n",kapasitas(wahana));
     printf("durasi = %d\n",durasi(wahana));
+    printf("Harga= %d\n",harga(wahana));
     printf("bahan 0 = %d\n",resource(wahana,0));
     printf("bahan 1 = %d\n",resource(wahana,1));
     printf("bahan 2 = %d\n",resource(wahana,2));

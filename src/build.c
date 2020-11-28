@@ -49,6 +49,7 @@ int build(BinTree* wahana, BAHAN* bb,GraphMap *G, addressbangunan *P){
         status(*P) = true;
         HUpgrade(*P) =  HUpgrade(wahana[i-1]);
         Harga(*P) = harga(wahana[i-1]);
+        Durasi(*P) = durasi(wahana[i-1]);
         // TulisPOINT(point(*P));
         // printf("\n\n");
         char move [2];
