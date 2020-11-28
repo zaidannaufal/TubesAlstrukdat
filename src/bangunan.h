@@ -36,7 +36,6 @@ typedef struct {
         int Harga;
         int Durasi;
         int Kapasitas;
-        char deskripsi[100];
         int history; // 0 itu blom diupgrade , 1 itu upgradean ke-1 , 2 itu upgradean ke2
         int durability;
         boolean status;
