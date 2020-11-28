@@ -145,7 +145,6 @@ void Dealokasi (address *P)
 // /* bernilai X jika alokasi berhasil. Jika alokasi gagal: I.S.= F.S. */
 // {
 // 	address P;
-// 	P = Alokasi(X);
 // 	if (P != Nil)
 // 	{
 // 		InsertLast(L, P);
@@ -183,36 +182,37 @@ void Dealokasi (address *P)
 // 	Next(P) = First(*L);
 // 	First(*L) = P;
 // }
-// void InsertAfter (List *L, address P, address Prec)
-// /* I.S. Prec pastilah elemen list dan bukan elemen terakhir, */
-// /*      P sudah dialokasi  */
-// /* F.S. Insert P sebagai elemen sesudah elemen beralamat Prec */
-// {
-// 	Next(P) = Next(Prec);
-// 	Next(Prec) = P;
-// }
-// void InsertLast (List *L, address P)
-// /* I.S. Sembarang, P sudah dialokasi  */
-// /* F.S. P ditambahkan sebagai elemen terakhir yang baru */
-// {
-// 	if (IsEmpty(*L))
-// 	{
-// 		First(*L) = P;
-// 	}
-// 	else
-// 	{
-// 		if (P != Nil)
-// 		{
-// 			address Prec;
-// 			Prec = First(*L);
-// 			while (Next(Prec) != Nil)
-// 			{
-// 				Prec = Next(Prec);
-// 			}
-// 			InsertAfter(L, P, Prec);
-// 		}
-// 	}
-// }
+void InsertAfter (List *L, address P, address Prec)
+/* I.S. Prec pastilah elemen list dan bukan elemen terakhir, */
+/*      P sudah dialokasi  */
+/* F.S. Insert P sebagai elemen sesudah elemen beralamat Prec */
+{
+	Next(P) = Next(Prec);
+	Next(Prec) = P;
+}
+
+void InsertLast (List *L, address P)
+/* I.S. Sembarang, P sudah dialokasi  */
+/* F.S. P ditambahkan sebagai elemen terakhir yang baru */
+{
+	if (IsEmpty(*L))
+	{
+		First(*L) = P;
+	}
+	else
+	{
+		if (P != Nil)
+		{
+			address Prec;
+			Prec = First(*L);
+			while (Next(Prec) != Nil)
+			{
+				Prec = Next(Prec);
+			}
+			InsertAfter(L, P, Prec);
+		}
+	}
+}
 
 // /*** PENGHAPUSAN SEBUAH ELEMEN ***/
 // void DelFirst (List *L, address *P)

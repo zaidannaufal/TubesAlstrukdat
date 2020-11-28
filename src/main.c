@@ -13,7 +13,8 @@
 
 int main() {
     boolean gamestart = false; // kalo true berarti game jalan
-
+    List BangunanNonEx;
+    List BangunanEx;
     char nama[100];
     char menu[100];
     char input[100];
@@ -26,7 +27,7 @@ int main() {
     Menuawal();
 
     //sudah pake mesin kata sort of :( 
-    
+    sscanf("")
     int idxMenu = 0;
     do {
         scanf("%c", menu + idxMenu);
@@ -97,6 +98,9 @@ int main() {
             infotypeW X;
             address P = Alokasi(X);
             buildsuccess = build(wahana,&bb,&G,&P);
+            if (buildsuccess==1){
+                InsertLast(&ListBangunanEx,P);
+            }
             // tinggal si address p nya kemanain
         // }else if (strcmp(input,"Execute")) // execute
         // {
