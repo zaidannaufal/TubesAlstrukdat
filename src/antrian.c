@@ -4,7 +4,7 @@
    Topik : ADT prioQueue 
    Deskripsi : prioqueue */
 #include <stdio.h>
-#include "prioqueuechar.h"
+#include "antrian.h"
 #include <stdlib.h>
 
 
@@ -87,14 +87,14 @@ void Enqueue (Antrian * Q, infoantrian X){
 	int i = Head(*Q);
 	boolean flag = false;
 	while(i != Tail(*Q)){
-		if(!flag && (Elmt(*Q, i).prio > X.prio)){ 
+		if(!flag && (ElmtAntrian(*Q, i).prio > X.prio)){ 
             flag = true;
         }
 		if (flag){ 
             infoantrian tmp; 
             tmp = X; 
-            X = Elmt(*Q, i); 
-            Elmt(*Q, i) = tmp;
+            X = ElmtAntrian(*Q, i); 
+            ElmtAntrian(*Q, i) = tmp;
         }
 		if(i == MaxEl(*Q)){ 
             i = 1;
@@ -137,12 +137,12 @@ void PrintPrioQueueChar (Antrian Q){
 #
 */
 	for(int i = Head(Q); i!=Tail(Q); i++){
-		printf("%d %c\n", Elmt(Q, i).prio, Elmt(Q, i).info);
+		printf("%d %c\n", ElmtAntrian(Q, i).prio, ElmtAntrian(Q, i).info);
 	}
 
 	if(!IsAntrianEmpty(Q)){
 		int i = Tail(Q);
-		printf("%d %c\n", Elmt(Q, i).prio, Elmt(Q, i).info);	
+		printf("%d %c\n", ElmtAntrian(Q, i).prio, ElmtAntrian(Q, i).info);	
 	}
     printf("%c", '#');
     printf("\n");

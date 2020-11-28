@@ -18,13 +18,13 @@ typedef struct {
     tujuan ArrayTujuan[5]; //kalau tujuannya cuman ada 1 nanti 4 elemen lainnya isi aja sama -1
     int CurrentTujuan; //buat nunjukin sekarang tujuan dia apa di array
 } infoantrian;
-typedef int address;   /* indeks tabel */
+typedef int addressantrian;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype PrioQueueChar : */
 /* Versi I : tabel dinamik, Head dan Tail eksplisit, ukuran disimpan */
 typedef struct {
     infoantrian * T;   /* tabel penyimpan elemen */
-    address HEAD;  /* alamat penghapusan */
-    address TAIL;  /* alamat penambahan */
+    addressantrian HEAD;  /* alamat penghapusan */
+    addressantrian TAIL;  /* alamat penambahan */
     int MaxEl;     /* Max elemen queue */
 } Antrian;
 /* Definisi PrioQueueChar kosong: HEAD=Nil; TAIL=Nil. */
@@ -32,13 +32,13 @@ typedef struct {
 /* ********* AKSES (Selektor) ********* */
 /* Jika e adalah infotype dan Q adalah PrioQueueChar, maka akses elemen : */
 #define Prio(e)     (e).prio
-#define Info(e)     (e).info
+#define InfoAntrian(e)     (e).info
 #define Head(Q)     (Q).HEAD
 #define Tail(Q)     (Q).TAIL
 #define InfoHead(Q) (Q).T[(Q).HEAD]
 #define InfoTail(Q) (Q).T[(Q).TAIL]
 #define MaxEl(Q)    (Q).MaxEl
-#define Elmt(Q,i)   (Q).T[(i)]
+#define ElmtAntrian(Q,i)   (Q).T[(i)]
 
 /* ********* Prototype ********* */
 boolean IsAntrianEmpty (Antrian Q);

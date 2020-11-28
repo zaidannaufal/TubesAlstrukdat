@@ -27,7 +27,6 @@ int main() {
     Menuawal();
 
     //sudah pake mesin kata sort of :( 
-    sscanf("")
     int idxMenu = 0;
     do {
         scanf("%c", menu + idxMenu);
@@ -99,7 +98,7 @@ int main() {
             address P = Alokasi(X);
             buildsuccess = build(wahana,&bb,&G,&P);
             if (buildsuccess==1){
-                InsertLast(&ListBangunanEx,P);
+                InsertLast(&BangunanEx,P);
             }
             // tinggal si address p nya kemanain
         // }else if (strcmp(input,"Execute")) // execute
