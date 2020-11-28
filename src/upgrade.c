@@ -64,5 +64,5 @@ void Upgrade(ListBangunan * LB, BinTree* BT, BAHAN* bb, int * Bill, int * Aksi, 
 		{
 			printf("Tidak bisa diupgrade lagi, wahan sudah mencapai tingkatan upgrade maksimum\n");
 		}
-	}
+	}else printf("Uang tidak mencukupi!\n");
 }
