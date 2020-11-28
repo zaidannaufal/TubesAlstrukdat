@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "upgrade.h"
-
+#include <string.h>
 int TipeRootWahana(char* NamaWahana, ListBangunan * LB)
 {
 	addressbangunan Current = First(*LB);
@@ -27,7 +27,11 @@ void Upgrade(ListBangunan * LB, BinTree* BT, BAHAN* bb, int * Bill, int * Aksi, 
 		Current = Next(Current);
 	}
 	char NamaBangunan[50];
-	scanf("%s" , &NamaBangunan); //Nyari wahana apa
+	int idxNBangunan = 0;
+    do {
+        scanf("%c", NamaBangunan + idxNBangunan);
+    } while (NamaBangunan[idxNBangunan++] != '\n');
+    NamaBangunan[--idxNBangunan] = '\0';
 	int TipeRoot = TipeRootWahana(NamaBangunan,LB); //Nyari Root Wahana Yang Dimaksud
 	addressbangunan BangunanTujuan = First(*LB);
 	while (BangunanTujuan != NULL && (strcmp(nama(BangunanTujuan),NamaBangunan)) != 0)
@@ -65,4 +69,21 @@ void Upgrade(ListBangunan * LB, BinTree* BT, BAHAN* bb, int * Bill, int * Aksi, 
 			printf("Tidak bisa diupgrade lagi, wahan sudah mencapai tingkatan upgrade maksimum\n");
 		}
 	}else printf("Uang tidak mencukupi!\n");
+}
+
+void printwahana(addressbangunan wahana){
+	printf("nama wahana: ");
+	puts(nama(wahana));
+	printf("tipe : %d\n",tipe(wahana));
+	printf("point : ");
+	TulisPOINT(point(wahana));
+	printf("\n");
+	printf("Harga : %d\n",Harga(wahana));
+	printf("Durasi: %d\n",durasibangunan(wahana));
+	printf("Kapasitas : %d\n",KapasitasBang(wahana));
+	printf("History: %d\n",history(wahana));
+	printf("Durability : %d\n",durability(wahana));
+	printf("Harga : %d\n",Harga(wahana));
+	printf("Status : %d\n",status(wahana));
+	printf("Hupgrade : %d\n",HUpgrade(wahana));
 }

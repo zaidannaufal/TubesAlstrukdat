@@ -196,10 +196,8 @@ void InsertLast (ListBangunan *L, addressbangunan P)
 /* I.S. Sembarang, P sudah dialokasi  */
 /* F.S. P ditambahkan sebagai elemen terakhir yang baru */
 {
-	printf("sampai sini0\n");
 	if (IsEmptyBangunan(*L))
 	{
-		printf("sampai sini1");
 		First(*L) = P;
 	}
 	else

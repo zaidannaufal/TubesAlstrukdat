@@ -16,10 +16,10 @@ void buy(int uang,int butuhuang, int aksi, int butuhjam, BAHAN BB){
     printf("    - Gold\n");
     printf("    - Stone\n");
     int demand;
-    char* bahan;
+    char bahan[20];
     int durasi = 40;
     scanf("%d %s", &demand, &bahan);
-
+    getchar();
     if (strcmp(bahan,"Wood") == 0){
         if (!isEnoughMoney(hargaWood, demand, uang)){
             printf("Uang Anda tidak cukup untuk permintaan tersebut.\n");

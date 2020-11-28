@@ -19,4 +19,5 @@ typedef struct {
 
 int build(BinTree* wahana, BAHAN* bb,GraphMap *G,addressbangunan *P);
 boolean BBcukup(BAHAN BB, int* R);
+
 #endif
