@@ -12,9 +12,9 @@
 #define Nil NULL
 
 
-typedef struct {
-   char item[20];  // untuk string //
-} String;
+// typedef struct {
+//    char item[20];  // untuk string //
+// } String;
 
 // typedef struct {
 //    int resource[3];  // untuk membuat list of int //
@@ -33,7 +33,7 @@ typedef struct {
         char nama[50]; 
         int tipe;
         Lokasi lokasi;
-        String history[20];
+        int history; // 0 itu blom diupgrade , 1 itu upgradean ke-1 , 2 itu upgradean ke2
         int durability;
         boolean status;
         Antrian pengunjung;
