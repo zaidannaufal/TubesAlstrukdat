@@ -50,6 +50,8 @@ int build(BinTree* wahana, BAHAN* bb,GraphMap *G, addressbangunan *P){
         HUpgrade(*P) =  HUpgrade(wahana[i-1]);
         Harga(*P) = harga(wahana[i-1]);
         durasibangunan(*P) = durasibt(wahana[i-1]);
+        KapasitasBang(*P) = kapasitas(wahana[i-1]);
+        
         // TulisPOINT(point(*P));
         // printf("\n\n");
         char move [2];
@@ -72,6 +74,8 @@ int build(BinTree* wahana, BAHAN* bb,GraphMap *G, addressbangunan *P){
    boolean BBcukup(BAHAN BB, int* R){
        return (wood(BB)>=R[0] && stone(BB)>=R[1] && gold(BB)>=R[2]);
    }
+
+
 
 // char inttochar(int d){
 //     switch (d)
