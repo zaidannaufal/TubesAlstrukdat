@@ -37,7 +37,7 @@ void Serve(Antrian * A, ListBangunan * ListWahana, int * Uang)
         addressbangunan Current = First(*ListWahana);
         while (Current != NULL)
         {
-            MakeEmptyAntrian(&Antrian(Current),KapasitasBang(Current));
+            // MakeEmptyAntrian(&Antrian(Current),KapasitasBang(Current));
             if (strcmp(TujuanSekarang,nama(Current))==0)
             {
                 if (status(Current)==true)

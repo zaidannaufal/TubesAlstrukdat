@@ -130,25 +130,29 @@ boolean IsPindahWilayahKiri(GraphMap G)
 boolean IsPindahLokalAtas(GraphMap G)
 {
 	int N = SearchWilayahPlayer(G);
-	return (Elmt(Wilayah(G,N).Map,Ordinat(Wilayah(G,N).PlayerPosition)-1,Absis(Wilayah(G,N).PlayerPosition)) == '-');
+	char Atas = Elmt(Wilayah(G,N).Map,Ordinat(Wilayah(G,N).PlayerPosition)-1,Absis(Wilayah(G,N).PlayerPosition));
+	return (Atas == '-' || Atas == 'O');
 }
 
 boolean IsPindahLokalBawah(GraphMap G)
 {
 	int N = SearchWilayahPlayer(G);
-	return (Elmt(Wilayah(G,N).Map,Ordinat(Wilayah(G,N).PlayerPosition)+1,Absis(Wilayah(G,N).PlayerPosition)) == '-');
+	char Bawah = Elmt(Wilayah(G,N).Map,Ordinat(Wilayah(G,N).PlayerPosition)+1,Absis(Wilayah(G,N).PlayerPosition));
+	return ( Bawah == '-' || Bawah == 'O');
 }
 
 boolean IsPindahLokalKanan(GraphMap G)
 {
 	int N = SearchWilayahPlayer(G);
-	return (Elmt(Wilayah(G,N).Map,Ordinat(Wilayah(G,N).PlayerPosition),Absis(Wilayah(G,N).PlayerPosition)+1) == '-');
+	char Kanan = Elmt(Wilayah(G,N).Map,Ordinat(Wilayah(G,N).PlayerPosition),Absis(Wilayah(G,N).PlayerPosition)+1);
+	return (Kanan == '-' || Kanan == 'O');
 }
 
 boolean IsPindahLokalKiri(GraphMap G)
 {
 	int N = SearchWilayahPlayer(G);
-	return (Elmt(Wilayah(G,N).Map,Ordinat(Wilayah(G,N).PlayerPosition),Absis(Wilayah(G,N).PlayerPosition)-1) == '-');
+	char Kiri = Elmt(Wilayah(G,N).Map,Ordinat(Wilayah(G,N).PlayerPosition),Absis(Wilayah(G,N).PlayerPosition)-1)
+	return (Kiri == '-' || Kiri == 'O');
 }
 
 
