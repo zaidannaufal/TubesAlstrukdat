@@ -1,5 +1,6 @@
 #include "jam.h"
-#include "build.h"
+// #include "build.h"
+#include "repair.h"
 
 addressbangunan searchByLokasi(ListBangunan Wahana, int x, int y, GraphMap G);
 

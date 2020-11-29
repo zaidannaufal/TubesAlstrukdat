@@ -122,3 +122,9 @@ void printDetails(addressbangunan wahana){
 	printf("History Upgrade: %d\n",history(wahana));
     printf("Durasi (dalam satuan menit): %d\n",durasibangunan(wahana));
 }
+
+boolean IsinOffice(GraphMap G){
+    return SearchWilayahPlayer(G) == 1 && 
+    Absis(Wilayah(G,SearchWilayahPlayer(G)).PlayerPosition) == 8 && 
+    Ordinat(Wilayah(G,SearchWilayahPlayer(G)).PlayerPosition) == 8;
+}
