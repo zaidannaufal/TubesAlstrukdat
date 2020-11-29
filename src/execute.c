@@ -18,12 +18,15 @@ void execute(Stack stackawal, Stack stacktarget,ListBangunan *nonex,ListBangunan
         if (strcmp(strcmd,"build")==0) {
             addressbangunan wahana;
             DelFirst(nonex,&wahana);
+            Next(wahana) = Nil;
             InsertLast(ex,wahana);
         } else if (strcmp(strcmd,"upgrade")==0) {
-            printf("upgrade dijalankan\n"); // masih placeholder
+            
         } else if (strcmp(strcmd,"buy")==0) {
         // printf("buy dijalankan\n"); // masih placeholder
-    }
+        }else{
+            
+        }
     }
 }
 
