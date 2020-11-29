@@ -18,6 +18,8 @@ typedef struct {
     tujuan ArrayTujuan[5]; //kalau tujuannya cuman ada 1 nanti 4 elemen lainnya isi aja sama -1
     int CurrentTujuan; //buat nunjukin sekarang tujuan dia apa di array
     int MaxTujuan;
+    int DurasiNaikWahana;
+    int DurasiKesabaran;
 } infoantrian;
 typedef int addressantrian;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype PrioQueueChar : */
@@ -44,6 +46,8 @@ typedef struct {
 #define ArrayTujuan(e,i)  (e).ArrayTujuan[i]
 #define CurrentTujuan(e)    (e).CurrentTujuan
 #define MaxTujuan(e)    (e).MaxTujuan
+#define DurasiNaikWahana(e) (e).DurasiNaikWahana
+#define DurasiKesabaran(e)  (e).DurasiKesabaran
 
 /* ********* Prototype ********* */
 boolean IsAntrianEmpty (Antrian Q);
