@@ -229,7 +229,7 @@ int main() {
         waktu = MakeJAM(9,0,0);
         Antrian QueueAntrian;
         InitAntrian(&QueueAntrian,BangunanEx);
-              
+          
         do {
             // PrintPrioQueueChar(QueueAntrian);
             
