@@ -106,7 +106,7 @@ int main() {
             }
         }else if (strcmp(input,"Build")==0){
             if (isWaktuCukup(waktu,waktubuka,totalwaktu,15)){
-                build(wahana, bb,&bbs,&G,&BangunanEx,&totalwaktu,money,&totaluang);
+                build(wahana, bb,&bbs,&G,&BangunanNonEx,&totalwaktu,money,&totaluang);
             }else {
                 printf("waktu tidak mencukupi");
             }
