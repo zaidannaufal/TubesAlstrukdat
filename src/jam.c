@@ -192,3 +192,13 @@ JAM JMinus(JAM J1, JAM J2)
     Second(J3) = Second(J1) - Second(J2);
     return J3;
 }
+
+boolean isWaktuCukup(JAM Jskrg, JAM Jbuka, int Jamterpakai,int tambahanwaktu){
+    return Durasi((JPlus(Jskrg,DetikToJAM(Jamterpakai+tambahanwaktu*60))),Jbuka) >0;
+}
+void printSisaWaktu(int Jamterpakai){
+    JAM J;
+    Jamterpakai *=60;
+    J =DetikToJAM(Jamterpakai);
+    printf("%d Hours %d Minutes",Hour(J),Minute(J));
+}

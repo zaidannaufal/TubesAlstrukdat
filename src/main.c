@@ -79,7 +79,9 @@ int main() {
         printf("Opening Time: ");TulisJAM(waktubuka);printf("\n");
         printf("Time Remaining: ");TulisJAM(DetikToJAM(Durasi(waktu,waktubuka))); printf("\n");
         printf("Total aksi yang akan dilakukan: %d\n",totalaksi);
-        printf("Total waktu yang dibutuhkan: %d\n",totalwaktu);
+        printf("Total waktu yang dibutuhkan: ");
+        printSisaWaktu(totalwaktu);
+        printf("\n");
         printf("Total uang yang dibutuhkan: %d\n",totaluang);
         printf("\n");
         printbahan(bb);
@@ -94,22 +96,30 @@ int main() {
 		printf("\n");
         
         if((strcmp(input,"w")==0)||(strcmp(input,"a")==0)||(strcmp(input,"s")==0)||(strcmp(input,"d")==0)){
-            Move(&G,input);
+            if (isWaktuCukup(waktu,waktubuka,totalwaktu,5)){
+                Move(&G,input);
+                waktu = NextNDetik(waktu,5*60);
+            }
         }else if (strcmp(input,"Build")==0){
-            int buildsuccess;
-            infotypeW X;
-            addressbangunan P = Alokasi(X);
-            buildsuccess = build(wahana,&bb,&G,&P);
-            if (buildsuccess==1){
-                InsertLast(&BangunanEx,P);
+            if (isWaktuCukup(waktu,waktubuka,totalwaktu,15)){
+                int buildsuccess;
+                infotypeW X;
+                addressbangunan P = Alokasi(X);
+                buildsuccess = build(wahana,&bb,&G,&P);
+                if (buildsuccess==1){
+                    InsertLast(&BangunanEx,P);
+                }
             }
             // tinggal si address p nya kemanain
         // }else if (strcmp(input,"Execute")) // execute
         // {
         //     execute(stackawal, stacktarget);
         }else if (strcmp(input,"Buy")==0){
-            buy(money,&totaluang,&totalaksi,&totalwaktu,&bb);
-            printbahan(bb);
+            if (isWaktuCukup(waktu,waktubuka,totalwaktu,15)){
+                buy(money,&totaluang,&totalaksi,&totalwaktu,&bb);
+                printbahan(bb);
+            }
+            printf("waktu tidak mencukupi");
         }else
         {
             printf("inputsalah\n");
@@ -117,55 +127,6 @@ int main() {
           
 
     }while (gamestart);
-    // printf("%d",compare_string(input,Command(per,0)));
-    // if(compare_string(input,Command(per,0))){ //kalo dimasukkin command 1 bakal gamestart
-    //     printf("sampaisini");
-    //     gamestart= true;
-    // }
-    
-    // fgets(nama, 20, stdin);
-    // printf()
-    // while (gamestart)
-    // {
-    //     printf("sampai sini");
-    //     printf("\n");
-    //     TulisMATRIKS(Wilayah(G,SearchWilayahPlayer(G)).Map);
-    //     printf("\n");
-
-    //     printf("Name: ");
-    //     tulisstr(nama);
-    //     printf("\n");
-    //     printf("Money:\n");
-    //     printf("Current Time: \n");
-    //     printf("Opening Time: \n");
-    //     printf("Time Remaining: \n");
-    //     printf("Total aksi yang akan dilakukan: \n");
-    //     printf("Total waktu yang dibutuhkan: \n");
-    //     printf("Total uang yang dibutuhkan: \n");
-        
-        // scanf("%s",input.TabKata);
-        // // printf("%c %c",input.TabKata[0],input.TabKata[1]);
-        // if(compare_string(input.TabKata,Command(per,2))){ //kalo dimasukkin command 2 (exit) bakal ke exit
-        //     gamestart = false;
-        // } else if (compare_string(input.TabKata,Command(per,16))||compare_string(input.TabKata,Command(per,17))
-        //         || compare_string(input.TabKata,Command(per,18)) || compare_string(input.TabKata,Command(per,19))) // ini liat commandnya di fungsi siapkan perintah yah
-        // {
-        //     movePlayer(&map,&playerpos,input.TabKata[0]);
-        // }
-        
-
-        /* setiap input pengguna di preparation phase akan di-push atau di-pop ke stackawal
-        run-nya dari execute
-        ini bentuknya tapi masih bingung masuknya kemana, maybe nanti pas udah dipisah preparation sama main phase
-        Push(&stackawal, "buy");
-        Push(&stackawal, "upgrade");
-        Push(&stackawal, "build");
-        [build, upgrade, buy] */
-        
-        // }else if(isalpha(input.TabKata)) {
-        //     movePlayer(&map,&playerpos,input.TabKata[0]);
-        // }
-    // }
 
     return 0;
 }

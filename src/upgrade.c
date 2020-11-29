@@ -16,7 +16,7 @@ int TipeRootWahana(char* NamaWahana, ListBangunan * LB)
 }
 
 
-void Upgrade(ListBangunan * LB, BinTree* BT, BAHAN* bb, int * Bill, int * Aksi, int CurrentMoney, int TambahanWaktu)
+void Upgrade(ListBangunan * LB, BinTree* BT, BAHAN* bb, int * Bill, int * Aksi, int CurrentMoney, int *TambahanWaktu)
 {
 	printf("Mau upgrade apa?\nList:\n");
 	addressbangunan Current = First(*LB);
@@ -51,6 +51,7 @@ void Upgrade(ListBangunan * LB, BinTree* BT, BAHAN* bb, int * Bill, int * Aksi, 
 			durasibangunan(BangunanTujuan) = durasibt(Root);
 			KapasitasBang(BangunanTujuan) = kapasitas(Root);
 			HUpgrade(BangunanTujuan) = HUpgrade(Root);
+			(*TambahanWaktu)+=90;
 			(*Aksi)++;
 			history(BangunanTujuan)++;
 		}else if (history(BangunanTujuan) == 1)
@@ -62,6 +63,7 @@ void Upgrade(ListBangunan * LB, BinTree* BT, BAHAN* bb, int * Bill, int * Aksi, 
 			durasibangunan(BangunanTujuan) = durasibt(Root);
 			KapasitasBang(BangunanTujuan) = kapasitas(Root);
 			HUpgrade(BangunanTujuan) = HUpgrade(Root);
+			(*TambahanWaktu)+=90;
 			(*Aksi)++;
 			history(BangunanTujuan)++;
 		}else if (history(BangunanTujuan) == 2)

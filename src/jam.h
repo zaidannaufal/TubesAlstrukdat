@@ -114,4 +114,6 @@ JAM JPlus(JAM J1, JAM J2);
 JAM JMinus(JAM J1, JAM J2);
 /* mengurangi jam 1 dan jam 2 */
 
+boolean isWaktuCukup(JAM Jskrg, JAM Jbuka, int Jamterpakai,int tambahanwaktu);
+void printSisaWaktu(int Jamterpakai);
 #endif
