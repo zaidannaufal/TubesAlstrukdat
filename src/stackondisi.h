@@ -31,6 +31,6 @@ typedef struct {
 #define WilayahCond(K) K.Wilayah  
 
 void CreateEmptyKondisi (StackCond *S);
-void Push (StackCond *S, Kondisi X);
-void Pop (StackCond *S, Kondisi *X);
+void PushKond (StackCond *S, Kondisi X);
+void PopKond (StackCond *S, Kondisi *X);
 #endif

@@ -9,7 +9,7 @@ void CreateEmptyKondisi (StackCond *S){
     // uangStack(*S) = 0;
     // WilayahStack(*S) = -1;
 }
-void Push (StackCond *S, Kondisi X){
+void PushKond (StackCond *S, Kondisi X){
     Top(*S)++;
     WaktuCond(Cond(*S)) = WaktuCond(X);
     wood(BahanCond(Cond(*S))) = wood(BahanCond(X));
@@ -20,7 +20,7 @@ void Push (StackCond *S, Kondisi X){
     CopyMATRIKS(MapCond(X), &MapCond(Cond(*S)));
 }
 
-void Pop (StackCond *S,Kondisi *X){
+void PopKond (StackCond *S,Kondisi *X){
     WaktuCond((*X))= WaktuCond(Cond(*S));
     wood(BahanCond((*X))) = wood(BahanCond(Cond(*S)));
     stone(BahanCond((*X))) = stone(BahanCond(Cond(*S)));
