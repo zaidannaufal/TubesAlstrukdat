@@ -1,0 +1,10 @@
+kuduadaline1
+build
+upgrade
+testing 1
+halo
+end of string
+awe
+testing
+awe
+build.
