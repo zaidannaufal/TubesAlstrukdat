@@ -179,8 +179,6 @@ int main() {
                 Ordinat(Wilayah(G,SearchWilayahPlayer(G)).PlayerPosition) = Ordinat(Pbefore);
                 Elmt(Wilayah(G,SearchWilayahPlayer(G)).Map,Ordinat(Pbefore),Absis(Pbefore)) = 'P';
                 totalaksi--;
-                printwahana(First(BangunanEx));
-                // printwahana(First(BangunanEx));
             }else{
                 printf("ga ada yg bisa di undo\n");
             }
