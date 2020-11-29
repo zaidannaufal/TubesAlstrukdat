@@ -83,3 +83,17 @@ void Stringcopy(char* Destination, char* Source)
 	}
 	Destination[i] = '\0';
 }
+
+int Comparestr(char* Str1 , char* Str2)
+{
+	int i = 0;
+	while (Str1[i] != '\0')
+	{
+		if (Str1[i] != Str2[i])
+		{
+			return -1;
+		}
+		i++;
+	}
+	return 0;
+}

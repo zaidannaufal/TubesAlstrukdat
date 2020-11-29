@@ -41,7 +41,7 @@ typedef struct {
 #define MaxEl(Q)    (Q).MaxEl
 #define ElmtAntrian(Q,i)   (Q).T[(i)]
 #define Kesabaran(e)    (e).kesabaran
-#define ArrayTujuan(e)  (e).ArrayTujuan
+#define ArrayTujuan(e,i)  (e).ArrayTujuan[i]
 #define CurrentTujuan(e)    (e).CurrentTujuan
 #define MaxTujuan(e)    (e).MaxTujuan
 

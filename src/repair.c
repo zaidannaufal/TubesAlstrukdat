@@ -108,7 +108,7 @@ void repair(int *uang, int *aksi, int *remaining, GraphMap G, ListBangunan *Waha
     addressbangunan P = brokenWahana(*Wahana);
     if (P != Nil){
         int durasi = 40;
-        if (!isNextWahana(G, P))){
+        if (!isNextWahana(G, P)){
             printf("Anda tidak berada disebelah Wahana %s.\n", nama(P));
         }
         else{
