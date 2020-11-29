@@ -163,7 +163,7 @@ void InsertLast (ListBangunan *L, addressbangunan P);
 /* F.S. P ditambahkan sebagai elemen terakhir yang baru */
 
 // /*** PENGHAPUSAN SEBUAH ELEMEN ***/
-// void DelFirst (List *L, address *P);
+void DelFirst (ListBangunan *L, addressbangunan *P);
 // /* I.S. List tidak kosong */
 // /* F.S. P adalah alamat elemen pertama list sebelum penghapusan */
 // /*      Elemen list berkurang satu (mungkin menjadi kosong) */

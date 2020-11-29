@@ -8,9 +8,10 @@
 #include "bintreebangunan.h"
 #include "graphmap.h"
 #include "jam.h"
-#include "buy.h"
+// #include "buy.h"
+// #include "stackt.h"
 
-// #include "execute.h"
+#include "execute.h"
 
 int main() {
     boolean gamestart = false; // kalo true berarti game jalan
@@ -30,6 +31,7 @@ int main() {
     printf("\n");
     Menuawal();
     CreateEmptyBangunan(&BangunanEx);
+    CreateEmptyBangunan(&BangunanNonEx);
     //sudah pake mesin kata sort of :( 
     int idxMenu = 0;
     do {
@@ -51,11 +53,11 @@ int main() {
     
     MATRIKS map;
     POINT playerpos;
-    // Stack stackawal, stacktarget;
+    Stack stackawal, stacktarget;
     BinTree wahana[4];
     bacatree(wahana);
-    // CreateEmpty(&stackawal);
-    // CreateEmpty(&stacktarget);
+    CreateEmptyStack(&stackawal);
+    CreateEmptyStack(&stacktarget);
     JAM waktu = MakeJAM(0,0,0);
     JAM waktubuka = MakeJAM(9,0,0);
     int money = 50000;
@@ -106,14 +108,17 @@ int main() {
             }
         }else if (strcmp(input,"Build")==0){
             if (isWaktuCukup(waktu,waktubuka,totalwaktu,15)){
-                build(wahana, bb,&bbs,&G,&BangunanNonEx,&totalwaktu,money,&totaluang);
-            }else{
+                build(wahana, bb,&bbs,&G,&BangunanNonEx,&totalwaktu,money,&totaluang)
                 printf("waktu tidak mencukupi");
             }
             // tinggal si address p nya kemanain
         // }else if (strcmp(input,"Execute")) // execute
         // {
         //     execute(stackawal, stacktarget);
+        }else if (strcmp(input,"Upgrade")==0){
+            Upgrade(&ListBangunanEx,wahana);
+        }else if(strcmp(input,"Execute")==0){
+            execute(stackawal,stacktarget,&BangunanNonEx,&BangunanEx);
         }else if (strcmp(input,"Buy")==0){
             if (isWaktuCukup(waktu,waktubuka,totalwaktu,15)){
                 buy(money,&totaluang,&totalaksi,&totalwaktu,&bb);

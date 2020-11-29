@@ -1,8 +1,11 @@
 #include "execute.h"
+
 #include <string.h>
-void runCommand(char* strcmd) {
+void runCommand(char* strcmd,ListBangunan *nonex,ListBangunan *ex) {
     if (strcmp(strcmd,"build")==0) {
-        printf("build dijalankan\n"); // masih placeholder
+        addressbangunan wahana;
+        DelFirst(nonex,&wahana);
+        InsertLast(ex,wahana);
     } else if (strcmp(strcmd,"upgrade")==0) {
         printf("upgrade dijalankan\n"); // masih placeholder
     } else if (strcmp(strcmd,"buy")==0) {
@@ -10,17 +13,17 @@ void runCommand(char* strcmd) {
     }
 }
 
-void execute(Stack stackawal, Stack stacktarget) {
+void execute(Stack stackawal, Stack stacktarget,ListBangunan *nonex,ListBangunan *ex) {
     char* strcmd;
     while (!IsEmptyStack(stackawal))
     {
         Pop(&stackawal, &strcmd);
         Push(&stacktarget, strcmd);
     }
-    while (!IsEmpty(stacktarget))
+    while (!IsEmptyStack(stacktarget))
     {
         Pop(&stacktarget, &strcmd);
-        runCommand(strcmd);
+        runCommand(strcmd,nonex,ex);
     }
 }
 

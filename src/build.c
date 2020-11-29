@@ -26,8 +26,9 @@ void build(BinTree* wahana, BAHAN bb,BAHAN* bbs,GraphMap *G, ListBangunan *bg,in
         infotypeW X;
         addressbangunan P = Alokasi(X);
         int idxInput = 0;
-        printf("Masukkan nama bangunan :");
         getchar(); //buffer
+        printf("Masukkan nama bangunan :");
+        
         do {
                 scanf("%c", input + idxInput);
         } while (input[idxInput++] != '\n');
@@ -66,6 +67,7 @@ void build(BinTree* wahana, BAHAN bb,BAHAN* bbs,GraphMap *G, ListBangunan *bg,in
         Move(G,move);
         Elmt((Wilayah(*G,wilayah(P))).Map,Ordinat(point(P)),Absis(point(P))) ='W';
         InsertLast(bg,P);    
+        // printf("ssss");
     } else {
         printf("bahan atau uang tidak cukup ");
     }
