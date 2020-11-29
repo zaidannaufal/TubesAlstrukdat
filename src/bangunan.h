@@ -88,6 +88,7 @@ typedef struct {
 #define JmlPakaiTotal(P) (P)->info.JmlPakaiTotal
 #define HasilToday(P) (P)->info.HasilToday
 #define HasilTotal(P) (P)->info.HasilTotal
+#define Antrian(P)  (P)->info.pengunjung
 
 /* PROTOTYPE */
 /****************** TEST LIST KOSONG ******************/
