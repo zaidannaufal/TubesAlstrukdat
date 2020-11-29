@@ -1,12 +1,14 @@
 #include "mekanismepermainan.h"
 #include <stdio.h>
 
-void NgosonginAntrian(Antrian * A, int i)
+void NgosonginAntrian(Antrian * A)
 {
+	int i;
+	int count = NBElmtAntrian(*A);
 	for (i = 0; i < count; ++i)
 	{
 		infoantrian X;
-		Dequeue(A,X);
+		Dequeue(A,&X);
 	}
 }
 
@@ -31,18 +33,18 @@ void MekanismeGaSabar(Antrian * A, int IntervalWaktu)
 		}
 		int j,k;
 		Antrian Antriansementara;
-		MakeEmptyAntrian(&Antriansementaratri , count);
+		MakeEmptyAntrian(&Antriansementara , count);
 		for (k = 0; i < count; ++i)
 		{
 			if (Kesabaran(ElmtAntrian(*A,k)) > 0)
 			{
-				Enqueue(&Antriansementara,Elmt(*A,k));
+				Enqueue(&Antriansementara,ElmtAntrian(*A,k));
 			}
 		}
 		NgosonginAntrian(A,5);
 		for (j = 0; i < count - jumlahgasabar; ++i)
 		{
-			Enqueue(A,Elmt(Antriansementara,j));
+			Enqueue(A,ElmtAntrian(Antriansementara,j));
 		}
 	}
 }
@@ -51,6 +53,7 @@ void MekanismeNaikWahana(Antrian * A, ListBangunan * LB, int IntervalWaktu)
 {
 	addressbangunan Current = First(*LB);
 	Antrian AntrianTemp;
+	int count = NBElmtAntrian(*A);
 	MakeEmptyAntrian(&AntrianTemp , count);
 	Antrian AntrianBaru;
 	while (Current != NULL)
@@ -60,7 +63,7 @@ void MekanismeNaikWahana(Antrian * A, ListBangunan * LB, int IntervalWaktu)
 		for (i = 0; i < count; ++i) // Masukin ke Antrian Temporary
 		{
 			infoantrian Orang;
-			Dequeue(Antrian(Current) , &Orang);
+			Dequeue(&Antrian(Current) , &Orang);
 			Enqueue(&AntrianTemp , Orang);
 		}
 		int j;
@@ -69,7 +72,7 @@ void MekanismeNaikWahana(Antrian * A, ListBangunan * LB, int IntervalWaktu)
 			infoantrian Orang2;
 			int WaktuSisa = DurasiNaikWahana(ElmtAntrian(AntrianTemp,j)) - IntervalWaktu;
 			DurasiNaikWahana(ElmtAntrian(AntrianTemp,j)) = WaktuSisa;
-			Dequeue(AntrianTemp , &Orang2);
+			Dequeue(&AntrianTemp , &Orang2);
 			if (WaktuSisa <= 0)
 			{
 				if (CurrentTujuan(ElmtAntrian(AntrianTemp,j)) < MaxTujuan(ElmtAntrian(AntrianTemp,j))) // Untuk Yang Keluar Wahana Tapi Masih Mau Main
@@ -78,7 +81,7 @@ void MekanismeNaikWahana(Antrian * A, ListBangunan * LB, int IntervalWaktu)
 				}
 			}else //Dibalikin lagi ke wahananya
 			{
-				Enqueue(Antrian(Current),Orang2);
+				Enqueue(&Antrian(Current),Orang2);
 			}
 		}
 		Current = Next(Current);
