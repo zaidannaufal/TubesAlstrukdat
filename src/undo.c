@@ -1,7 +1,15 @@
 void undo(BAHAN* bbs,GraphMap *G, int *durasi,int *bill){
-    int waktu; //totalwaktu 
-    int uang; //totaluang
-    BAHAN bahan;//bbs
-    MATRIKS Map;//Wilayah(G,WilayahCond(x)).Map)
-    int Wilayah;
-    
+    Kondisi kond;
+
+    PopKond(StackCond, kond);
+    PopKond(StackCond, kond);
+
+    durasi = WaktuCond(kond);
+    bill = UangCond(kond);
+
+    wood(bbs) = wood(BahanCond(kond));
+    stone(bbs) = stone(BahanCond(kond));    
+    gold(bbs) = gold(BahanCond(kond));
+
+    CopyMATRIKS(MapCond(kond),(Wilayah(G,WilayahCond(x)).Map));
+    Wilayah(G) = WilayahCond(kond);
