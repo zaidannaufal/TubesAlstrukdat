@@ -7,6 +7,6 @@
 #include "buy.h"
 int TipeRootWahana(char* NamaWahana, ListBangunan * LB);
 
-void Upgrade(ListBangunan * ListLama, ListBangunan * LB, BinTree* BT, BAHAN bb,BAHAN *bbs, int * Bill, int * Aksi, int CurrentMoney, int * TambahanWaktu);
+void Upgrade(ListBangunan * LB, BinTree* BT, BAHAN bb,BAHAN *bbs, int * Bill, int * Aksi, int CurrentMoney, int * TambahanWaktu);
 void printwahana(addressbangunan wahana);
 #endif

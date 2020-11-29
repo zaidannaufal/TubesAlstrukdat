@@ -23,6 +23,7 @@ void PushKond (StackCond *S, Kondisi X){
     WilayahCond(Cond(*S)) = WilayahCond(X);
     UangCond(Cond(*S)) = UangCond(X);
     CopyMATRIKS(MapCond(X), &MapCond(Cond(*S)));
+    First(ListB(Cond(*S))) = First(ListB(X));
 }
 
 void PopKond (StackCond *S,Kondisi *X){
@@ -33,6 +34,7 @@ void PopKond (StackCond *S,Kondisi *X){
     WilayahCond((*X)) = WilayahCond(Cond(*S));
     UangCond((*X)) = UangCond(Cond(*S));
     CopyMATRIKS(MapCond(Cond(*S)), &MapCond((*X)));
+    First(ListB((*X))) = First(ListB(Cond(*S)));
     Top(*S)--;
 }
 
