@@ -12,7 +12,8 @@
 // #include "stackt.h"
 // #include "stackondisi.h"
 // #include "undo.h"
-#include "initantri.h"
+// #include "initantri.h"
+#include "serve.h"
 
 int main() {
     boolean game=true;
@@ -260,7 +261,7 @@ int main() {
                     waktu = NextNDetik(waktu,5*60);
                 }
             } else if (strcmp(input,"serve")==0){ 
-                
+                Serve(&(QueueAntrian),&BangunanEx);
             } else if (strcmp(input,"repair")==0){ 
                 
             } else if (strcmp(input,"detail")==0){ 

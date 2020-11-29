@@ -138,11 +138,29 @@ void PrintPrioQueueChar (Antrian Q){
 */
 	for(int i = Head(Q); i!=Tail(Q); i++){
 		printf("%d %c\n", ElmtAntrian(Q, i).prio, ElmtAntrian(Q, i).info);
+        printf("kesabaran :%d\n",ElmtAntrian(Q, i).kesabaran);
+        for (int j=0; j<=4;j++){
+            printf("ini isi antrian %d :",j);
+            puts(ElmtAntrian(Q, i).ArrayTujuan[j]);
+        }
+        printf("CurrentTujuan:%d\n",ElmtAntrian(Q, i).CurrentTujuan);
+        printf("MaxTujuan: %d\n ",ElmtAntrian(Q,i).MaxTujuan);
+        printf("DurasiNaikWahana: %d\n",ElmtAntrian(Q,i).DurasiNaikWahana);
+        printf("DurasiKesabaran %d\n",ElmtAntrian(Q,i).DurasiKesabaran);
 	}
 
 	if(!IsAntrianEmpty(Q)){
 		int i = Tail(Q);
-		printf("%d %c\n", ElmtAntrian(Q, i).prio, ElmtAntrian(Q, i).info);	
+		printf("%d %c\n", ElmtAntrian(Q, i).prio, ElmtAntrian(Q, i).info);
+        printf("kesabaran :%d\n",ElmtAntrian(Q, i).kesabaran);
+        for (int j=0; j<=4;j++){
+            printf("ini isi antrian %d :",j);
+            puts(ElmtAntrian(Q, i).ArrayTujuan[j]);
+        }
+        printf("CurrentTujuan:%d\n",ElmtAntrian(Q, i).CurrentTujuan);
+        printf("MaxTujuan: %d\n ",ElmtAntrian(Q,i).MaxTujuan);
+        printf("DurasiNaikWahana: %d\n",ElmtAntrian(Q,i).DurasiNaikWahana);
+        printf("DurasiKesabaran %d\n",ElmtAntrian(Q,i).DurasiKesabaran);	
 	}
     printf("%c", '#');
     printf("\n");
