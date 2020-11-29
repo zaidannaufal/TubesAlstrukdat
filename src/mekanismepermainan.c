@@ -1,8 +1,9 @@
 #include "mekanismepermainan.h"
 #include <stdio.h>
 
-void NgosonginAntrian(Antrian * A, int i)
+void NgosonginAntrian(Antrian * A)
 {
+	int i;
 	int count = NBElmtAntrian(*A);
 	for (i = 0; i < count; ++i)
 	{

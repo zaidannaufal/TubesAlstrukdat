@@ -17,6 +17,7 @@
 // #include "undo.h"
 // #include "initantri.h"
 #include "office.h"
+#include "mekanismepermainan.h"
 
 int main() {
     boolean game=true;
@@ -232,7 +233,7 @@ int main() {
           
         do {
             // PrintPrioQueueChar(QueueAntrian);
-            
+            int IntervalWaktu;
             printf("Main Phase Day %d\n",hari); // HAHAHAHAHAHAHAHAHAHHA
             TulisMATRIKS(Wilayah(G,SearchWilayahPlayer(G)).Map);
             printf("\n");
@@ -282,6 +283,7 @@ int main() {
                 if (isWaktuCukup(waktu,waktubuka,totalwaktu,5)){
                     Move(&G,input);
                     waktu = NextNDetik(waktu,5*60);
+                    IntervalWaktu = 300;
                 }
             } else if (strcmp(input,"serve")==0){ 
                 int moneycompare = money;
@@ -289,22 +291,30 @@ int main() {
                 if (moneycompare != money)
                 {
                     waktu = NextNDetik(waktu,30*60);
+                    IntervalWaktu = 1800;
                 }
             } else if (strcmp(input,"repair")==0){ 
+                int waktuawal = waktu;
                 repair(&money,&waktu,G,&BangunanEx,wahana,&bb);
+                IntervalWaktu = waktu - waktuawal;
             } else if (strcmp(input,"detail")==0){ 
                 detail(G,BangunanEx);
+                waktu = NextNDetik(waktu,10*60);
+                IntervalWaktu = 600;
             } else if(strcmp(input,"office")==0){ 
                 if(IsinOffice(G)){
                 Office(&BangunanEx);
                 char getoutoffice[2];
                 strcpy(getoutoffice,"w");
                 Move(&G,getoutoffice);
-                Elmt(Wilayah(G,0).Map,8,8) = 'O'; 
+                Elmt(Wilayah(G,0).Map,8,8) = 'O';
+                waktu = NextNDetik(waktu,10*60);
+                IntervalWaktu = 600;
                 }else {
                     printf("Anda tidak berada di office\n");
                 }
             } else if (strcmp(input,"prepare")==0){
+                NgosonginAntrian(&QueueAntrian);
                 addressbangunan P;
                 P = First(BangunanEx);
                 while (P != NULL)
@@ -321,7 +331,9 @@ int main() {
                 game = false;
             } else{
                 printf("Input salah, silakan coba lagi.\n");
-            } 
+            }
+            MekanismeGaSabar(&QueueAntrian, IntervalWaktu);
+            MekanismeNaikWahana(&QueueAntrian,&BangunanEx,IntervalWaktu);
 
         } while (gamestart == 2);
 
