@@ -71,10 +71,13 @@ int main() {
     int totalaksi = 0 ;
     int totalwaktu = 0; 
     int totaluang=0;
+    int hari=1;
     GraphMap G = BacaMapTXT();    
     InitiatePlayerPosition(&G);
+    Elmt(Wilayah(G,1).Map,8,8) = 'O';    
     do{
         do{
+            printf("Preparation Phase Day %d",hari);
             TulisMATRIKS(Wilayah(G,SearchWilayahPlayer(G)).Map);
             printf("\n");
             printf("Legend:\n");
@@ -223,11 +226,11 @@ int main() {
         waktu = MakeJAM(9,0,0);
         Antrian QueueAntrian;
         InitAntrian(&QueueAntrian,BangunanEx);
-                    
+              
         do {
             // PrintPrioQueueChar(QueueAntrian);
             
-            printf("Main phase day berapa gitu\n"); // HAHAHAHAHAHAHAHAHAHHA
+            printf("Main Phase Day %d",hari); // HAHAHAHAHAHAHAHAHAHHA
             TulisMATRIKS(Wilayah(G,SearchWilayahPlayer(G)).Map);
             printf("\n");
             
@@ -289,7 +292,11 @@ int main() {
             } else if (strcmp(input,"detail")==0){ 
                 detail(G,BangunanEx);
             } else if(strcmp(input,"office")==0){ 
+                if(IsinOffice(G)){
                 Office(&BangunanEx);
+                }else {
+                    printf("Anda tidak berada di office\n");
+                }
             } else if (strcmp(input,"prepare")==0){
                 addressbangunan P;
                 P = First(BangunanEx);
@@ -300,9 +307,11 @@ int main() {
                     P = Next(P);
                 }
                 printf("sampai akhirloop\n");
+                hari++;
                 gamestart = 1;   
             } else if(strcmp(input,"exit")==0){ // HAHAHHAHAHAHDAKWFBHGWFUIGFBMEJGFUW
                 gamestart=0;
+                game = false;
             } else{
                 printf("Input salah, silakan coba lagi.\n");
             } 
