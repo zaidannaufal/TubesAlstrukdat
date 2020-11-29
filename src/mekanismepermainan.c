@@ -43,3 +43,23 @@ void MekanismeGaSabar(Antrian * A, int IntervalWaktu)
 	}
 
 }
+
+void MekanismeNaikWahana(Antrian * A, ListBangunan * LB, int IntervalWaktu)
+{
+	addressbangunan Current = First(*LB);
+	Antrian AntrianBaru;
+	while (Current != NULL)
+	{
+		int count =  NBElmtAntrian(Antrian(Current));
+		int i = 0;
+		for (i = 0; i < count; ++i)
+		{
+			DurasiNaikWahana(Elmt(Antrian(Current),i)) -= IntervalWaktu;
+			if (DurasiNaikWahana(Elmt(Antrian(Current),i)) <= 0)
+			{
+				Enqueue(A,Elmt(Antrian(Current),i));
+			}
+		}
+		Current = Next(Current);
+	}
+}
