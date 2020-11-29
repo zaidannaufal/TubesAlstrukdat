@@ -30,7 +30,7 @@ typedef struct {
 } Lokasi;
 
 typedef struct {
-        char nama[50]; 
+        char nama[50];
         int tipe;
         Lokasi lokasi;
         int Harga;
@@ -43,6 +43,10 @@ typedef struct {
       //   ArrayQ pengunjung;
         int HUpgrade;
         // int builded;
+        int JmlPakaiTotal;
+        int JmlPakaiToday;
+        int HasilTotal;
+        int HasilToday;
 } infotypeW;
 
 typedef struct tElmtlist *addressbangunan;
@@ -80,6 +84,11 @@ typedef struct {
 #define Harga(P) (P)-> info.Harga
 #define HUpgrade(P) (P)->info.HUpgrade
 // #define Builded(P) (P)->info.Builded
+#define JmlPakaiToday(P) (P)->info.JmlPakaiToday
+#define JmlPakaiTotal(P) (P)->info.JmlPakaiTotal
+#define HasilToday(P) (P)->info.HasilToday
+#define HasilTotal(P) (P)->info.HasilTotal
+
 /* PROTOTYPE */
 /****************** TEST LIST KOSONG ******************/
 boolean IsEmptyBangunan (ListBangunan L);

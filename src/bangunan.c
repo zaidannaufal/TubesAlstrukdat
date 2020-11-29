@@ -40,6 +40,10 @@ addressbangunan Alokasi (infotypeW X)
         status(P) = true;
         // pengunjung(P) = 0;
         HUpgrade(P) = 0;
+		JmlPakaiToday(P) = 0;
+		JmlPakaiTotal(P) = 0;
+		HasilToday(P) = 0;
+		HasilTotal(P) = 0;
 
 		Next(P) = Nil;
 	}
