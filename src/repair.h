@@ -1,12 +1,13 @@
-
+#ifndef Repair_H
+#define Repair_H
 
 #include "jam.h"
-#include "build.h"
+// #include "build.h"
+#include "serve.h"
 
 
 
-
-int randomPickInt(int rangeawal, int rangeakhir);
+// int randomPickInt(int rangeawal, int rangeakhir);
 
 addressbangunan randomWahana(ListBangunan Wahana);
 
@@ -20,4 +21,6 @@ addrNode resourceWahana (BinTree *InfoWahana, int Tipe, addressbangunan Wahana);
 
 int setengahResource (BinTree P, int i);
 
-void repair(int *uang, int *aksi, int *remaining, GraphMap G, ListBangunan *Wahana, BinTree InfoWahana, BAHAN b);
+void repair(int *uang, int *remaining, GraphMap G, ListBangunan *Wahana, BinTree *InfoWahana, BAHAN *b);
+
+#endif

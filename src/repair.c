@@ -4,17 +4,17 @@
 
 
 /* Random Pick Wahana untuk di Rusak */
-int randomPickInt(int rangeawal, int rangeakhir)
-{
-    int r,a,b;
-    srand((unsigned)time(NULL));
-    for(a=0;a<20;a++){
-        for(b=0;b<5;b++){
-            r = rand()% rangeakhir+rangeawal;
-        }
-    }
-    return r;
-}
+// int randomPickInt(int rangeawal, int rangeakhir)
+// {
+//     int r,a,b;
+//     srand((unsigned)time(NULL));
+//     for(a=0;a<20;a++){
+//         for(b=0;b<5;b++){
+//             r = rand()% rangeakhir+rangeawal;
+//         }
+//     }
+//     return r;
+// }
 
 addressbangunan randomWahana(ListBangunan Wahana){
     int count = rand()%(NbElmtBangunan(Wahana)-1);
@@ -35,6 +35,7 @@ void breakWahana(ListBangunan *Wahana, JAM jam){
             }
             status(P) = false;
         }
+
     }
 }
 
@@ -109,7 +110,7 @@ boolean bahanCukup(BAHAN BB, int* R){
 }
 
 /* Prosedur repair */
-void repair(int *uang, int *aksi, int *remaining, GraphMap G, ListBangunan *Wahana, BinTree InfoWahana, BAHAN b){
+void repair(int *uang, int *remaining, GraphMap G, ListBangunan *Wahana, BinTree *InfoWahana, BAHAN *b){
 
     addressbangunan P = brokenWahana(*Wahana);
     if (P != Nil){
@@ -118,19 +119,18 @@ void repair(int *uang, int *aksi, int *remaining, GraphMap G, ListBangunan *Waha
             printf("Anda tidak berada disebelah Wahana %s.\n", nama(P));
         }
         else{
-            BinTree T = resourceWahana(&InfoWahana, tipe(P), P);
+            BinTree T = resourceWahana(InfoWahana, tipe(P), P);
             int *butuhbahan;
             butuhbahan[0] = setengahResource(T,0);
             butuhbahan[1] = setengahResource(T,1);
             butuhbahan[2] = setengahResource(T,2);
 
-            if (bahanCukup(b, butuhbahan) && *uang>=1000){
-                wood(b) -= butuhbahan[0];
-                stone(b) -= butuhbahan[1];
-                gold(b) -= butuhbahan[2];
+            if (bahanCukup(*b, butuhbahan) && *uang>=1000){
+                wood(*b) -= butuhbahan[0];
+                stone(*b) -= butuhbahan[1];
+                gold(*b) -= butuhbahan[2];
                 
                 status(P) = true;
-                *aksi += 1;
                 *uang -= 1000;
                 *remaining += durasi;
             }

@@ -13,7 +13,7 @@
 // #include "stackondisi.h"
 // #include "undo.h"
 // #include "initantri.h"
-#include "serve.h"
+#include "repair.h"
 
 int main() {
     boolean game=true;
@@ -223,12 +223,15 @@ int main() {
         int sisawaktu = 720;
         Antrian QueueAntrian;
         InitAntrian(&QueueAntrian,BangunanEx);
-            
+                    
         do {
-            PrintPrioQueueChar(QueueAntrian);
+            // PrintPrioQueueChar(QueueAntrian);
+            
             printf("Main phase day berapa gitu\n"); // HAHAHAHAHAHAHAHAHAHHA
             TulisMATRIKS(Wilayah(G,SearchWilayahPlayer(G)).Map);
             printf("\n");
+            
+            
             printf("Legend:\n");
             printf("A = Antrian\n");
             printf("P = Player\n");
@@ -244,6 +247,15 @@ int main() {
             printf("Closing Time: ");TulisJAM(waktututup);printf("\n");
             printf("Time Remaining: ");TulisJAM(DetikToJAM(Durasi(waktu,waktututup))); printf("\n");
             printf("Antrian [%d/5]:\n", NBElmtAntrian(QueueAntrian)); // HAHAHAHAHAHAHAHAHHA
+            addressbangunan broken = Nil;
+            broken = brokenWahana(BangunanEx);
+            breakWahana(&BangunanEx,waktu);
+            if (broken!= Nil){
+                printwahana(broken);
+            }else
+            {
+                printf("Tidak ada bangunan yang rusak\n");
+            }
             
             printf("\n");
             printf("command:");
@@ -263,7 +275,7 @@ int main() {
             } else if (strcmp(input,"serve")==0){ 
                 Serve(&(QueueAntrian),&BangunanEx);
             } else if (strcmp(input,"repair")==0){ 
-                
+                repair(&money,&sisawaktu,G,&BangunanEx,wahana,&bb);
             } else if (strcmp(input,"detail")==0){ 
                 
             } else if(strcmp(input,"office")==0){ 
