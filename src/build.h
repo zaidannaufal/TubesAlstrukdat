@@ -17,7 +17,8 @@ typedef struct {
 #define stone(b) (b).Stone
 #define gold(b) (b).Gold
 
-int build(BinTree* wahana, BAHAN* bb,GraphMap *G,addressbangunan *P);
-boolean BBcukup(BAHAN BB, int* R);
-
+void build(BinTree* wahana, BAHAN bb,BAHAN* bbs,GraphMap *G, ListBangunan *bg,int *durasi,int money,int *bill);
+boolean BBcukup(BAHAN BB,BAHAN BBS, int* R);
+boolean Moneycukup(int money,int bill, int hargawahana);
+void tambahBBS(BAHAN *BBS, int* R);
 #endif
