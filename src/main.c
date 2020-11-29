@@ -80,7 +80,7 @@ int main() {
     Elmt(Wilayah(G,0).Map,8,8) = 'O';    
     do{
         do{
-            printf("Preparation Phase Day %d",hari);
+            printf("Preparation Phase Day %d\n",hari);
             TulisMATRIKS(Wilayah(G,SearchWilayahPlayer(G)).Map);
             printf("\n");
             printf("Legend:\n");
@@ -233,7 +233,7 @@ int main() {
         do {
             // PrintPrioQueueChar(QueueAntrian);
             
-            printf("Main Phase Day %d",hari); // HAHAHAHAHAHAHAHAHAHHA
+            printf("Main Phase Day %d\n",hari); // HAHAHAHAHAHAHAHAHAHHA
             TulisMATRIKS(Wilayah(G,SearchWilayahPlayer(G)).Map);
             printf("\n");
             
@@ -297,6 +297,10 @@ int main() {
             } else if(strcmp(input,"office")==0){ 
                 if(IsinOffice(G)){
                 Office(&BangunanEx);
+                char getoutoffice[2];
+                strcpy(getoutoffice,"w");
+                Move(&G,getoutoffice);
+                Elmt(Wilayah(G,0).Map,8,8) = 'O'; 
                 }else {
                     printf("Anda tidak berada di office\n");
                 }

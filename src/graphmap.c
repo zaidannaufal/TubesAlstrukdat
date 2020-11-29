@@ -151,7 +151,7 @@ boolean IsPindahLokalKanan(GraphMap G)
 boolean IsPindahLokalKiri(GraphMap G)
 {
 	int N = SearchWilayahPlayer(G);
-	char Kiri = Elmt(Wilayah(G,N).Map,Ordinat(Wilayah(G,N).PlayerPosition),Absis(Wilayah(G,N).PlayerPosition)-1)
+	char Kiri = Elmt(Wilayah(G,N).Map,Ordinat(Wilayah(G,N).PlayerPosition),Absis(Wilayah(G,N).PlayerPosition)-1);
 	return (Kiri == '-' || Kiri == 'O');
 }
 
