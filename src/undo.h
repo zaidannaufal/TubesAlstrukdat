@@ -1,5 +1,5 @@
 #include "stdio.h"
 #include "stackondisi.h"
-#include "build.h"
+// #include "build.h"
 
-void undo(BAHAN* bbs,GraphMap *G, int *durasi,int *bill);
+void undo(BAHAN* bbs,GraphMap *G, int *durasi,int *bill,StackCond *sc);

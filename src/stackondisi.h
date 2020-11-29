@@ -1,7 +1,7 @@
 // #include "graphmap.h"
 // #include "boolean.h"
 // #include "build.h"
-#include "upgrade.h"
+#include "execute.h"
 #define NilStack -1
 #define MaxElStack 20 
 
@@ -9,18 +9,19 @@
 #define STACKTKONDISI_H
 
 typedef struct {
-    Kondisi T[MaxElStack];
-    int TOP;
-} StackCond;
-
-typedef struct {
     int waktu; //totalwaktu 
     int uang; //totaluang
     BAHAN bahan;//bbs
     MATRIKS Map;//Wilayah(G,WilayahCond(x)).Map)
     int Wilayah;
-    
 } Kondisi;
+
+typedef struct {
+    Kondisi T[MaxElStack];
+    int TOP;
+} StackCond;
+
+
 
 #define Top(S) (S).TOP
 #define Cond(S) (S).T[(S).TOP]

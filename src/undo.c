@@ -1,16 +1,17 @@
 #include "undo.h"
-void undo(BAHAN* bbs,GraphMap *G, int *durasi,int *bill){
+void undo(BAHAN* bbs,GraphMap *G, int *durasi,int *bill,StackCond *sc){
     Kondisi kond;
 
-    PopKond(StackCond, kond);
-    PopKond(StackCond, kond);
+    PopKond(sc, &kond);
+    // PopKond(sc, &kond);
 
     durasi = WaktuCond(kond);
     bill = UangCond(kond);
 
-    wood(bbs) = wood(BahanCond(kond));
-    stone(bbs) = stone(BahanCond(kond));    
-    gold(bbs) = gold(BahanCond(kond));
+    wood(*bbs) = wood(BahanCond(kond));
+    stone(*bbs) = stone(BahanCond(kond));    
+    gold(*bbs) = gold(BahanCond(kond));
 
-    CopyMATRIKS(MapCond(kond),(Wilayah(G,WilayahCond(x)).Map));
-    Wilayah(G) = WilayahCond(kond);
+    CopyMATRIKS(MapCond(kond),&(Wilayah((*G),WilayahCond(kond)).Map));
+    
+}

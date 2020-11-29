@@ -10,8 +10,8 @@
 #include "jam.h"
 // #include "buy.h"
 // #include "stackt.h"
+#include "stackondisi.h"
 
-#include "execute.h"
 
 int main() {
     boolean gamestart = false; // kalo true berarti game jalan
@@ -54,6 +54,8 @@ int main() {
     MATRIKS map;
     POINT playerpos;
     Stack stackawal, stacktarget;
+    StackCond Conawal;
+    CreateEmptyKondisi(&Conawal);
     BinTree wahana[4];
     bacatree(wahana);
     CreateEmptyStack(&stackawal);
@@ -108,7 +110,21 @@ int main() {
             }
         }else if (strcmp(input,"Build")==0){
             if (isWaktuCukup(waktu,waktubuka,totalwaktu,15)){
-                build(wahana, bb,&bbs,&G,&BangunanNonEx,&totalwaktu,money,&totaluang)
+                Kondisi Buildbefore;
+                WaktuCond(Buildbefore) = totalwaktu;
+                UangCond(Buildbefore) = totaluang;
+                wood(BahanCond(Buildbefore)) = wood(bbs);
+                stone(BahanCond(Buildbefore)) = stone(bbs);
+                gold(BahanCond(Buildbefore)) = gold(bbs);
+                WilayahCond(Buildbefore) = SearchWilayahPlayer(G);
+                CopyMATRIKS(Wilayah(G,SearchWilayahPlayer(G)).Map, &MapCond(Buildbefore));
+                PushKond(&Conawal,Buildbefore);
+                build(wahana, bb,&bbs,&G,&BangunanNonEx,&totalwaktu,money,&totaluang);
+                char B[20];
+                strcpy(B,"build");
+                Push(&stackawal,B);
+                   
+            }else{
                 printf("waktu tidak mencukupi");
             }
             // tinggal si address p nya kemanain
@@ -116,25 +132,18 @@ int main() {
         // {
         //     execute(stackawal, stacktarget);
         }else if (strcmp(input,"Upgrade")==0){
-            Upgrade(&ListBangunanEx,wahana);
+            // Upgrade(&BangunanEx,wahana,&bb,&totaluang,&totalaksi,money,&totalwaktu);
         }else if(strcmp(input,"Execute")==0){
             execute(stackawal,stacktarget,&BangunanNonEx,&BangunanEx);
         }else if (strcmp(input,"Buy")==0){
             if (isWaktuCukup(waktu,waktubuka,totalwaktu,15)){
                 buy(money,&totaluang,&totalaksi,&totalwaktu,&bb);
-                printbahan(bb);
             }else {
             printf("waktu tidak mencukupi");
             }
         }else if (strcmp(input,"Undo")==0){
-            if (isWaktuCukup(waktu,waktubuka,totalwaktu,15)){
-                buy(money,&totaluang,&totalaksi,&totalwaktu,&bb);
-                printbahan(bb);
-            }else {
-            printf("waktu tidak mencukupi");
-            }
-        }
-        {
+            //
+        }else{
             printf("inputsalah\n");
         }
           

@@ -1,5 +1,5 @@
 #include "stackondisi.h"
-
+#include <stdio.h>
 void CreateEmptyKondisi (StackCond *S){
     Top(*S) = NilStack;
     // waktuStack(*S) = 0;
@@ -18,6 +18,7 @@ void PushKond (StackCond *S, Kondisi X){
     WilayahCond(Cond(*S)) = WilayahCond(X);
     UangCond(Cond(*S)) = UangCond(X);
     CopyMATRIKS(MapCond(X), &MapCond(Cond(*S)));
+    printf("sampai sini berhasil push :)\n");
 }
 
 void PopKond (StackCond *S,Kondisi *X){
