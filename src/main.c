@@ -15,6 +15,10 @@
 #include "scankata.h"
 
 int main() {
+    FILE* f;
+    f = fopen("../external/riwayatinput.txt" , "w");
+    fputs("line1." , f);
+    fclose(f);
     boolean game=true;
     int gamestart = 0; // kalo 0 berarti game belum jalan
     ListBangunan BangunanNonEx, BangunanEx;
@@ -133,7 +137,7 @@ int main() {
                     printf("waktu tidak mencukupi");
                 }
                 // tinggal si address p nya kemanain
-            // }else if (strcmp(input,"Execute")) // execute
+            // }else if (Comparestr(input,"Execute")) // execute
             // {
             //     execute(stackawal, stacktarget);
             }else if (Comparestr(input,"Upgrade")==0){
@@ -181,7 +185,7 @@ int main() {
                         addressbangunan bufferP;
                         DelLast(&BangunanNonEx,&bufferP);
                         Dealokasi(&bufferP);
-                    }// }else if(strcmp(buffer,"upgrade")==0){
+                    }// }else if(Comparestr(buffer,"upgrade")==0){
 
                     // }
                     undo(&bbs,&G,&totalwaktu,&totaluang,&Conawal,&BangunanEx);

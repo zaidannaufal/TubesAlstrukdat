@@ -1,58 +1,20 @@
-line1899nannanAbsisPlayer,OrdinatPlayerhampir matihey
-hey
-makannih
-bruh
-lah>
-a
-euicbi
-wciwmocm
-halo
-hey
-a--*
-ebibvi
-3000 buku
-3000 buku
-300 halo
-300 peperangan
-300 pasukan
-5 kue
-4589 makanan
-3000 buku
-300 makanan
-23456789
-12
-3456789
-halo
-halo
-rfyguhj
-a
-rtyguh
-r
-a
-tcfyguhnij
-New
-New
-randy
-New
-randy
-s
-d
-d
-w
-d
-d
-d
+line1rWilayah,AbsisPlayer,OrdinatPlayerhampir matiNew
 New
 randy
 d
-d
+d-->
 s
-s
-BuildYþÿÿÿ4TZ
+Build
 d
-New
-randy
-s
-dTZ
+d--*
 d
-.
+s--*
+s
+s--*
+d
+d***
+d
+d
+d
+Build
+Execute.
