@@ -19,10 +19,13 @@ int main() {
     char nama[100];
     char menu[100];
     char input[100];
-    BAHAN bb;
+    BAHAN bb,bbs;
     wood(bb) = 100000;
     stone(bb) = 100000;
     gold(bb) = 100000;
+    wood(bbs) = 0;
+    stone(bbs) = 0;
+    gold(bbs) = 0;
     Menu();
     printf("\n");
     Menuawal();
@@ -55,7 +58,7 @@ int main() {
     // CreateEmpty(&stacktarget);
     JAM waktu = MakeJAM(0,0,0);
     JAM waktubuka = MakeJAM(9,0,0);
-    int money = 100000;
+    int money = 50000;
     int totalaksi = 0 ;
     int totalwaktu = 0; 
     int totaluang=0;
@@ -85,6 +88,7 @@ int main() {
         printf("Total uang yang dibutuhkan: %d\n",totaluang);
         printf("\n");
         printbahan(bb);
+        printbahan(bbs);
         printf("\n");
         printf("command:");
         
@@ -102,13 +106,9 @@ int main() {
             }
         }else if (strcmp(input,"Build")==0){
             if (isWaktuCukup(waktu,waktubuka,totalwaktu,15)){
-                int buildsuccess;
-                infotypeW X;
-                addressbangunan P = Alokasi(X);
-                buildsuccess = build(wahana,&bb,&G,&P);
-                if (buildsuccess==1){
-                    InsertLast(&BangunanEx,P);
-                }
+                build(wahana, bb,&bbs,&G,&BangunanEx,&totalwaktu,money,&totaluang);
+            }else {
+                printf("waktu tidak mencukupi");
             }
             // tinggal si address p nya kemanain
         // }else if (strcmp(input,"Execute")) // execute
@@ -118,8 +118,9 @@ int main() {
             if (isWaktuCukup(waktu,waktubuka,totalwaktu,15)){
                 buy(money,&totaluang,&totalaksi,&totalwaktu,&bb);
                 printbahan(bb);
-            }
+            }else {
             printf("waktu tidak mencukupi");
+            }
         }else
         {
             printf("inputsalah\n");

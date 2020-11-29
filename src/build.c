@@ -22,7 +22,7 @@ void build(BinTree* wahana, BAHAN bb,BAHAN* bbs,GraphMap *G, ListBangunan *bg,in
     scanf("%d",&i);
     printf("tipe yang dipilih : ");
     puts(tipe(wahana[i-1]));
-    if(BBcukup(bb,*bbs,(wahana[i-1]->info).resource.resource)&&Moneycukup(money,bill,HUpgrade(wahana[i-1]))){
+    if(BBcukup(bb,*bbs,(wahana[i-1]->info).resource.resource)){
         infotypeW X;
         addressbangunan P = Alokasi(X);
         int idxInput = 0;
