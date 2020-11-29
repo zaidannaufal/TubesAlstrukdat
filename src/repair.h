@@ -10,4 +10,4 @@ address brokenWahana(ListBangunan Wahana);
 
 boolean isNextWahana (GraphMap G, addressbangunan P);
 
-void repair(int uang, int aksi, JAM jam, GraphMap G, ListBangunan Wahana);
+void repair(int uang, int aksi, int jam, GraphMap G, ListBangunan *Wahana);

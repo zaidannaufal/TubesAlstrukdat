@@ -20,9 +20,9 @@ int main() {
     char menu[100];
     char input[100];
     BAHAN bb;
-    bb.Wood = 100000;
-    bb.Stone = 100000;
-    bb.Gold = 100000;
+    wood(bb) = 100000;
+    stone(bb) = 100000;
+    gold(bb) = 100000;
     Menu();
     printf("\n");
     Menuawal();
@@ -81,6 +81,9 @@ int main() {
         printf("Total aksi yang akan dilakukan: %d\n",totalaksi);
         printf("Total waktu yang dibutuhkan: %d\n",totalwaktu);
         printf("Total uang yang dibutuhkan: %d\n",totaluang);
+        printf("\n");
+        printbahan(bb);
+        printf("\n");
         printf("command:");
         
         int idxInput = 0;
@@ -105,7 +108,8 @@ int main() {
         // {
         //     execute(stackawal, stacktarget);
         }else if (strcmp(input,"Buy")==0){
-            buy(money,totaluang,totalaksi,totalwaktu,bb);
+            buy(money,&totaluang,&totalaksi,&totalwaktu,&bb);
+            printbahan(bb);
         }else
         {
             printf("inputsalah\n");

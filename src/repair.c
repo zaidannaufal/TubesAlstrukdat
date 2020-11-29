@@ -32,32 +32,43 @@ addressbangunan brokenWahana(ListBangunan Wahana){
 
 boolean isNextWahana (GraphMap G, addressbangunan P){
     
- 	boolean nextPosition = false;
-    int w = SearchWilayahPlayer(G);
+ 	int w = SearchWilayahPlayer(G);
     boolean sameWilayah = false;
     if (w == wilayah(P)){
-        sameWilayah = true;
+        if (Absis(Wilayah(G,w).PlayerPosition) == Absis(point(P)) + 1 && Ordinat(Wilayah(G,w).PlayerPosition) == Ordinat(point(P))){
+            return true;
+        }
+        else if (Absis(Wilayah(G,w).PlayerPosition) == Absis(point(P)) - 1 && Ordinat(Wilayah(G,w).PlayerPosition) == Ordinat(point(P))){
+            return true;
+        }
+        else if (Absis(Wilayah(G,w).PlayerPosition) == Absis(point(P)) && Ordinat(Wilayah(G,w).PlayerPosition) == Ordinat(point(P)) + 1){
+            return true;
+        }
+        else if (Absis(Wilayah(G,w).PlayerPosition) == Absis(point(P)) &&  Ordinat(Wilayah(G,w).PlayerPosition) == Ordinat(point(P)) - 1){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
-    if (Absis(Wilayah(G,w).PlayerPosition) == Absis(point(P)) + 1 &&  Ordinat(Wilayah(G,w).PlayerPosition) == Ordinat(point(P))){
-        nextPosition = true;
+    else{
+        return false;
     }
- 	return  sameWilayah && nextPosition;
-    
 
 }
 
-void repair(int uang, int aksi, JAM jam, GraphMap G, ListBangunan Wahana){
+void repair(int *uang, int *aksi, int *jam, GraphMap G, ListBangunan *Wahana){
 
-    addressbangunan P = brokenWahana(Wahana);
-    JAM durasi = MakeJAM(0,40,0);
+    addressbangunan P = brokenWahana(*Wahana);
+    int durasi = 40;
     if (!isNextWahana(G, P))){
-        printf("Anda tidak berada disebelah kiri Wahana %c\n", nama(P));
+        printf("Anda tidak berada disebelah Wahana %c\n", nama(P));
     }
     else{
         status(P) = true;
-        aksi += 1;
-        uang -= 1000;
-        jam = JPlus(jam, durasi);
+        *aksi += 1;
+        *uang -= 1000;
+        *jam += durasi;
     }
 
 }
