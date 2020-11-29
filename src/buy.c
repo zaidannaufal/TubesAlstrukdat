@@ -28,7 +28,7 @@ void buy(int uang,int *butuhuang, int *aksi, int *butuhjam, BAHAN *BB){
             *butuhuang += hargaWood*demand;
             *aksi += 1;
             *butuhjam += durasi;
-            wood(*BB) += demand;
+            wood(*BB) -= demand;
         }
     }
     else if (strcmp(bahan,"Gold") == 0){
@@ -39,7 +39,7 @@ void buy(int uang,int *butuhuang, int *aksi, int *butuhjam, BAHAN *BB){
             *butuhuang += hargaGold*demand;
             *aksi += 1;
             *butuhjam += durasi;
-            gold(*BB) += demand;
+            gold(*BB) -= demand;
         }
     }
     else if (strcmp(bahan,"Stone") == 0){
@@ -50,7 +50,7 @@ void buy(int uang,int *butuhuang, int *aksi, int *butuhjam, BAHAN *BB){
             *butuhuang += hargaStone*demand;
             *aksi += 1;
             *butuhjam += durasi;
-            stone(*BB) += demand;
+            stone(*BB) -= demand;
         }
     }
     else{
