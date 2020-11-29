@@ -46,12 +46,12 @@ char* ScanKata()
 		{
 			int length = CKata.Length;
 			int counter;
-			char* Hasil = malloc(sizeof (char) * length+1);
+			char* Hasil = malloc(sizeof (char) * (length+1));
 			for (counter = 0; counter < length; ++counter)
 			{
 				Hasil[counter] = CKata.TabKata[counter];
 			}
-			Hasil[counter+1] = '\0';
+			Hasil[counter] = '\0';
 			return Hasil;
 		}
 	}
@@ -62,18 +62,24 @@ char* ScanKata()
 int ScanAngka()
 {
 	char* StringAngka = ScanKata();
-	int Result = StringAngka - '0';
+	int Result;
+	sscanf(StringAngka , "%d" , &Result);
 	return Result;
 }
 
-NumberAndString ScanNumberAndString()
+void ScanNumberAndString(int * Angka, char* String)
 {
-	NumberAndString NS;
 	char* AngkaDanKata = ScanKata();
-	int Angka;
-	char Words[50];
-	sscanf(AngkaDanKata , "%d %*c" , &Angka, Words);
-	Int(NS) = Angka;
-	Str(NS) = Words;
-	return NS;
+	sscanf(AngkaDanKata , "%d %s" , Angka, String);
+}
+
+void Stringcopy(char* Destination, char* Source)
+{
+	int i = 0;
+	while (Source[i] != '\0')
+	{
+		Destination[i] = Source[i];
+		i++;
+	}
+	Destination[i] = '\0';
 }

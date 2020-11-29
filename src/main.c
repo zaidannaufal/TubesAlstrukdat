@@ -108,12 +108,7 @@ int main() {
             }
         }else if (strcmp(input,"Build")==0){
             if (isWaktuCukup(waktu,waktubuka,totalwaktu,15)){
-                build(wahana, bb,&bbs,&G,&BangunanNonEx,&totalwaktu,money,&totaluang);
-                char B[20];
-                strcpy(B,"Bangunan");
-                Push(&stackawal,B);
-                printf("%d\n",Top(stackawal));
-            }else {
+                build(wahana, bb,&bbs,&G,&BangunanNonEx,&totalwaktu,money,&totaluang)
                 printf("waktu tidak mencukupi");
             }
             // tinggal si address p nya kemanain
@@ -131,7 +126,14 @@ int main() {
             }else {
             printf("waktu tidak mencukupi");
             }
-        }else
+        }else if (strcmp(input,"Undo")==0){
+            if (isWaktuCukup(waktu,waktubuka,totalwaktu,15)){
+                buy(money,&totaluang,&totalaksi,&totalwaktu,&bb);
+                printbahan(bb);
+            }else {
+            printf("waktu tidak mencukupi");
+            }
+        }
         {
             printf("inputsalah\n");
         }
