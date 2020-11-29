@@ -14,12 +14,3 @@ int generaterandomint()
 	sscanf(str , "%d" , &Angka);
 	return Angka;
 }
-
-void main()
-{
-	for (int i = 0; i < 5; ++i)
-	{
-		int a = generaterandomint();
-		printf("%d\n", a);
-	}
-}
