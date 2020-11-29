@@ -57,8 +57,23 @@ char* ScanKata()
 	}
 }
 
-// void main()
-// {
-// 	char* Dapat = ScanKata();
-// 	puts(Dapat);
-// }
+
+
+int ScanAngka()
+{
+	char* StringAngka = ScanKata();
+	int Result = StringAngka - '0';
+	return Result;
+}
+
+NumberAndString ScanNumberAndString()
+{
+	NumberAndString NS;
+	char* AngkaDanKata = ScanKata();
+	int Angka;
+	char Words[50];
+	sscanf(AngkaDanKata , "%d %*c" , &Angka, Words);
+	Int(NS) = Angka;
+	Str(NS) = Words;
+	return NS;
+}
