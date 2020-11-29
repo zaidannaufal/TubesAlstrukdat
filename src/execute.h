@@ -2,10 +2,11 @@
 #define EXECUTE_H
 
 #include "stackt.h"
-#include "perintah.h"
+// #include "perintah.h"
+#include "office.h"
 #include <stdio.h> // selagi .c masih placeholder
 
-void runCommand(char* strcmd);
-void execute(Stack stackawal, Stack stacktarget);
+void runCommand(char* strcmd,ListBangunan *nonex,ListBangunan *ex);
+void execute(Stack stackawal, Stack stacktarget,ListBangunan *nonex,ListBangunan *ex);
 
 #endif

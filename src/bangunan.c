@@ -220,15 +220,15 @@ void InsertLast (ListBangunan *L, addressbangunan P)
 }
 
 // /*** PENGHAPUSAN SEBUAH ELEMEN ***/
-// void DelFirst (List *L, address *P)
-// /* I.S. List tidak kosong */
-// /* F.S. P adalah alamat elemen pertama list sebelum penghapusan */
-// /*      Elemen list berkurang satu (mungkin menjadi kosong) */
-// /* First element yg baru adalah suksesor elemen pertama yang lama */
-// {
-// 	*P = First(*L);
-// 	First(*L) = Next(First(*L));
-// }
+void DelFirst (ListBangunan *L, addressbangunan *P)
+/* I.S. List tidak kosong */
+/* F.S. P adalah alamat elemen pertama list sebelum penghapusan */
+/*      Elemen list berkurang satu (mungkin menjadi kosong) */
+/* First element yg baru adalah suksesor elemen pertama yang lama */
+{
+	*P = First(*L);
+	First(*L) = Next(First(*L));
+}
 // // void DelP (List *L, String X)
 // // /* I.S. Sembarang */
 // // /* F.S. Jika ada elemen list beraddress P, dengan Info(P)=X  */
@@ -262,30 +262,30 @@ void InsertLast (ListBangunan *L, addressbangunan P)
 // // 		}
 // // 	}
 // // }
-// void DelLast (List *L, address *P)
-// /* I.S. List tidak kosong */
-// /* F.S. P adalah alamat elemen terakhir list sebelum penghapusan  */
-// /*      Elemen list berkurang satu (mungkin menjadi kosong) */
-// /* Last element baru adalah predesesor elemen terakhir yg lama, */
-// /* jika ada */
-// {
-// 	address Prec;
-// 	Prec = First(*L);
-// 	if (Next(Prec) == Nil)
-// 	{
-// 		*P = Prec;
-// 		First(*L) = Nil;
-// 	}
-// 	else
-// 	{
-// 		while (Next(Next(Prec)) != Nil)
-// 		{
-// 			Prec = Next(Prec);
-// 		}
-// 		*P = Next(Prec);
-// 		Next(Prec) = Nil;
-// 	}
-// }
+void DelLast (ListBangunan *L, addressbangunan *P)
+/* I.S. List tidak kosong */
+/* F.S. P adalah alamat elemen terakhir list sebelum penghapusan  */
+/*      Elemen list berkurang satu (mungkin menjadi kosong) */
+/* Last element baru adalah predesesor elemen terakhir yg lama, */
+/* jika ada */
+{
+	addressbangunan Prec;
+	Prec = First(*L);
+	if (Next(Prec) == Nil)
+	{
+		*P = Prec;
+		First(*L) = Nil;
+	}
+	else
+	{
+		while (Next(Next(Prec)) != Nil)
+		{
+			Prec = Next(Prec);
+		}
+		*P = Next(Prec);
+		Next(Prec) = Nil;
+	}
+}
 // void DelAfter (List *L, address *Pdel, address Prec)
 // /* I.S. List tidak kosong. Prec adalah anggota list  */
 // /* F.S. Menghapus Next(Prec): */
