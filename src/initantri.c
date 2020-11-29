@@ -73,3 +73,27 @@ void InitAntrian(Antrian * A, ListBangunan LB)
 		Enqueue(A,Pengunjung);
 	}
 }
+
+void PrintPengunjung(infoantrian Orang)
+{
+	printf("Nama : %c | Kesabaran : %d | ", InfoAntrian(Orang), Kesabaran(Orang));
+	int count = MaxTujuan(Orang);
+	int i;
+	printf("(", );
+	for (i = CurrentTujuan(Orang); i < count-1; ++i)
+	{
+		printf("%s,", ArrayTujuan(Orang,i) );
+	}
+	printf("%s)", ArrayTujuan(Orang,count-1));
+}
+
+void PrintAntrian(Antrian A)
+{
+	int i = Head(A);
+	while (i != Tail(A))
+	{
+		PrintPengunjung(ElmtAntrian(A,i));
+		printf("\n");
+		i++;
+	}
+}

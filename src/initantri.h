@@ -16,5 +16,8 @@ infoantrian GenerateRandomPeople(int pilihanwahana , semuawahana Array, int urut
 
 void InitAntrian(Antrian * A, ListBangunan LB);
 
+void PrintPengunjung(infoantrian Orang);
+
+void PrintAntrian(Antrian A);
 
 #endif
