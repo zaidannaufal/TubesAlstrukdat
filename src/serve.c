@@ -13,7 +13,7 @@ boolean CompareTujuan(tujuan T, char* NamaWahana)
     return false;
 }
 
-void Serve(Antrian * Antrian, List * ListWahana)
+void Serve(Antrian * Antrian, ListBangunan * ListWahana)
 {
     if (!IsAntrianEmpty(*Antrian))
     {
@@ -21,14 +21,18 @@ void Serve(Antrian * Antrian, List * ListWahana)
         Dequeue(Antrian,&Pengunjung);
         int NoTujuan = Pengunjung.CurrentTujuan;
         tujuan TujuanSekarang = Pengunjung.ArrayTujuan[NoTujuan]; //string ini tuh , TujuanSekarang >= 0
-        address Current = First(*ListWahana);
-        while (Current != Nil)
+        addressbangunan Current = First(*ListWahana);
+        while (Current != NULL)
         {
             if (CompareTujuan(TujuanSekarang,nama(Current)))
             {
                 Prio(Pengunjung) = 1;
                 Pengunjung.CurrentTujuan++;
-                Enqueue(Info(Current).pengunjung,Pengunjung);
+                Enqueue(Info(Current).pengunjung,Pengunjung); // ini kenapa
+                JmlPakaiToday(Current) += 1; // apakah ini salah secara pointer? saya tak tahu;
+                JmlPakaiTotal(Current) += 1;
+                HasilToday(Current) += Harga(Current); // pas reset hari yang today2 di reset juga
+                HasilTotal(Current) += Harga(Current);
             }
             Current = Next(Current);
         }
