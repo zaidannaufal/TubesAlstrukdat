@@ -29,6 +29,7 @@ void MekanismeGaSabar(Antrian * A, int IntervalWaktu)
 	}
 	int j,k;
 	Antrian Antriansementara;
+	MakeEmptyAntrian(&Antriansementaratri , count);
 	for (k = 0; i < count; ++i)
 	{
 		if (Kesabaran(ElmtAntrian(*A,k)) > 0)
@@ -47,17 +48,35 @@ void MekanismeGaSabar(Antrian * A, int IntervalWaktu)
 void MekanismeNaikWahana(Antrian * A, ListBangunan * LB, int IntervalWaktu)
 {
 	addressbangunan Current = First(*LB);
+	Antrian AntrianTemp;
+	MakeEmptyAntrian(&AntrianTemp , count);
 	Antrian AntrianBaru;
 	while (Current != NULL)
 	{
 		int count =  NBElmtAntrian(Antrian(Current));
-		int i = 0;
-		for (i = 0; i < count; ++i)
+		int i;
+		for (i = 0; i < count; ++i) // Masukin ke Antrian Temporary
 		{
-			DurasiNaikWahana(Elmt(Antrian(Current),i)) -= IntervalWaktu;
-			if (DurasiNaikWahana(Elmt(Antrian(Current),i)) <= 0)
+			infoantrian Orang;
+			Dequeue(Antrian(Current) , &Orang);
+			Enqueue(&AntrianTemp , Orang);
+		}
+		int j;
+		for (j = 0; j < count; ++j) // Untuk Semua Pengunjung Dikurangin Trus Dicek Yang Udah Harus Keluar Wahana
+		{
+			infoantrian Orang2;
+			int WaktuSisa = DurasiNaikWahana(ElmtAntrian(AntrianTemp,j)) - IntervalWaktu;
+			DurasiNaikWahana(ElmtAntrian(AntrianTemp,j)) = WaktuSisa;
+			Dequeue(AntrianTemp , &Orang2);
+			if (WaktuSisa <= 0)
 			{
-				Enqueue(A,Elmt(Antrian(Current),i));
+				if (CurrentTujuan(ElmtAntrian(AntrianTemp,j)) < MaxTujuan(ElmtAntrian(AntrianTemp,j))) // Untuk Yang Keluar Wahana Tapi Masih Mau Main
+				{
+					Enqueue(A,Orang2);
+				}
+			}else //Dibalikin lagi ke wahananya
+			{
+				Enqueue(Antrian(Current),Orang2);
 			}
 		}
 		Current = Next(Current);
