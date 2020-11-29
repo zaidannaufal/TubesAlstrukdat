@@ -40,6 +40,10 @@ typedef struct {
 #define InfoTail(Q) (Q).T[(Q).TAIL]
 #define MaxEl(Q)    (Q).MaxEl
 #define ElmtAntrian(Q,i)   (Q).T[(i)]
+#define Kesabaran(e)    (e).kesabaran
+#define ArrayTujuan(e)  (e).ArrayTujuan
+#define CurrentTujuan(e)    (e).CurrentTujuan
+#define MaxTujuan(e)    (e).MaxTujuan
 
 /* ********* Prototype ********* */
 boolean IsAntrianEmpty (Antrian Q);
