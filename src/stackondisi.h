@@ -14,11 +14,12 @@ typedef struct {
 } StackCond;
 
 typedef struct {
-    int waktu;
-    int uang;
-    BAHAN bahan;
-    MATRIKS Map;
+    int waktu; //totalwaktu 
+    int uang; //totaluang
+    BAHAN bahan;//bbs
+    MATRIKS Map;//Wilayah(G,WilayahCond(x)).Map)
     int Wilayah;
+    
 } Kondisi;
 
 #define Top(S) (S).TOP
