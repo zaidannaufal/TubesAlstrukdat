@@ -10,8 +10,8 @@
 #include "jam.h"
 // #include "buy.h"
 // #include "stackt.h"
-#include "stackondisi.h"
-
+// #include "stackondisi.h"
+#include "undo.h"
 
 int main() {
     boolean gamestart = false; // kalo true berarti game jalan
@@ -110,16 +110,10 @@ int main() {
             }
         }else if (strcmp(input,"Build")==0){
             if (isWaktuCukup(waktu,waktubuka,totalwaktu,15)){
-                Kondisi Buildbefore;
-                WaktuCond(Buildbefore) = totalwaktu;
-                UangCond(Buildbefore) = totaluang;
-                wood(BahanCond(Buildbefore)) = wood(bbs);
-                stone(BahanCond(Buildbefore)) = stone(bbs);
-                gold(BahanCond(Buildbefore)) = gold(bbs);
-                WilayahCond(Buildbefore) = SearchWilayahPlayer(G);
-                CopyMATRIKS(Wilayah(G,SearchWilayahPlayer(G)).Map, &MapCond(Buildbefore));
-                PushKond(&Conawal,Buildbefore);
+                
+                inputbefore(bbs,G,totalwaktu,totaluang,&Conawal);
                 build(wahana, bb,&bbs,&G,&BangunanNonEx,&totalwaktu,money,&totaluang);
+                totalaksi++;
                 char B[20];
                 strcpy(B,"build");
                 Push(&stackawal,B);
@@ -135,14 +129,40 @@ int main() {
             // Upgrade(&BangunanEx,wahana,&bb,&totaluang,&totalaksi,money,&totalwaktu);
         }else if(strcmp(input,"Execute")==0){
             execute(stackawal,stacktarget,&BangunanNonEx,&BangunanEx);
+            wood(bb) -= wood(bbs);
+            stone(bb) -= stone(bbs);
+            gold(bb) = gold(bb);
+            money -= totaluang;
+            totalwaktu = 0;
+            totaluang = 0;
+            wood(bbs) = 0;
+            stone(bbs) = 0;
+            gold(bbs) = 0;
+            totalaksi = 0;
         }else if (strcmp(input,"Buy")==0){
             if (isWaktuCukup(waktu,waktubuka,totalwaktu,15)){
-                buy(money,&totaluang,&totalaksi,&totalwaktu,&bb);
+                inputbefore(bbs,G,totalwaktu,totaluang,&Conawal);
+                buy(money,&totaluang,&totalaksi,&totalwaktu,&bbs);
+                char bu[20];
+                strcpy(bu,"buy");
+                Push(&stackawal,bu);
             }else {
             printf("waktu tidak mencukupi");
             }
         }else if (strcmp(input,"Undo")==0){
-            //
+            if (!IsEmptyKondisi(Conawal)){
+                POINT Pbefore; 
+                Absis(Pbefore) = Absis(Wilayah(G,SearchWilayahPlayer(G)).PlayerPosition);
+                Ordinat(Pbefore) = Ordinat(Wilayah(G,SearchWilayahPlayer(G)).PlayerPosition);
+                undo(&bbs,&G,&totalwaktu,&totaluang,&Conawal);
+                Absis(Wilayah(G,SearchWilayahPlayer(G)).PlayerPosition) = Absis(Pbefore);
+                Ordinat(Wilayah(G,SearchWilayahPlayer(G)).PlayerPosition) = Ordinat(Pbefore);
+                Elmt(Wilayah(G,SearchWilayahPlayer(G)).Map,Ordinat(Pbefore),Absis(Pbefore)) = 'P';
+                totalaksi--;
+            }else{
+                printf("ga ada yg bisa di undo\n");
+            }
+            
         }else{
             printf("inputsalah\n");
         }
