@@ -4,7 +4,7 @@
 #include "antrian.h"
 #include "bangunan.h"
 
-void NgosonginAntrian(Antrian * A, int i);
+void NgosonginAntrian(Antrian * A);
 
 void MekanismeGaSabar(Antrian * A, int IntervalWaktu);
 

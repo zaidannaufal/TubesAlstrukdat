@@ -41,7 +41,7 @@ void MekanismeGaSabar(Antrian * A, int IntervalWaktu)
 				Enqueue(&Antriansementara,ElmtAntrian(*A,k));
 			}
 		}
-		NgosonginAntrian(A,5);
+		NgosonginAntrian(A);
 		for (j = 0; i < count - jumlahgasabar; ++i)
 		{
 			Enqueue(A,ElmtAntrian(Antriansementara,j));
