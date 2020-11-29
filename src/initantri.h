@@ -1,9 +1,9 @@
 #ifndef INITANTRI_H
 #define INITANTRI_H
 
-#include "antrian.h"
-#include "bangunan.h"
-
+// #include "antrian.h"
+// #include "bangunan.h"
+#include "undo.h"
 typedef char namawahana[50];
 
 typedef namawahana semuawahana[50];
