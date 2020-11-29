@@ -25,7 +25,7 @@ void CreateEmptySemuaWahana(ListBangunan * ListWahana)
     }
 }
 
-void Serve(Antrian * A, ListBangunan * ListWahana)
+void Serve(Antrian * A, ListBangunan * ListWahana, int * Uang)
 {
     if (!IsAntrianEmpty(*A))
     {

@@ -273,7 +273,12 @@ int main() {
                     waktu = NextNDetik(waktu,5*60);
                 }
             } else if (strcmp(input,"serve")==0){ 
-                Serve(&(QueueAntrian),&BangunanEx);
+                int moneycompare = money;
+                Serve(&(QueueAntrian),&BangunanEx,&money);
+                if (moneycompare != money)
+                {
+                    waktu = NextNDetik(waktu,30*60);
+                }
             } else if (strcmp(input,"repair")==0){ 
                 repair(&money,&sisawaktu,G,&BangunanEx,wahana,&bb);
             } else if (strcmp(input,"detail")==0){ 
