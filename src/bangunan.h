@@ -209,7 +209,7 @@ int NbElmtBangunan (ListBangunan L);
 // /* Mengirimkan nilai rata-rata info(P) */
 
 /****************** PROSES TERHADAP LIST ******************/
-// void DelAll (List *L);
+void DelAll (ListBangunan *L);
 /* Delete semua elemen list dan alamat elemen di-dealokasi */
 
 // void InversList (List *L);
