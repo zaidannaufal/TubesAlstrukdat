@@ -318,20 +318,19 @@ void InsertLast (ListBangunan *L, addressbangunan P)
 // 	}
 // 	printf("]");
 // }
-// int NbElmt (List L)
-// /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
-// {
-// 	address P;
-// 	int count;
-// 	P = First(L);
-// 	count = 0;
-// 	while (P != Nil)
-// 	{
-// 		count++;
-// 		P = Next(P);
-// 	}
-// 	return count;
-// }
+int NbElmtBangunan (ListBangunan L)
+/* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
+{
+	addressbangunan P;
+	int count;
+	P = First(L);
+	count = 0;
+	while (P != Nil){
+ 		count++;
+ 		P = Next(P);
+ 	}
+ 	return count;
+ }
 
 /*** Prekondisi untuk Min: List tidak kosong ***/
 // infotypeW Min (List L)

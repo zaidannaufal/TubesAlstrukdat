@@ -1,13 +1,23 @@
 
-#include "bangunan.h"
+
 #include "jam.h"
-#include "graphmap.h"
+#include "build.h"
 
 
-void buatRusak(ListBangunan Wahana);
+
+
+int randomPickInt(int rangeawal, int rangeakhir);
+
+addressbangunan randomWahana(ListBangunan Wahana);
+
+void breakWahana(ListBangunan Wahana);
 
 address brokenWahana(ListBangunan Wahana);
 
 boolean isNextWahana (GraphMap G, addressbangunan P);
 
-void repair(int uang, int aksi, int jam, GraphMap G, ListBangunan *Wahana);
+BinTree resourceWahana (BinTree InfoWahana[4], int Tipe, ListBangunan Wahana);
+
+int setengahResource (BinTree P, int i);
+
+void repair(int *uang, int *aksi, int *jam, int *remaining, GraphMap G, ListBangunan *Wahana);

@@ -1,14 +1,39 @@
 #include <stdio.h>
-#include "bangunan.h"
-#include "jam.h"
-#include "graphmap.h"
 #include "repair.h"
 #include <stdlib.h>
 
-void buatRusak(ListBangunan Wahana, JAM jam){
-    if (Minute(jam)  ||)
+
+/* Random Pick Wahana untuk di Rusak */
+int randomPickInt(int rangeawal, int rangeakhir)
+{
+    int r,a,b;
+    srand((unsigned)time(NULL));
+    for(a=0;a<20;a++){
+        for(b=0;b<5;b++){
+            r = rand()% rangeakhir+rangeawal;
+        }
+    }
+    return r;
 }
 
+addressbangunan randomWahana(ListBangunan Wahana){
+    int count = randomPickInt(0,NbElmtBangunan(Wahana)-1);
+    addressbangunan P = First(Wahana);
+    while (count != 0){
+        P = Next(P);
+        count -= 1;
+    }
+    return P;
+}
+
+void breakWahana(ListBangunan *Wahana, JAM jam){
+    if (brokenWahana(Wahana) == Nil){
+        if (Minute(jam) > 30 || Hour(jam) > 18){
+            addressbangunan P = randomWahana(Wahana);
+            status(P) = false;
+        }
+    }
+}
 
 addressbangunan brokenWahana(ListBangunan Wahana){
     addressbangunan P;
@@ -30,9 +55,9 @@ addressbangunan brokenWahana(ListBangunan Wahana){
 }
 
 
+/* Mencari tau apakah player ada di sebelah wahana */
 boolean isNextWahana (GraphMap G, addressbangunan P){
-    
- 	int w = SearchWilayahPlayer(G);
+    int w = SearchWilayahPlayer(G);
     boolean sameWilayah = false;
     if (w == wilayah(P)){
         if (Absis(Wilayah(G,w).PlayerPosition) == Absis(point(P)) + 1 && Ordinat(Wilayah(G,w).PlayerPosition) == Ordinat(point(P))){
@@ -57,20 +82,60 @@ boolean isNextWahana (GraphMap G, addressbangunan P){
 
 }
 
-void repair(int *uang, int *aksi, int *jam, GraphMap G, ListBangunan *Wahana){
+/* Mencari address dari info bangunan yang ada di bintree */
+BinTree resourceWahana (BinTree InfoWahana[4], int Tipe, ListBangunan Wahana)
+{
+    BinTree P = Akar(InfoWahana[Tipe]);
+    if (history(Wahana) == 1){
+        P = Left(P);
+    }
+    else if (history(Wahana) == 2){
+        P = Right(P);
+    }
+    return P;
+}
+
+/* Mengurangi kebutuhan bahan untuk repair sebanyak setengah dari kebutuhan build */
+int setengahResource (BinTree P, int i){
+    return resource(P,i)/2;
+}
+
+/* Prosedur repair */
+void repair(int *uang, int *aksi, int *remaining, GraphMap G, ListBangunan *Wahana, BinTree InfoWahana[4], BAHAN b){
 
     addressbangunan P = brokenWahana(*Wahana);
-    int durasi = 40;
-    if (!isNextWahana(G, P))){
-        printf("Anda tidak berada disebelah Wahana %c\n", nama(P));
+    if (P != Nil){
+        int durasi = 40;
+        if (!isNextWahana(G, P))){
+            printf("Anda tidak berada disebelah Wahana %s.\n", nama(P));
+        }
+        else{
+            BinTree T = resourceWahana(InfoWahana, tipe(P), *Wahana);
+            int *butuhbahan;
+            butuhbahan[0] = setengahResource(T,0);
+            butuhbahan[1] = setengahResource(T,1);
+            butuhbahan[2] = setengahResource(T,2);
+
+            if (BBcukup(b, butuhbahan) && *uang>=1000){
+                wood(b) -= butuhbahan[0];
+                gold(b) -= butuhbahan[1];
+                stone(b) -= butuhbahan[2];
+                
+                status(P) = true;
+                *aksi += 1;
+                *uang -= 1000;
+                *remaining += durasi;
+            }
+            else{
+                printf("Anda tidak memiliki bahan/uang yang cukup");
+
+            }
+        }
+
     }
     else{
-        status(P) = true;
-        *aksi += 1;
-        *uang -= 1000;
-        *jam += durasi;
+        printf("Tidak ada wahana yang rusak.\n")
     }
-
 }
 
 
