@@ -15,4 +15,6 @@ void ScanNumberAndString(int * Angka, char* String);
 
 void Stringcopy(char* Destination, char* Source);
 
+int Comparestr(char* Str1 , char* Str2);
+
 #endif
