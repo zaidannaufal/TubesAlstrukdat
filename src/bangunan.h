@@ -68,7 +68,7 @@ typedef struct {
 /* Elemen terakhir list : jika addressnya Last, maka Next(Last)=Nil */
 #define Info(P) (P)->info
 #define Next(P) (P)->next
-#define First(L) ((L).First)
+#define First(L) (L).First
 #define nama(P) (P)->info.nama
 #define tipe(P) (P)->info.tipe
 #define wilayah(P) (P)->info.lokasi.wilayah
@@ -175,7 +175,7 @@ void DelFirst (ListBangunan *L, addressbangunan *P);
 // /* Maka P dihapus dari list dan di-dealokasi */
 // /* Jika tidak ada elemen list dengan info(P)=X, maka list tetap */
 // /* List mungkin menjadi kosong karena penghapusan */
-// // void DelLast (List *L, address *P);
+void DelLast (ListBangunan *L, addressbangunan *P);
 // /* I.S. List tidak kosong */
 // /* F.S. P adalah alamat elemen terakhir list sebelum penghapusan  */
 // /*      Elemen list berkurang satu (mungkin menjadi kosong) */
@@ -229,7 +229,8 @@ int NbElmtBangunan (ListBangunan L);
 /* L1 dan L2 "menunjuk" kepada list yang sama.*/
 /* Tidak ada alokasi/dealokasi elemen */
 
-// List FCopyList (List L);
+ListBangunan FCopyList (ListBangunan L);
+void copyInfotypew(addressbangunan *dest, addressbangunan source);
 /* Mengirimkan list yang merupakan salinan L */
 /* dengan melakukan alokasi. */
 /* Jika ada alokasi gagal, hasilnya list kosong dan */
