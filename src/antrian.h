@@ -15,7 +15,7 @@ typedef struct {
     int prio;  /* [1..100], prioritas dengan nilai 1..100 (1 adalah prioritas tertinggi) */
     char info;  /* elemen karakter */
     int kesabaran;
-    tujuan ArrayTujuan[5]; //kalau tujuannya cuman ada 1 nanti 4 elemen lainnya isi aja sama -1
+    tujuan ArrayTujuan[6]; //kalau tujuannya cuman ada 1 nanti 4 elemen lainnya isi aja sama -1
     int CurrentTujuan; //buat nunjukin sekarang tujuan dia apa di array
     int MaxTujuan;
     int DurasiNaikWahana;

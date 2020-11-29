@@ -42,7 +42,7 @@ infoantrian GenerateRandomPeople(int pilihanwahana , semuawahana Array, int urut
 	InfoAntrian(Orang) = generaterandomchar(); //random nama
 	Prio(Orang) = urutanantrian;
 	int i;
-	for (i = 0; i < MaxTujuan(Orang)-1; ++i)  //random wahana yang mau dinaikin
+	for (i = 0; i < MaxTujuan(Orang); ++i)  //random wahana yang mau dinaikin
 	{
 		int indeksrandom = generaterandomint(0,pilihanwahana-1);
 		namawahana TujuanRandomize;

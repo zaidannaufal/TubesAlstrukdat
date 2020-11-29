@@ -27,32 +27,27 @@ void CreateEmptySemuaWahana(ListBangunan * ListWahana)
 
 void Serve(Antrian * A, ListBangunan * ListWahana)
 {
-    printf("awal serve\n");
     if (!IsAntrianEmpty(*A))
-    {   printf("sampai is antrian\n");
+    {
         infoantrian Pengunjung;
         Dequeue(A,&Pengunjung);
         int NoTujuan = Pengunjung.CurrentTujuan;
         tujuan TujuanSekarang; 
         strcpy(TujuanSekarang,Pengunjung.ArrayTujuan[NoTujuan]); //string ini tuh , TujuanSekarang >= 0
         addressbangunan Current = First(*ListWahana);
-        printf("sampai sebelum while\n");
         while (Current != NULL)
         {
-            printf("awal while\n");
-            if (strcmp(TujuanSekarang,nama(Current)==0))
+            MakeEmptyAntrian(&Antrian(Current),KapasitasBang(Current));
+            if (strcmp(TujuanSekarang,nama(Current))==0)
             {
-                printf("habiscomparetujuan\n");
                 if (status(Current)==true)
                 {
-                    printf("habiscompare status\n");
                     if (!IsAntrianFull(Antrian(Current)))
                     {
-                        printf("ssamapai not antrian full\n");
                         Prio(Pengunjung) = 1;
                         DurasiNaikWahana(Pengunjung) = durasibangunan(Current);
                         Pengunjung.CurrentTujuan++;
-                        Enqueue(&(Info(Current)).pengunjung,Pengunjung); 
+                        Enqueue(&Antrian(Current),Pengunjung);
                         JmlPakaiToday(Current) += 1; 
                         JmlPakaiTotal(Current) += 1;
                         HasilToday(Current) += Harga(Current); 
@@ -61,9 +56,7 @@ void Serve(Antrian * A, ListBangunan * ListWahana)
 
                 }else printf("Harap memperbaiki wahana yang rusak terlebih dahulu!\n");
             }
-            Current = Next(Current);
-            
+            Current = Next(Current);  
         }
-        printf("keluar loop\n");
     }
 }
