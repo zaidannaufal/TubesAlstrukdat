@@ -35,6 +35,7 @@ void breakWahana(ListBangunan *Wahana, JAM jam){
     }
 }
 
+/* Mencari address wahana yang rusak */
 addressbangunan brokenWahana(ListBangunan Wahana){
     addressbangunan P;
  	boolean Found;
@@ -83,14 +84,15 @@ boolean isNextWahana (GraphMap G, addressbangunan P){
 }
 
 /* Mencari address dari info bangunan yang ada di bintree */
-BinTree resourceWahana (BinTree InfoWahana[4], int Tipe, ListBangunan Wahana)
+BinTree resourceWahana (BinTree *InfoWahana, int Tipe, ListBangunan Wahana)
 {
     BinTree P = Akar(InfoWahana[Tipe]);
     if (history(Wahana) == 1){
         P = Left(P);
     }
     else if (history(Wahana) == 2){
-        P = Right(P);
+        P = Left(P);
+        P = Left(P);
     }
     return P;
 }
@@ -101,7 +103,7 @@ int setengahResource (BinTree P, int i){
 }
 
 /* Prosedur repair */
-void repair(int *uang, int *aksi, int *remaining, GraphMap G, ListBangunan *Wahana, BinTree InfoWahana[4], BAHAN b){
+void repair(int *uang, int *aksi, int *remaining, GraphMap G, ListBangunan *Wahana, BinTree InfoWahana, BAHAN b){
 
     addressbangunan P = brokenWahana(*Wahana);
     if (P != Nil){
@@ -110,7 +112,7 @@ void repair(int *uang, int *aksi, int *remaining, GraphMap G, ListBangunan *Waha
             printf("Anda tidak berada disebelah Wahana %s.\n", nama(P));
         }
         else{
-            BinTree T = resourceWahana(InfoWahana, tipe(P), *Wahana);
+            BinTree T = resourceWahana(&InfoWahana, tipe(P), *Wahana);
             int *butuhbahan;
             butuhbahan[0] = setengahResource(T,0);
             butuhbahan[1] = setengahResource(T,1);
@@ -118,8 +120,8 @@ void repair(int *uang, int *aksi, int *remaining, GraphMap G, ListBangunan *Waha
 
             if (BBcukup(b, butuhbahan) && *uang>=1000){
                 wood(b) -= butuhbahan[0];
-                gold(b) -= butuhbahan[1];
-                stone(b) -= butuhbahan[2];
+                stone(b) -= butuhbahan[1];
+                gold(b) -= butuhbahan[2];
                 
                 status(P) = true;
                 *aksi += 1;
@@ -131,7 +133,6 @@ void repair(int *uang, int *aksi, int *remaining, GraphMap G, ListBangunan *Waha
 
             }
         }
-
     }
     else{
         printf("Tidak ada wahana yang rusak.\n")
