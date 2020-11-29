@@ -51,6 +51,7 @@ void build(BinTree* wahana, BAHAN bb,BAHAN* bbs,GraphMap *G, ListBangunan *bg,in
         JmlPakaiTotal(P) = 0;
         HasilToday(P) = 0;
         HasilTotal(P) = 0;
+        MakeEmptyAntrian(&Antrian(P),KapasitasBang(P));
         (*durasi) += 60;
         tambahBBS(bbs,(wahana[i-1]->info).resource.resource);
         (*bill) += 2*HUpgrade(P);

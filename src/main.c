@@ -7,13 +7,16 @@
 #include "matriks.h"
 #include "bintreebangunan.h"
 #include "graphmap.h"
+#include "bangunan.h"
+#include "upgrade.h"
 #include "jam.h"
+#include "build.h"
 // #include "buy.h"
 // #include "stackt.h"
 // #include "stackondisi.h"
 // #include "undo.h"
 // #include "initantri.h"
-#include "repair.h"
+#include "office.h"
 
 int main() {
     boolean game=true;
@@ -71,10 +74,13 @@ int main() {
     int totalaksi = 0 ;
     int totalwaktu = 0; 
     int totaluang=0;
+    int hari=1;
     GraphMap G = BacaMapTXT();    
     InitiatePlayerPosition(&G);
+    Elmt(Wilayah(G,0).Map,8,8) = 'O';    
     do{
         do{
+            printf("Preparation Phase Day %d",hari);
             TulisMATRIKS(Wilayah(G,SearchWilayahPlayer(G)).Map);
             printf("\n");
             printf("Legend:\n");
@@ -220,14 +226,14 @@ int main() {
         }while (gamestart == 1);
 
         JAM waktututup = MakeJAM(21,0,0);
-        int sisawaktu = 720;
+        waktu = MakeJAM(9,0,0);
         Antrian QueueAntrian;
         InitAntrian(&QueueAntrian,BangunanEx);
-                    
+              
         do {
             // PrintPrioQueueChar(QueueAntrian);
             
-            printf("Main phase day berapa gitu\n"); // HAHAHAHAHAHAHAHAHAHHA
+            printf("Main Phase Day %d",hari); // HAHAHAHAHAHAHAHAHAHHA
             TulisMATRIKS(Wilayah(G,SearchWilayahPlayer(G)).Map);
             printf("\n");
             
@@ -251,7 +257,12 @@ int main() {
             broken = brokenWahana(BangunanEx);
             breakWahana(&BangunanEx,waktu);
             if (broken!= Nil){
-                printwahana(broken);
+                printf("Terdapat Bangunan yang rusak : ");
+                puts(nama(broken));
+                printf("bangunan tersebut terdapat di ");
+                TulisPOINT(point(broken));
+                printf(" pada wilayah %d\n",wilayah(broken));
+
             }else
             {
                 printf("Tidak ada bangunan yang rusak\n");
@@ -280,11 +291,15 @@ int main() {
                     waktu = NextNDetik(waktu,30*60);
                 }
             } else if (strcmp(input,"repair")==0){ 
-                repair(&money,&sisawaktu,G,&BangunanEx,wahana,&bb);
+                repair(&money,&waktu,G,&BangunanEx,wahana,&bb);
             } else if (strcmp(input,"detail")==0){ 
-                
+                detail(G,BangunanEx);
             } else if(strcmp(input,"office")==0){ 
+                if(IsinOffice(G)){
                 Office(&BangunanEx);
+                }else {
+                    printf("Anda tidak berada di office\n");
+                }
             } else if (strcmp(input,"prepare")==0){
                 addressbangunan P;
                 P = First(BangunanEx);
@@ -295,9 +310,11 @@ int main() {
                     P = Next(P);
                 }
                 printf("sampai akhirloop\n");
+                hari++;
                 gamestart = 1;   
             } else if(strcmp(input,"exit")==0){ // HAHAHHAHAHAHDAKWFBHGWFUIGFBMEJGFUW
                 gamestart=0;
+                game = false;
             } else{
                 printf("Input salah, silakan coba lagi.\n");
             } 

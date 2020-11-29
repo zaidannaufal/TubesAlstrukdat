@@ -17,10 +17,10 @@ addressbangunan brokenWahana(ListBangunan Wahana);
 
 boolean isNextWahana (GraphMap G, addressbangunan P);
 
-addrNode resourceWahana (BinTree *InfoWahana, int Tipe, addressbangunan Wahana);
+BinTree resourceWahana (BinTree *InfoWahana, int Tipe, addressbangunan Wahana);
 
 int setengahResource (BinTree P, int i);
 
-void repair(int *uang, int *remaining, GraphMap G, ListBangunan *Wahana, BinTree *InfoWahana, BAHAN *b);
+void repair(int *uang, JAM *JAM, GraphMap G, ListBangunan *Wahana, BinTree *InfoWahana, BAHAN *b);
 
 #endif
