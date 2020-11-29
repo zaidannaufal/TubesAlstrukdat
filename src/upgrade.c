@@ -16,8 +16,9 @@ int TipeRootWahana(char* NamaWahana, ListBangunan * LB)
 }
 
 
-void Upgrade(ListBangunan * LB, BinTree* BT, BAHAN bb,BAHAN *bbs, int * Bill, int * Aksi, int CurrentMoney, int * TambahanWaktu)
+void Upgrade(ListBangunan * ListLama, ListBangunan * LB, BinTree* BT, BAHAN bb,BAHAN *bbs, int * Bill, int * Aksi, int CurrentMoney, int * TambahanWaktu)
 {
+	(*ListLama) = (*LB);
 	printf("Mau upgrade apa?\nList:\n");
 	addressbangunan Current = First(*LB);
 	while(Current != NULL) // Print semua wahana yang dipunya
