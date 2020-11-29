@@ -15,8 +15,7 @@
 
 int main() {
     boolean gamestart = false; // kalo true berarti game jalan
-    ListBangunan BangunanNonEx;
-    ListBangunan BangunanEx;
+    ListBangunan BangunanNonEx, BangunanEx;
     char nama[100];
     char menu[100];
     char input[100];
@@ -154,6 +153,15 @@ int main() {
                 POINT Pbefore; 
                 Absis(Pbefore) = Absis(Wilayah(G,SearchWilayahPlayer(G)).PlayerPosition);
                 Ordinat(Pbefore) = Ordinat(Wilayah(G,SearchWilayahPlayer(G)).PlayerPosition);
+                char buffer[30];
+                Pop(&stackawal, &buffer);
+                if (strcmp(buffer,"build")){
+                    addressbangunan bufferP;
+                    DelLast(&BangunanNonEx,bufferP);
+                    Dealokasi(&bufferP);
+                }else if(strcmp(buffer,"upgrade")){
+
+                } 
                 undo(&bbs,&G,&totalwaktu,&totaluang,&Conawal);
                 Absis(Wilayah(G,SearchWilayahPlayer(G)).PlayerPosition) = Absis(Pbefore);
                 Ordinat(Wilayah(G,SearchWilayahPlayer(G)).PlayerPosition) = Ordinat(Pbefore);
@@ -163,6 +171,8 @@ int main() {
                 printf("ga ada yg bisa di undo\n");
             }
             
+        }else if (strcmp(input,"Main")==0){
+
         }else{
             printf("inputsalah\n");
         }
