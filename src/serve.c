@@ -60,3 +60,21 @@ void Serve(Antrian * A, ListBangunan * ListWahana, int * Uang)
         }
     }
 }
+
+void NgosonginWahanaPrep(ListBangunan * LB)
+{
+    addressbangunan Current = First(*LB);
+    while (Current != NULL)
+    {
+        if (!IsAntrianEmpty(Antrian(Current)))
+        {
+            int i;
+            infoantrian Orang;
+            for (i = 0; i < NBElmtAntrian(Antrian(Current)); ++i)
+            {
+                Dequeue(&Antrian(Current) , &Orang);
+            }
+        }
+        Current = Next(Current);
+    }
+}
