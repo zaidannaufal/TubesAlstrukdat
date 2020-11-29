@@ -7,13 +7,16 @@
 #include "matriks.h"
 #include "bintreebangunan.h"
 #include "graphmap.h"
+#include "bangunan.h"
+#include "upgrade.h"
 #include "jam.h"
+#include "build.h"
 // #include "buy.h"
 // #include "stackt.h"
 // #include "stackondisi.h"
 // #include "undo.h"
 // #include "initantri.h"
-#include "detail.h"
+#include "office.h"
 
 int main() {
     boolean game=true;
@@ -74,7 +77,7 @@ int main() {
     int hari=1;
     GraphMap G = BacaMapTXT();    
     InitiatePlayerPosition(&G);
-    Elmt(Wilayah(G,1).Map,8,8) = 'O';    
+    Elmt(Wilayah(G,0).Map,8,8) = 'O';    
     do{
         do{
             printf("Preparation Phase Day %d",hari);
