@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 #include "boolean.h"
 #include "mesinkata.h"
 #include "stdlib.h"
@@ -13,14 +12,15 @@
 #include "build.h"
 #include "office.h"
 #include "mekanismepermainan.h"
+#include "scankata.h"
 
 int main() {
     boolean game=true;
     int gamestart = 0; // kalo 0 berarti game belum jalan
     ListBangunan BangunanNonEx, BangunanEx;
-    char nama[100];
-    char menu[100];
-    char input[100];
+    char* nama;
+    char* menu;
+    char* input;
     BAHAN bb,bbs;
     wood(bb) = 100000;
     stone(bb) = 100000;
@@ -34,20 +34,21 @@ int main() {
     CreateEmptyBangunan(&BangunanEx);
     CreateEmptyBangunan(&BangunanNonEx);
     //sudah pake mesin kata sort of :( 
-    int idxMenu = 0;
-    do {
-        scanf("%c", menu + idxMenu);
-    } while (menu[idxMenu++] != '\n');
-    menu[--idxMenu] = '\0';
-
-    if(strcmp(menu,"New")==0){
-        int idxNama = 0;
+    // int idxMenu = 0;
+    // do {
+    //     scanf("%c", menu + idxMenu);
+    // } while (menu[idxMenu++] != '\n');
+    // menu[--idxMenu] = '\0';
+    menu = ScanKata();
+    if(Comparestr(menu,"New")==0){
+        // int idxNama = 0;
         printf("Memulai permainan baru...\n");
         printf("Masukkan Nama: ");
-        do {
-            scanf("%c", nama + idxNama);
-        } while (nama[idxNama++] != '\n');
-        nama[--idxNama] = '\0';
+        // do {
+        //     scanf("%c", nama + idxNama);
+        // } while (nama[idxNama++] != '\n');
+        // nama[--idxNama] = '\0';
+        nama = ScanKata();
         gamestart = 1;
     }else {
         return 0;
@@ -104,19 +105,20 @@ int main() {
             printf("\n");
             printf("command:");
             
-            int idxInput = 0;
-            do {
-                scanf("%c", input + idxInput);
-            } while (input[idxInput++] != '\n');
-            input[--idxInput] = '\0';
+            // int idxInput = 0;
+            // do {
+            //     scanf("%c", input + idxInput);
+            // } while (input[idxInput++] != '\n');
+            // input[--idxInput] = '\0';
+            input = ScanKata();
             printf("\n");
             
-            if((strcmp(input,"w")==0)||(strcmp(input,"a")==0)||(strcmp(input,"s")==0)||(strcmp(input,"d")==0)){
+            if((Comparestr(input,"w")==0)||(Comparestr(input,"a")==0)||(Comparestr(input,"s")==0)||(Comparestr(input,"d")==0)){
                 if (isWaktuCukup(waktu,waktubuka,totalwaktu,5)){
                     Move(&G,input);
                     waktu = NextNDetik(waktu,5*60);
                 }
-            }else if (strcmp(input,"Build")==0){
+            }else if (Comparestr(input,"Build")==0){
                 if (isWaktuCukup(waktu,waktubuka,totalwaktu,15)){
                     
                     inputbefore(bbs,G,totalwaktu,totaluang,&Conawal,BangunanEx);
@@ -124,7 +126,7 @@ int main() {
                     build(wahana, bb,&bbs,&G,&BangunanNonEx,&totalwaktu,money,&totaluang);
                     totalaksi++;
                     char B[20];
-                    strcpy(B,"build");
+                    Stringcopy(B,"build");
                     Push(&stackawal,B);
                     
                 }else{
@@ -134,18 +136,18 @@ int main() {
             // }else if (strcmp(input,"Execute")) // execute
             // {
             //     execute(stackawal, stacktarget);
-            }else if (strcmp(input,"Upgrade")==0){
+            }else if (Comparestr(input,"Upgrade")==0){
                 if (!IsEmptyBangunan(BangunanEx)){
                     inputbefore(bbs,G,totalwaktu,totaluang,&Conawal,BangunanEx);
                     Upgrade(&BangunanEx,wahana,bb,&bbs,&totaluang,&totalaksi,money,&totalwaktu);
                     char B[20];
-                    strcpy(B,"upgrade");
+                    Stringcopy(B,"upgrade");
                     Push(&stackawal,B);
                     printwahana(First(BangunanEx));
                 }else {
                     printf("tidak ada wahana yang bisa diupgrade");
                 }
-            }else if(strcmp(input,"Execute")==0){
+            }else if(Comparestr(input,"Execute")==0){
                 execute(stackawal,stacktarget,&BangunanNonEx,&BangunanEx);
                 wood(bb) -= wood(bbs);
                 stone(bb) -= stone(bbs);
@@ -158,24 +160,24 @@ int main() {
                 gold(bbs) = 0;
                 totalaksi = 0;
                 gamestart = 2;
-            }else if (strcmp(input,"Buy")==0){
+            }else if (Comparestr(input,"Buy")==0){
                 if (isWaktuCukup(waktu,waktubuka,totalwaktu,15)){
                     inputbefore(bbs,G,totalwaktu,totaluang,&Conawal,BangunanEx);
                     buy(money,&totaluang,&totalaksi,&totalwaktu,&bbs);
                     char bu[20];
-                    strcpy(bu,"buy");
+                    Stringcopy(bu,"buy");
                     Push(&stackawal,bu);
                 }else {
                 printf("waktu tidak mencukupi");
                 }
-            }else if (strcmp(input,"Undo")==0){
+            }else if (Comparestr(input,"Undo")==0){
                 if (!IsEmptyKondisi(Conawal)){
                     POINT Pbefore; 
                     Absis(Pbefore) = Absis(Wilayah(G,SearchWilayahPlayer(G)).PlayerPosition);
                     Ordinat(Pbefore) = Ordinat(Wilayah(G,SearchWilayahPlayer(G)).PlayerPosition);
                     char* buffer;
                     Pop(&stackawal, &buffer);
-                    if (strcmp(buffer,"build")==0){
+                    if (Comparestr(buffer,"build")==0){
                         addressbangunan bufferP;
                         DelLast(&BangunanNonEx,&bufferP);
                         Dealokasi(&bufferP);
@@ -191,7 +193,7 @@ int main() {
                     printf("ga ada yg bisa di undo\n");
                 }
                 
-            }else if (strcmp(input,"Main")==0){
+            }else if (Comparestr(input,"Main")==0){
                 DelAll(&BangunanNonEx);
                 POINT Pbeforemain; 
                 Absis(Pbeforemain) = Absis(Wilayah(G,SearchWilayahPlayer(G)).PlayerPosition);
@@ -213,7 +215,7 @@ int main() {
                 totalaksi = 0;
                 gamestart = 2;
 
-            }else if (strcmp(input,"Exit")==0){
+            }else if (Comparestr(input,"Exit")==0){
                 gamestart = 0;
             }else{
                 printf("Input salah, silakan coba lagi.\n");
@@ -267,20 +269,21 @@ int main() {
             printf("\n");
             printf("command:");
 
-            int idxInput = 0;
-            do {
-                scanf("%c", input + idxInput);
-            } while (input[idxInput++] != '\n');
-            input[--idxInput] = '\0';
+            // int idxInput = 0;
+            // do {
+            //     scanf("%c", input + idxInput);
+            // } while (input[idxInput++] != '\n');
+            // input[--idxInput] = '\0';
+            input = ScanKata();
             printf("\n");
             
-            if((strcmp(input,"w")==0)||(strcmp(input,"a")==0)||(strcmp(input,"s")==0)||(strcmp(input,"d")==0)){
+            if((Comparestr(input,"w")==0)||(Comparestr(input,"a")==0)||(Comparestr(input,"s")==0)||(Comparestr(input,"d")==0)){
                 if (isWaktuCukup(waktu,waktubuka,totalwaktu,5)){
                     Move(&G,input);
                     waktu = NextNDetik(waktu,5*60);
                     IntervalWaktu = 300;
                 }
-            } else if (strcmp(input,"Serve")==0){ 
+            } else if (Comparestr(input,"Serve")==0){ 
                 int moneycompare = money;
                 Serve(&(QueueAntrian),&BangunanEx,&money);
                 if (moneycompare != money)
@@ -288,19 +291,19 @@ int main() {
                     waktu = NextNDetik(waktu,30*60);
                     IntervalWaktu = 1800;
                 }
-            } else if (strcmp(input,"Repair")==0){ 
+            } else if (Comparestr(input,"Repair")==0){ 
                 int waktuawal = JAMToDetik(waktu);
                 repair(&money,&waktu,G,&BangunanEx,wahana,&bb);
                 IntervalWaktu = JAMToDetik(waktu) - waktuawal;
-            } else if (strcmp(input,"Detail")==0){ 
+            } else if (Comparestr(input,"Detail")==0){ 
                 detail(G,BangunanEx,&waktu);
                 waktu = NextNDetik(waktu,10*60);
                 IntervalWaktu = 600;
-            } else if(strcmp(input,"Office")==0){ 
+            } else if(Comparestr(input,"Office")==0){ 
                 if(IsinOffice(G)){
                 Office(&BangunanEx);
                 char getoutoffice[2];
-                strcpy(getoutoffice,"w");
+                Stringcopy(getoutoffice,"w");
                 Move(&G,getoutoffice);
                 Elmt(Wilayah(G,0).Map,8,8) = 'O';
                 waktu = NextNDetik(waktu,10*60);
@@ -308,7 +311,7 @@ int main() {
                 }else {
                     printf("Anda tidak berada di office\n");
                 }
-            } else if (strcmp(input,"Prepare")==0){
+            } else if (Comparestr(input,"Prepare")==0){
                 NgosonginAntrian(&QueueAntrian);
                 addressbangunan P;
                 P = First(BangunanEx);
@@ -321,7 +324,7 @@ int main() {
                 printf("sampai akhirloop\n");
                 hari++;
                 gamestart = 1;   
-            } else if(strcmp(input,"exit")==0){ // HAHAHHAHAHAHDAKWFBHGWFUIGFBMEJGFUW
+            } else if(Comparestr(input,"exit")==0){ // HAHAHHAHAHAHDAKWFBHGWFUIGFBMEJGFUW
                 gamestart=0;
                 game = false;
             } else if(JEQ(waktu,waktututup)){
