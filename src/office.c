@@ -124,7 +124,7 @@ void printDetails(addressbangunan wahana){
 }
 
 boolean IsinOffice(GraphMap G){
-    return SearchWilayahPlayer(G) == 1 && 
+    return SearchWilayahPlayer(G) == 0 && 
     Absis(Wilayah(G,SearchWilayahPlayer(G)).PlayerPosition) == 8 && 
     Ordinat(Wilayah(G,SearchWilayahPlayer(G)).PlayerPosition) == 8;
 }

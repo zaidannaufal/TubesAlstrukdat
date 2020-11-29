@@ -79,7 +79,7 @@ void PrintPengunjung(infoantrian Orang)
 	printf("Nama : %c | Kesabaran : %d | ", InfoAntrian(Orang), Kesabaran(Orang));
 	int count = MaxTujuan(Orang);
 	int i;
-	printf("(", );
+	printf("(" );
 	for (i = CurrentTujuan(Orang); i < count-1; ++i)
 	{
 		printf("%s,", ArrayTujuan(Orang,i) );
