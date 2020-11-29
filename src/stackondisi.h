@@ -31,7 +31,9 @@ typedef struct {
 #define MapCond(K) K.Map
 #define WilayahCond(K) K.Wilayah  
 
+boolean IsEmptyKondisi(StackCond S);
 void CreateEmptyKondisi (StackCond *S);
 void PushKond (StackCond *S, Kondisi X);
 void PopKond (StackCond *S, Kondisi *X);
+void printKond(Kondisi X);
 #endif
