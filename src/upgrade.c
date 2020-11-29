@@ -42,30 +42,40 @@ void Upgrade(ListBangunan * LB, BinTree* BT, BAHAN bb,BAHAN *bbs, int * Bill, in
 	if (Keuangan >= 0)
 	{
 		BinTree Root = BT[TipeRoot]; //Root Wahananya dalam bentukk bintree
-		if (history(BangunanTujuan) == 0 && BBcukup(bb,*bbs,((Left(BT[TipeRoot]))->info).resource.resource))
+		if (history(BangunanTujuan) == 0)
 		{
-			(*Bill) += HUpgrade(BangunanTujuan);
-			//Belum bahan bangunan
-			Root = Left(Root);
-			Harga(BangunanTujuan) = harga(Root);
-			durasibangunan(BangunanTujuan) = durasibt(Root);
-			KapasitasBang(BangunanTujuan) = kapasitas(Root);
-			HUpgrade(BangunanTujuan) = HUpgrade(Root);
-			(*TambahanWaktu)+=90;
-			(*Aksi)++;
-			history(BangunanTujuan)++;
-		}else if (history(BangunanTujuan) == 1&& BBcukup(bb,*bbs,((Left(Left(BT[TipeRoot])))->info).resource.resource))
+			if (BBcukup(bb,*bbs,((Left(BT[TipeRoot]))->info).resource.resource))
+			{
+				(*Bill) += HUpgrade(BangunanTujuan);
+				wood(*bbs) -= resource(Root,0);
+				stone(*bbs) -= resource(Root,1);
+				gold(*bbs) -= resource(Root,2);
+				Root = Left(Root);
+				Harga(BangunanTujuan) = harga(Root);
+				durasibangunan(BangunanTujuan) = durasibt(Root);
+				KapasitasBang(BangunanTujuan) = kapasitas(Root);
+				HUpgrade(BangunanTujuan) = HUpgrade(Root);
+				(*TambahanWaktu)+=90;
+				(*Aksi)++;
+				history(BangunanTujuan)++;
+			}else printf("Bahan baku tidak mencukupi!\n")
+		}else if (history(BangunanTujuan) == 1)
 		{
-			(*Bill) += HUpgrade(BangunanTujuan);
-			//Belum bahan bangunan
-			Root = Left(Left(Root));
-			Harga(BangunanTujuan) = harga(Root);
-			durasibangunan(BangunanTujuan) = durasibt(Root);
-			KapasitasBang(BangunanTujuan) = kapasitas(Root);
-			HUpgrade(BangunanTujuan) = HUpgrade(Root);
-			(*TambahanWaktu)+=90;
-			(*Aksi)++;
-			history(BangunanTujuan)++;
+			if (BBcukup(bb,*bbs,((Left(Left(BT[TipeRoot])))->info).resource.resource))
+			{
+				(*Bill) += HUpgrade(BangunanTujuan);
+				Root = Left(Left(Root));
+				wood(*bbs) -= resource(Root,0);
+				stone(*bbs) -= resource(Root,1);
+				gold(*bbs) -= resource(Root,2);
+				Harga(BangunanTujuan) = harga(Root);
+				durasibangunan(BangunanTujuan) = durasibt(Root);
+				KapasitasBang(BangunanTujuan) = kapasitas(Root);
+				HUpgrade(BangunanTujuan) = HUpgrade(Root);
+				(*TambahanWaktu)+=90;
+				(*Aksi)++;
+				history(BangunanTujuan)++;
+			}else printf("Bahan baku tidak mencukupi!\n");
 		}else if (history(BangunanTujuan) == 2)
 		{
 			printf("Tidak bisa diupgrade lagi, wahan sudah mencapai tingkatan upgrade maksimum\n");
