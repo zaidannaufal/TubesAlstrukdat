@@ -20,7 +20,7 @@ int generaterandomint(int rangeawal, int rangeakhir)
 char generaterandomchar()
 {
 	int numalfabet = generaterandomint(0,25);
-	char alphabet[26] = "QWERTYUIOPASDFGHJKLZXCVBNM";
+	char alphabet[27] = "QWERTYUIOPASDFGHJKLZXCVBNM";
 	return alphabet[numalfabet];
 }
 
@@ -38,7 +38,8 @@ infoantrian GenerateRandomPeople(int pilihanwahana , semuawahana Array, int urut
 	for (i = 0; i < MaxTujuan(Orang)-1; ++i)  //random wahana yang mau dinaikin
 	{
 		int indeksrandom = generaterandomint(0,pilihanwahana-1);
-		namawahana TujuanRandomize = Array[indeksrandom];
+		namawahana TujuanRandomize;
+		strcpy(TujuanRandomize,Array[indeksrandom]);
 		strcpy(ArrayTujuan(Orang,i),TujuanRandomize);
 	}
 	return Orang;
