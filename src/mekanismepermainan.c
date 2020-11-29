@@ -12,37 +12,39 @@ void NgosonginAntrian(Antrian * A, int i)
 
 void MekanismeGaSabar(Antrian * A, int IntervalWaktu)
 {
-	int count = NBElmtAntrian(*A);
-	int i;
-	int jumlahgasabar = 0;
-	for (i = 0; i < count; ++i)
+	if (!IsAntrianEmpty(*A))
 	{
-		infoantrian pengunjunggasabar;
-		int DurasiKesabaranBaru = ElmtAntrian(*A,i).DurasiKesabaran - IntervalWaktu;
-		int KesabaranBaru = DurasiKesabaranBaru / 2000; //kalau intervalnya 0 berarti kan nanti 10000 - 0 / 2000 jadinya tetep 5
-		Kesabaran(ElmtAntrian(*A,i)) = KesabaranBaru;
-		if (KesabaranBaru <= 0)
+		int count = NBElmtAntrian(*A);
+		int i;
+		int jumlahgasabar = 0;
+		for (i = 0; i < count; ++i)
 		{
-			jumlahgasabar++;
-			printf("Kamu kehilangan satu pengunjung!\n");
+			infoantrian pengunjunggasabar;
+			int DurasiKesabaranBaru = ElmtAntrian(*A,i).DurasiKesabaran - IntervalWaktu;
+			int KesabaranBaru = DurasiKesabaranBaru / 2000; //kalau intervalnya 0 berarti kan nanti 10000 - 0 / 2000 jadinya tetep 5
+			Kesabaran(ElmtAntrian(*A,i)) = KesabaranBaru;
+			if (KesabaranBaru <= 0)
+			{
+				jumlahgasabar++;
+				printf("Kamu kehilangan satu pengunjung!\n");
+			}
+		}
+		int j,k;
+		Antrian Antriansementara;
+		MakeEmptyAntrian(&Antriansementaratri , count);
+		for (k = 0; i < count; ++i)
+		{
+			if (Kesabaran(ElmtAntrian(*A,k)) > 0)
+			{
+				Enqueue(&Antriansementara,Elmt(*A,k));
+			}
+		}
+		NgosonginAntrian(A,5);
+		for (j = 0; i < count - jumlahgasabar; ++i)
+		{
+			Enqueue(A,Elmt(Antriansementara,j));
 		}
 	}
-	int j,k;
-	Antrian Antriansementara;
-	MakeEmptyAntrian(&Antriansementaratri , count);
-	for (k = 0; i < count; ++i)
-	{
-		if (Kesabaran(ElmtAntrian(*A,k)) > 0)
-		{
-			Enqueue(&Antriansementara,Elmt(*A,k));
-		}
-	}
-	NgosonginAntrian(A,5);
-	for (j = 0; i < count - jumlahgasabar; ++i)
-	{
-		Enqueue(A,Elmt(Antriansementara,j));
-	}
-
 }
 
 void MekanismeNaikWahana(Antrian * A, ListBangunan * LB, int IntervalWaktu)
