@@ -2,6 +2,7 @@
 #include "point.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /* PROTOTYPE */
 /****************** TEST LIST KOSONG ******************/
@@ -471,7 +472,7 @@ int NbElmtBangunan (ListBangunan L)
 // 	P = First(L);
 // 	PC = First(LC);
 // 	int data[NbElmt(L)];
-// 	if (!IsEmpty(L))
+// 	if (!IsEmpty(L)fc)
 // 	{
 // 		for (int i = 0; i < NbElmt(L); i++)
 // 		{
@@ -495,40 +496,62 @@ int NbElmtBangunan (ListBangunan L)
 // 	First(*L2) = First(*L1);
 // }
 
-// List FCopyList (List L)
-// /* Mengirimkan list yang merupakan salinan L */
-// /* dengan melakukan alokasi. */
-// /* Jika ada alokasi gagal, hasilnya list kosong dan */
-// /* semua elemen yang terlanjur di-alokasi, harus didealokasi */
-// {
-// 	address P, PC, Prec;
-// 	List LC;
-// 	if (!IsEmpty(L))
-// 	{
-// 		P = First(L);
-// 		PC = Alokasi(Info(P));
-// 		First(LC) = PC;
-// 		Next(PC) = Nil;
-// 		Prec = PC;
-// 		P = Next(P);
-// 		PC = Next(PC);
-// 		while (P != Nil)
-// 		{
-// 			PC = Alokasi(Info(P));
-// 			Next(Prec) = PC;
-// 			Next(PC) = Nil;
-// 			P = Next(P);
-// 			PC = Next(PC);
-// 			Prec = Next(Prec);
-// 		}
-// 	}
-// 	else
-// 	{
-// 		First(LC) = Nil;
-// 	}
-// 	return LC;
-// }
+ListBangunan FCopyList (ListBangunan L)
+/* Mengirimkan list yang merupakan salinan L */
+/* dengan melakukan alokasi. */
+/* Jika ada alokasi gagal, hasilnya list kosong dan */
+/* semua elemen yang terlanjur di-alokasi, harus didealokasi */
+{
+	infotypeW X;
+	addressbangunan P=Alokasi(X); 
+	addressbangunan PC=Alokasi(X);
+	addressbangunan Prec=Alokasi(X);
+	ListBangunan LC;
+	if (!IsEmptyBangunan(L))
+	{
+		P = First(L);
+		copyInfotypew(&PC,P);
+		First(LC) = PC;
+		Next(PC) = Nil;
+		Prec = PC;
+		P = Next(P);
+		PC = Next(PC);
+		while (P != Nil)
+		{
+			copyInfotypew(&PC,P);
+			Next(Prec) = PC;
+			Next(PC) = Nil;
+			P = Next(P);
+			PC = Next(PC);
+			Prec = Next(Prec);
+		}
+	}
+	else
+	{
+		First(LC) = Nil;
+	}
+	return LC;
+}
 
+void copyInfotypew(addressbangunan *dest, addressbangunan source){
+	
+	strcpy(nama(*dest),nama(source));
+	tipe(*dest) = tipe(source);
+	wilayah(*dest) = wilayah(source);
+	Absis(point(*dest)) = Absis(point(source));
+	Ordinat(point(*dest)) = Ordinat(point(source));
+	history(*dest) = history(source);
+	durability(*dest) = durability(source);
+	durasibangunan(*dest) = durasibangunan(source);
+	KapasitasBang(*dest) = KapasitasBang(source);
+	status(*dest) = status(source);
+	Harga(*dest) = Harga(source);
+	HUpgrade(*dest) = HUpgrade(source);
+	JmlPakaiToday(*dest) = HUpgrade(source);
+	JmlPakaiTotal(*dest) = JmlPakaiTotal(source);
+	HasilToday(*dest) = HasilToday(source);
+	HasilTotal(*dest) = HasilTotal(source);
+}
 // void CpAlokList (List Lin, List *Lout)
 // /* I.S. Lin sembarang. */
 // /* F.S. Jika semua alokasi berhasil,maka Lout berisi hasil copy Lin */

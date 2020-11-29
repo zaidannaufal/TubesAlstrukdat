@@ -24,8 +24,7 @@ void inputbefore(BAHAN bbs,GraphMap G, int durasi,int bill,StackCond *sc,ListBan
     WilayahCond(Buildbefore) = SearchWilayahPlayer(G);
     Elmt(Wilayah(G,SearchWilayahPlayer(G)).Map,Ordinat(Wilayah(G,SearchWilayahPlayer(G)).PlayerPosition),Absis(Wilayah(G,SearchWilayahPlayer(G)).PlayerPosition)) = '-';
     CopyMATRIKS(Wilayah(G,SearchWilayahPlayer(G)).Map, &MapCond(Buildbefore));
-    addressbangunan Backup = Alokasi(X);
-    First(ListB(Buildbefore)) = First(lB);
+    ListB(Buildbefore) = FCopyList(lB);
     PushKond(sc,Buildbefore);
 }
 
