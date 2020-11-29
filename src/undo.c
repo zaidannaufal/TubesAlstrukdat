@@ -1,3 +1,4 @@
+#include "undo.h"
 void undo(BAHAN* bbs,GraphMap *G, int *durasi,int *bill){
     Kondisi kond;
 
