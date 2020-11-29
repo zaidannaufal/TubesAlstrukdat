@@ -27,13 +27,17 @@ addressbangunan randomWahana(ListBangunan Wahana){
 }
 
 void breakWahana(ListBangunan *Wahana, JAM jam){
+    int limit = 0;
     if (brokenWahana(*Wahana) == Nil){
-        if (Minute(jam) > 30 || Hour(jam) > 18){
+        if (Minute(jam) > 5 || Hour(jam) > 12){
             addressbangunan P = randomWahana(*Wahana);
-            while (!IsAntrianEmpty(Antrian(P))){
+            while (!IsAntrianEmpty(Antrian(P))&&limit<10){
                 P = randomWahana(*Wahana);
+                limit++;
             }
+            if (limit!=10){
             status(P) = false;
+            }
         }
 
     }
@@ -87,9 +91,9 @@ boolean isNextWahana (GraphMap G, addressbangunan P){
 
 }
 
-addrNode resourceWahana (BinTree *InfoWahana, int Tipe, addressbangunan Wahana)
+BinTree resourceWahana (BinTree *InfoWahana, int Tipe, addressbangunan Wahana)
 {
-    addrNode P = InfoWahana[Tipe];
+    BinTree P = InfoWahana[Tipe];
     if (history(Wahana) == 1){
         P = Left(P);
     }
@@ -110,29 +114,26 @@ boolean bahanCukup(BAHAN BB, int* R){
 }
 
 /* Prosedur repair */
-void repair(int *uang, int *remaining, GraphMap G, ListBangunan *Wahana, BinTree *InfoWahana, BAHAN *b){
+void repair(int *uang, JAM *JAM, GraphMap G, ListBangunan *Wahana, BinTree *InfoWahana, BAHAN *b){
 
     addressbangunan P = brokenWahana(*Wahana);
     if (P != Nil){
-        int durasi = 40;
         if (!isNextWahana(G, P)){
             printf("Anda tidak berada disebelah Wahana %s.\n", nama(P));
         }
         else{
             BinTree T = resourceWahana(InfoWahana, tipe(P), P);
-            int *butuhbahan;
+            int butuhbahan[3];
             butuhbahan[0] = setengahResource(T,0);
             butuhbahan[1] = setengahResource(T,1);
             butuhbahan[2] = setengahResource(T,2);
-
             if (bahanCukup(*b, butuhbahan) && *uang>=1000){
                 wood(*b) -= butuhbahan[0];
                 stone(*b) -= butuhbahan[1];
                 gold(*b) -= butuhbahan[2];
-                
                 status(P) = true;
                 *uang -= 1000;
-                *remaining += durasi;
+                *JAM = NextNDetik((*JAM),40*60);
             }
             else{
                 printf("Anda tidak memiliki bahan/uang yang cukup");

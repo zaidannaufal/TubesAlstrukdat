@@ -77,13 +77,9 @@ typedef struct {
 #define durability(P) (P)->info.durability
 #define durasibangunan(P) (P)->info.Durasi
 #define KapasitasBang(P) (P)->info.Kapasitas
-// #define DeskripsiBang(P) (P)->info.Deskripsi
-// #define resource(P) (P)->info.resource
 #define status(P) (P)->info.status
-// #define pengunjung(P) (P)->info.pengunjung
 #define Harga(P) (P)-> info.Harga
 #define HUpgrade(P) (P)->info.HUpgrade
-// #define Builded(P) (P)->info.Builded
 #define JmlPakaiToday(P) (P)->info.JmlPakaiToday
 #define JmlPakaiTotal(P) (P)->info.JmlPakaiTotal
 #define HasilToday(P) (P)->info.HasilToday
