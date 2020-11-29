@@ -9,7 +9,7 @@ addressbangunan searchByLokasi(ListBangunan Wahana, int x, int y, GraphMap G){
  	Found = false;
  	while (P != Nil && !Found)
  	{
- 		if (Absis(P) == Absis(lokasi(Wahana)) && Ordinat(P) == Ordinat(lokasi(Wahana)) && wilayah(Wahana) == SearchWilayahPlayer(G))
+ 		if (Absis(point(P)) == x && Ordinat(point(P)) == y && wilayah(P) == SearchWilayahPlayer(G))
  		{
  			Found = true;
  		}
@@ -25,8 +25,8 @@ boolean isKiriWahana(GraphMap G, int x, int y, int w){
     return Absis(Wilayah(G,w).PlayerPosition) == x-1 && Ordinat(Wilayah(G,w).PlayerPosition) == y;
 }
 
-boolean isKananWahana(GraphMap G, POINT P, int x, int y, int w){
-    return Absis(Wilayah(G,w).PlayerPosition) == x)+1 && Ordinat(Wilayah(G,w).PlayerPosition) == y;
+boolean isKananWahana(GraphMap G, int x, int y, int w){
+    return Absis(Wilayah(G,w).PlayerPosition) == x+1 && Ordinat(Wilayah(G,w).PlayerPosition) == y;
 }
 
 boolean isAtasWahana(GraphMap G, int x, int y, int w){
@@ -73,7 +73,7 @@ void detail(GraphMap G, ListBangunan Wahana){
         printDetail(PBawah);
     }
     else{
-        printf("Tidak ada wahana di sebelah Anda.\n")
+        printf("Tidak ada wahana di sebelah Anda.\n");
     }
 
 

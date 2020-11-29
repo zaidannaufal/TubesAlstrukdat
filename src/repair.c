@@ -17,7 +17,7 @@ int randomPickInt(int rangeawal, int rangeakhir)
 }
 
 addressbangunan randomWahana(ListBangunan Wahana){
-    int count = randomPickInt(0,NbElmtBangunan(Wahana)-1);
+    int count = rand()%(NbElmtBangunan(Wahana)-1);
     addressbangunan P = First(Wahana);
     while (count != 0){
         P = Next(P);

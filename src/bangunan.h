@@ -4,7 +4,7 @@
 /* infotypeW adalah integer */
 
 #ifndef BANGUNAN_H
-#define BANGUNAN
+#define BANGUNAN_H
 
 #include "boolean.h"
 #include "point.h"
