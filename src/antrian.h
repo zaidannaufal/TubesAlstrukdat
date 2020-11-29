@@ -17,6 +17,7 @@ typedef struct {
     int kesabaran;
     tujuan ArrayTujuan[5]; //kalau tujuannya cuman ada 1 nanti 4 elemen lainnya isi aja sama -1
     int CurrentTujuan; //buat nunjukin sekarang tujuan dia apa di array
+    int MaxTujuan;
 } infoantrian;
 typedef int addressantrian;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype PrioQueueChar : */
