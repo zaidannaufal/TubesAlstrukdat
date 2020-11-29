@@ -1,6 +1,7 @@
 #include "initantri.h"
 #include <stdlib.h>
 #include <time.h>
+#include<string.h>
 
 int generaterandomint(int rangeawal, int rangeakhir)
 {
@@ -32,13 +33,13 @@ infoantrian GenerateRandomPeople(int pilihanwahana , semuawahana Array, int urut
 	DurasiNaikWahana(Orang) = 0;
 	DurasiKesabaran(Orang) = 10000;
 	InfoAntrian(Orang) = generaterandomchar(); //random nama
-	prio(Orang) = urutanantrian;
+	Prio(Orang) = urutanantrian;
 	int i;
 	for (i = 0; i < MaxTujuan(Orang)-1; ++i)  //random wahana yang mau dinaikin
 	{
 		int indeksrandom = generaterandomint(0,pilihanwahana-1);
 		namawahana TujuanRandomize = Array[indeksrandom];
-		ArrayTujuan(Orang,i) = TujuanRandomize;
+		strcpy(ArrayTujuan(Orang,i),TujuanRandomize);
 	}
 	return Orang;
 }
@@ -52,7 +53,7 @@ void InitAntrian(Antrian * A, ListBangunan LB)
 	addressbangunan Current = First(LB);
 	while(Current != Nil)
 	{
-		Array[i] = nama(Current);
+		strcpy(Array[i],nama(Current));
 		Current = Next(Current);
 		i++;
 	}
