@@ -125,7 +125,8 @@ int main() {
         // {
         //     execute(stackawal, stacktarget);
         }else if (strcmp(input,"Upgrade")==0){
-            // Upgrade(&BangunanEx,wahana,&bb,&totaluang,&totalaksi,money,&totalwaktu);
+            ListBangunan ListBangunanLama;
+            Upgrade(&ListBangunanLama, &BangunanEx,wahana,&bb,&bbs,&totaluang,&totalaksi,money,&totalwaktu);
         }else if(strcmp(input,"Execute")==0){
             execute(stackawal,stacktarget,&BangunanNonEx,&BangunanEx);
             wood(bb) -= wood(bbs);
