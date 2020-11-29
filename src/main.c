@@ -11,11 +11,6 @@
 #include "upgrade.h"
 #include "jam.h"
 #include "build.h"
-// #include "buy.h"
-// #include "stackt.h"
-// #include "stackondisi.h"
-// #include "undo.h"
-// #include "initantri.h"
 #include "office.h"
 #include "mekanismepermainan.h"
 
@@ -285,7 +280,7 @@ int main() {
                     waktu = NextNDetik(waktu,5*60);
                     IntervalWaktu = 300;
                 }
-            } else if (strcmp(input,"serve")==0){ 
+            } else if (strcmp(input,"Serve")==0){ 
                 int moneycompare = money;
                 Serve(&(QueueAntrian),&BangunanEx,&money);
                 if (moneycompare != money)
@@ -293,15 +288,15 @@ int main() {
                     waktu = NextNDetik(waktu,30*60);
                     IntervalWaktu = 1800;
                 }
-            } else if (strcmp(input,"repair")==0){ 
-                int waktuawal = waktu;
+            } else if (strcmp(input,"Repair")==0){ 
+                int waktuawal = JAMToDetik(waktu);
                 repair(&money,&waktu,G,&BangunanEx,wahana,&bb);
-                IntervalWaktu = waktu - waktuawal;
-            } else if (strcmp(input,"detail")==0){ 
-                detail(G,BangunanEx);
+                IntervalWaktu = JAMToDetik(waktu) - waktuawal;
+            } else if (strcmp(input,"Detail")==0){ 
+                detail(G,BangunanEx,&waktu);
                 waktu = NextNDetik(waktu,10*60);
                 IntervalWaktu = 600;
-            } else if(strcmp(input,"office")==0){ 
+            } else if(strcmp(input,"Office")==0){ 
                 if(IsinOffice(G)){
                 Office(&BangunanEx);
                 char getoutoffice[2];
@@ -313,7 +308,7 @@ int main() {
                 }else {
                     printf("Anda tidak berada di office\n");
                 }
-            } else if (strcmp(input,"prepare")==0){
+            } else if (strcmp(input,"Prepare")==0){
                 NgosonginAntrian(&QueueAntrian);
                 addressbangunan P;
                 P = First(BangunanEx);
@@ -329,7 +324,20 @@ int main() {
             } else if(strcmp(input,"exit")==0){ // HAHAHHAHAHAHDAKWFBHGWFUIGFBMEJGFUW
                 gamestart=0;
                 game = false;
-            } else{
+            } else if(JEQ(waktu,waktututup)){
+                NgosonginAntrian(&QueueAntrian);
+                addressbangunan P;
+                P = First(BangunanEx);
+                while (P != NULL)
+                { 
+                    JmlPakaiToday(P) = 0;
+                    HasilToday(P) = 0;
+                    P = Next(P);
+                }
+                printf("sampai akhirloop\n");
+                hari++;
+                gamestart = 1;
+            }else{
                 printf("Input salah, silakan coba lagi.\n");
             }
             MekanismeGaSabar(&QueueAntrian, IntervalWaktu);
