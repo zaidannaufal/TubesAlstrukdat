@@ -255,6 +255,7 @@ int main() {
             printf("Closing Time: ");TulisJAM(waktututup);printf("\n");
             printf("Time Remaining: ");TulisJAM(DetikToJAM(Durasi(waktu,waktututup))); printf("\n");
             printf("Antrian [%d/5]:\n", NBElmtAntrian(QueueAntrian)); // HAHAHAHAHAHAHAHAHHA
+            PrintAntrian(QueueAntrian);
             addressbangunan broken = Nil;
             broken = brokenWahana(BangunanEx);
             breakWahana(&BangunanEx,waktu);

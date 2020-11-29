@@ -89,11 +89,18 @@ void PrintPengunjung(infoantrian Orang)
 
 void PrintAntrian(Antrian A)
 {
-	int i = Head(A);
-	while (i != Tail(A))
+	if (!IsAntrianEmpty(A))
 	{
+		int i = Head(A);
+		while (i != Tail(A))
+		{
+			printf("%d.",i+1 );
+			PrintPengunjung(ElmtAntrian(A,i));
+			printf("\n");
+			i++;
+		}
+		printf("%d.",i+1 );
 		PrintPengunjung(ElmtAntrian(A,i));
 		printf("\n");
-		i++;
 	}
 }
