@@ -412,28 +412,28 @@ int NbElmtBangunan (ListBangunan L)
 // }
 
 /****************** PROSES TERHADAP LIST ******************/
-// void DelAll (List *L)
-// /* Delete semua elemen list dan alamat elemen di-dealokasi */
-// {
-// 	if (IsEmpty(*L))
-// 	{
-// 		return;
-// 	}
-// 	else
-// 	{
-// 		address P;
-// 		P = First(*L);
-// 		while (Next(P) != Nil)
-// 		{
-// 			address Prec;
-// 			Prec = P;
-// 			P = Next(P);
-// 			Dealokasi(&Prec);
-// 		}
-// 		First(*L) = Nil;
-// 		Dealokasi(&P);
-// 	}
-// }
+void DelAll (ListBangunan *L)
+/* Delete semua elemen list dan alamat elemen di-dealokasi */
+{
+	if (IsEmptyBangunan(*L))
+	{
+		return;
+	}
+	else
+	{
+		addressbangunan P;
+		P = First(*L);
+		while (Next(P) != Nil)
+		{
+			addressbangunan Prec;
+			Prec = P;
+			P = Next(P);
+			Dealokasi(&Prec);
+		}
+		First(*L) = Nil;
+		Dealokasi(&P);
+	}
+}
 
 // void InversList (List *L)
 // /* I.S. sembarang. */
