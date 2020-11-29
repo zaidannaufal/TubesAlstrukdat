@@ -49,6 +49,8 @@ int main() {
         } while (nama[idxNama++] != '\n');
         nama[--idxNama] = '\0';
         gamestart = 1;
+    }else {
+        return 0;
     }
     printf("\n");
     
