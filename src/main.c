@@ -14,7 +14,7 @@
 #include "undo.h"
 
 int main() {
-    boolean gamestart = false; // kalo true berarti game jalan
+    int gamestart = 0; // kalo 0 berarti game belum jalan
     ListBangunan BangunanNonEx, BangunanEx;
     char nama[100];
     char menu[100];
@@ -47,7 +47,7 @@ int main() {
             scanf("%c", nama + idxNama);
         } while (nama[idxNama++] != '\n');
         nama[--idxNama] = '\0';
-        gamestart = true;
+        gamestart = 1;
     }
     printf("\n");
     
@@ -68,6 +68,7 @@ int main() {
     int totaluang=0;
     GraphMap G = BacaMapTXT();    
     InitiatePlayerPosition(&G);
+    
     do{
         TulisMATRIKS(Wilayah(G,SearchWilayahPlayer(G)).Map);
         printf("\n");
@@ -185,13 +186,19 @@ int main() {
             }
             
         }else if (strcmp(input,"Main")==0){
-
+            gamestart = 2;
+        }else if (strcmp(input,"Exit")==0){
+            gamestart = 0;
         }else{
-            printf("inputsalah\n");
+            printf("Input salah, silakan coba lagi.\n");
         }
-          
 
-    }while (gamestart);
+    }while (gamestart == 1);
+
+    do {
+        //something
+
+    } while (gamestart == 2);
 
     return 0;
 }
