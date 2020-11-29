@@ -2,19 +2,26 @@
 #include <stdlib.h>
 #include <time.h>
 #include<string.h>
+#include "randomizer.c"
 
 int generaterandomint(int rangeawal, int rangeakhir)
 {
-	int r,a,b;
-	srand((unsigned)time(NULL));
-	for(a=0;a<20;a++)
-	{
-		for(b=0;b<5;b++)
-		{
-			r = rand()% rangeakhir+rangeawal;
-		}
-	}
-	return r;
+	// int r,a,b;
+	// srand((unsigned)time(NULL));
+	// for(a=0;a<20;a++)
+	// {
+	// 	for(b=0;b<5;b++)
+	// 	{
+	// 		r = rand()% rangeakhir+rangeawal;
+	// 	}
+	// }
+	// return r;
+	int a;
+	do{
+		a =rdmint();
+		a = a % rangeakhir+1;
+	}while (a<rangeawal&&a>rangeakhir);
+	return a;
 }
 
 char generaterandomchar()
@@ -62,7 +69,7 @@ void InitAntrian(Antrian * A, ListBangunan LB)
 	int j;
 	for (j = 0; j < jumlahpengunjung; ++j)
 	{
-		infoantrian Pengunjung = GenerateRandomPeople(i,Array,j+1);
+		infoantrian Pengunjung = GenerateRandomPeople(NbElmtBangunan(LB),Array,j+1);
 		Enqueue(A,Pengunjung);
 	}
 }

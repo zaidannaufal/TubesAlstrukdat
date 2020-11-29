@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int generaterandomint()
+int rdmint()
 {
 	FILE* f;
 	system("gcc randomint.c -o random");
