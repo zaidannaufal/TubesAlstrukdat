@@ -30,7 +30,7 @@ infoantrian GenerateRandomPeople(int pilihanwahana , semuawahana Array, int urut
 	CurrentTujuan(Orang) = 0;
 	Kesabaran(Orang) = 5;
 	DurasiNaikWahana(Orang) = 0;
-	DurasiKesabaran(Orang) = 10800; //3 jam 
+	DurasiKesabaran(Orang) = 10000;
 	InfoAntrian(Orang) = generaterandomchar(); //random nama
 	prio(Orang) = urutanantrian;
 	int i;
