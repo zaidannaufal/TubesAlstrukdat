@@ -8,5 +8,7 @@
 
 boolean CompareTujuan(tujuan T, char* NamaWahana);
 
+void CreateEmptySemuaWahana(ListBangunan * ListWahana);
+
 void Serve(Antrian * Antrian, List * ListWahana);
 #endif
