@@ -62,7 +62,7 @@ void detail(GraphMap G, ListBangunan Wahana, JAM *jam){
         printf("Kanans:\n");
         printDetail(Pleft);
         printf("\n");
-        *jam = NextNDetik(*jam,60*100);
+        *jam = NextNDetik(*jam,60*10);
         found = true;
     }
     if (searchByLokasi(Wahana,x-1,y,G) != Nil){
@@ -70,7 +70,7 @@ void detail(GraphMap G, ListBangunan Wahana, JAM *jam){
         printf("Kiri:\n");
         printDetail(PRight);
         printf("\n");
-        *jam = NextNDetik(*jam,60*100);
+        *jam = NextNDetik(*jam,60*10);
         found = true;
     }
     if (searchByLokasi(Wahana,x,y-1,G) != Nil){
@@ -78,7 +78,7 @@ void detail(GraphMap G, ListBangunan Wahana, JAM *jam){
         printf("Atas:\n");
         printDetail(PAtas);
         printf("\n");
-        *jam = NextNDetik(*jam,60*100);
+        *jam = NextNDetik(*jam,60*10);
         found = true;
     }
     if (searchByLokasi(Wahana,x,y+1,G) != Nil){
@@ -86,7 +86,7 @@ void detail(GraphMap G, ListBangunan Wahana, JAM *jam){
         printf("Bawah:\n");
         printDetail(PBawah);
         printf("\n");
-        *jam = NextNDetik(*jam,60*100);
+        *jam = NextNDetik(*jam,60*10);
         found = true;
     }
     else{
