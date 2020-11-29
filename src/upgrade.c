@@ -16,9 +16,8 @@ int TipeRootWahana(char* NamaWahana, ListBangunan * LB)
 }
 
 
-void Upgrade(ListBangunan * ListLama, ListBangunan * LB, BinTree* BT, BAHAN bb,BAHAN *bbs, int * Bill, int * Aksi, int CurrentMoney, int * TambahanWaktu)
+void Upgrade(ListBangunan * LB, BinTree* BT, BAHAN bb,BAHAN *bbs, int * Bill, int * Aksi, int CurrentMoney, int * TambahanWaktu)
 {
-	(*ListLama) = (*LB);
 	printf("Mau upgrade apa?\nList:\n");
 	addressbangunan Current = First(*LB);
 	while(Current != NULL) // Print semua wahana yang dipunya
@@ -27,12 +26,14 @@ void Upgrade(ListBangunan * ListLama, ListBangunan * LB, BinTree* BT, BAHAN bb,B
 		puts(nama(Current));
 		Current = Next(Current);
 	}
+	printf("Nama Bangunan: ");
 	char NamaBangunan[50];
 	int idxNBangunan = 0;
     do {
         scanf("%c", NamaBangunan + idxNBangunan);
     } while (NamaBangunan[idxNBangunan++] != '\n');
     NamaBangunan[--idxNBangunan] = '\0';
+	printf("\n");
 	int TipeRoot = TipeRootWahana(NamaBangunan,LB); //Nyari Root Wahana Yang Dimaksud
 	addressbangunan BangunanTujuan = First(*LB);
 	while (BangunanTujuan != NULL && (strcmp(nama(BangunanTujuan),NamaBangunan)) != 0)
@@ -48,9 +49,9 @@ void Upgrade(ListBangunan * ListLama, ListBangunan * LB, BinTree* BT, BAHAN bb,B
 			if (BBcukup(bb,*bbs,((Left(BT[TipeRoot]))->info).resource.resource))
 			{
 				(*Bill) += HUpgrade(BangunanTujuan);
-				wood(*bbs) -= resource(Root,0);
-				stone(*bbs) -= resource(Root,1);
-				gold(*bbs) -= resource(Root,2);
+				wood(*bbs) += resource(Root,0);
+				stone(*bbs) += resource(Root,1);
+				gold(*bbs) += resource(Root,2);
 				Root = Left(Root);
 				Harga(BangunanTujuan) = harga(Root);
 				durasibangunan(BangunanTujuan) = durasibt(Root);
@@ -59,16 +60,16 @@ void Upgrade(ListBangunan * ListLama, ListBangunan * LB, BinTree* BT, BAHAN bb,B
 				(*TambahanWaktu)+=90;
 				(*Aksi)++;
 				history(BangunanTujuan)++;
-			}else printf("Bahan baku tidak mencukupi!\n")
+			}else printf("Bahan baku tidak mencukupi!\n");
 		}else if (history(BangunanTujuan) == 1)
 		{
 			if (BBcukup(bb,*bbs,((Left(Left(BT[TipeRoot])))->info).resource.resource))
 			{
 				(*Bill) += HUpgrade(BangunanTujuan);
 				Root = Left(Left(Root));
-				wood(*bbs) -= resource(Root,0);
-				stone(*bbs) -= resource(Root,1);
-				gold(*bbs) -= resource(Root,2);
+				wood(*bbs) += resource(Root,0);
+				stone(*bbs) += resource(Root,1);
+				gold(*bbs) += resource(Root,2);
 				Harga(BangunanTujuan) = harga(Root);
 				durasibangunan(BangunanTujuan) = durasibt(Root);
 				KapasitasBang(BangunanTujuan) = kapasitas(Root);

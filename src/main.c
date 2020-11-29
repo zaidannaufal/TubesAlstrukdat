@@ -20,6 +20,7 @@ int main() {
     char menu[100];
     char input[100];
     BAHAN bb,bbs;
+    BangunanEx = BangunanNonEx;
     wood(bb) = 100000;
     stone(bb) = 100000;
     gold(bb) = 100000;
@@ -110,8 +111,9 @@ int main() {
         }else if (strcmp(input,"Build")==0){
             if (isWaktuCukup(waktu,waktubuka,totalwaktu,15)){
                 
-                inputbefore(bbs,G,totalwaktu,totaluang,&Conawal);
-                build(wahana, bb,&bbs,&G,&BangunanNonEx,&totalwaktu,money,&totaluang);
+                inputbefore(bbs,G,totalwaktu,totaluang,&Conawal,BangunanEx);
+                // build(wahana, bb,&bbs,&G,&BangunanNonEx,&totalwaktu,money,&totaluang);
+                build(wahana, bb,&bbs,&G,&BangunanEx,&totalwaktu,money,&totaluang);
                 totalaksi++;
                 char B[20];
                 strcpy(B,"build");
@@ -125,8 +127,16 @@ int main() {
         // {
         //     execute(stackawal, stacktarget);
         }else if (strcmp(input,"Upgrade")==0){
-            ListBangunan ListBangunanLama;
-            Upgrade(&ListBangunanLama, &BangunanEx,wahana,&bb,&bbs,&totaluang,&totalaksi,money,&totalwaktu);
+            if (!IsEmptyBangunan(BangunanEx)){
+                inputbefore(bbs,G,totalwaktu,totaluang,&Conawal,BangunanEx);
+                Upgrade(&BangunanEx,wahana,bb,&bbs,&totaluang,&totalaksi,money,&totalwaktu);
+                char B[20];
+                strcpy(B,"upgrade");
+                Push(&stackawal,B);
+                printwahana(First(BangunanEx));
+            }else {
+                printf("tidak ada wahana yang bisa diupgrade");
+            }
         }else if(strcmp(input,"Execute")==0){
             execute(stackawal,stacktarget,&BangunanNonEx,&BangunanEx);
             wood(bb) -= wood(bbs);
@@ -141,7 +151,7 @@ int main() {
             totalaksi = 0;
         }else if (strcmp(input,"Buy")==0){
             if (isWaktuCukup(waktu,waktubuka,totalwaktu,15)){
-                inputbefore(bbs,G,totalwaktu,totaluang,&Conawal);
+                inputbefore(bbs,G,totalwaktu,totaluang,&Conawal,BangunanEx);
                 buy(money,&totaluang,&totalaksi,&totalwaktu,&bbs);
                 char bu[20];
                 strcpy(bu,"buy");
@@ -154,20 +164,22 @@ int main() {
                 POINT Pbefore; 
                 Absis(Pbefore) = Absis(Wilayah(G,SearchWilayahPlayer(G)).PlayerPosition);
                 Ordinat(Pbefore) = Ordinat(Wilayah(G,SearchWilayahPlayer(G)).PlayerPosition);
-                char buffer[30];
+                char* buffer;
                 Pop(&stackawal, &buffer);
-                if (strcmp(buffer,"build")){
+                if (strcmp(buffer,"build")==0){
                     addressbangunan bufferP;
-                    DelLast(&BangunanNonEx,bufferP);
+                    DelLast(&BangunanNonEx,&bufferP);
                     Dealokasi(&bufferP);
-                }else if(strcmp(buffer,"upgrade")){
+                }// }else if(strcmp(buffer,"upgrade")==0){
 
-                } 
-                undo(&bbs,&G,&totalwaktu,&totaluang,&Conawal);
+                // }
+                undo(&bbs,&G,&totalwaktu,&totaluang,&Conawal,&BangunanEx);
                 Absis(Wilayah(G,SearchWilayahPlayer(G)).PlayerPosition) = Absis(Pbefore);
                 Ordinat(Wilayah(G,SearchWilayahPlayer(G)).PlayerPosition) = Ordinat(Pbefore);
                 Elmt(Wilayah(G,SearchWilayahPlayer(G)).Map,Ordinat(Pbefore),Absis(Pbefore)) = 'P';
                 totalaksi--;
+                printwahana(First(BangunanEx));
+                // printwahana(First(BangunanEx));
             }else{
                 printf("ga ada yg bisa di undo\n");
             }

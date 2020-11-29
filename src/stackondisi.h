@@ -14,6 +14,7 @@ typedef struct {
     BAHAN bahan;//bbs
     MATRIKS Map;//Wilayah(G,WilayahCond(x)).Map)
     int Wilayah;
+    ListBangunan ListEx;
 } Kondisi;
 
 typedef struct {
@@ -29,7 +30,8 @@ typedef struct {
 #define UangCond(K) K.uang
 #define BahanCond(K) K.bahan
 #define MapCond(K) K.Map
-#define WilayahCond(K) K.Wilayah  
+#define WilayahCond(K) K.Wilayah 
+#define ListB(K) K.ListEx 
 
 boolean IsEmptyKondisi(StackCond S);
 void CreateEmptyKondisi (StackCond *S);
