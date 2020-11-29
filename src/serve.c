@@ -52,6 +52,7 @@ void Serve(Antrian * A, ListBangunan * ListWahana, int * Uang)
                         JmlPakaiTotal(Current) += 1;
                         HasilToday(Current) += Harga(Current); 
                         HasilTotal(Current) += Harga(Current);
+                        (*Uang) += Harga(Current);
                     }else printf("Wahana masih penuh, tunggu terlebih dahulu!\n");
 
                 }else printf("Harap memperbaiki wahana yang rusak terlebih dahulu!\n");
